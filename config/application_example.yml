@@ -1,0 +1,17 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+# production secret key for secrets.yml
+SECRET_KEY_BASE: 92d5abbe444db60fb0cd9c6e92fae64637fc2d6d41dbad9c12afc9ea17ac47c1e00a25c181f4fcc75d333a5c20d06e4e6d1728926b0625175ff1480bf21de897
+
+# other
+mailer_smtp_password: "user_password"

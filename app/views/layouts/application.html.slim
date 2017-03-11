@@ -1,0 +1,70 @@
+doctype html
+html lang=I18n.locale
+  head
+    meta charset=Rails.application.config.encoding
+    meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    /[if (lt IE 9) & (!IEMobile)]
+      script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"
+
+    title = seo.title
+    - if seo.description
+      meta name="description" content=seo.description
+    - if seo.keywords
+      meta name="keywords" content=seo.keywords
+
+    // Twitter Card (https://dev.twitter.com/cards)
+    meta name="twitter:card" content="summary"
+    / meta name="twitter:site" content="@docuassist"
+    / meta name="twitter:creator" content="@doctor_account"
+    // Title, description and image Twitter will get from Open Graph tags.
+
+    // Open Graph protocol (http://ogp.me/) with https://developers.facebook.com/docs/sharing/webmasters
+    meta property="og:type" content="website"
+    meta property="og:title" content=seo.title
+    meta property="og:url" content=request.original_url
+    / meta property="og:image" content=(seo.image || asset_url('ico/fav_310.png'))
+    - if seo.description
+      meta property="og:description" content=seo.description
+    meta property="og:site_name" content=setting_value(:app_humanized_name)
+    / meta property="fb:app_id" content="00000000000"
+
+    // Favicons and touch icons
+    = favicon_link_tag '/favicon.ico', rel: 'icon', sizes: '16x16 32x32 48x48 64x64'
+    /[if IE]
+      = favicon_link_tag '/favicon.ico'
+    / link rel="apple-touch-icon" href=asset_path('ico/fav_180.png') TODO
+
+    // Windows pinned sites icon https://msdn.microsoft.com/en-us/library/hh772707.aspx
+    / meta name="msapplication-TileColor" content="#ffffff"
+    / meta name="msapplication-TileImage" content=asset_path('ico/fav_144.png')
+
+    // RSS
+    / =# auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/docuassist", \
+    /                                  { title: setting_value(:app_humanized_name) })
+
+    link rel="author" type="text/plain" href=asset_path('humans.txt')
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    // Will be better to move javascript_include_tag to the end of body tag
+    //  if you don't plan to use turbolinks
+    = csrf_meta_tags
+
+  body
+    // Flash notices
+    / - if flash[:notice]
+    /   p.notice = flash[:notice]
+    / - if flash[:alert]
+    /   p.alert = flash[:alert]
+
+    #wrap
+      header#header
+        .holder
+          = setting_value(:app_humanized_name)
+
+      = yield
+
+    footer#footer
+      .holder
+        = "#{setting_value(:app_humanized_name)}, #{Date.today.year}"
