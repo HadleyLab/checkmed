@@ -2,3 +2,21 @@ section.holder
   article.content
     h1 Hello world!
     p This is a small step for a programmer and a big step for the project!
+    hr
+    - if user_signed_in?
+      p
+        ' Hello
+        = current_user.name
+        ' !
+        - unless current_user.avatar.blank?
+          br
+          = image_tag current_user.avatar.thumb.url
+        br
+        = link_to 'Edit profile', edit_user_registration_path
+        br
+        = link_to 'Sign out', destroy_user_session_path, method: :delete
+    - else
+      p
+        = link_to 'Sign in', new_user_session_path
+        '  or
+        = link_to 'register', new_user_registration_path
