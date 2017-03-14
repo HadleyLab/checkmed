@@ -1,0 +1,4 @@
+section.holder
+  = form_tag search_path, method: :get, class: 'tmp-search-form'
+    .field
+      = text_field_tag :daq, params[:daq]

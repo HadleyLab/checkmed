@@ -2,15 +2,15 @@ section.holder
   article.content
     h1 Hello world!
     p This is a small step for a programmer and a big step for the project!
-    hr
+
+  .content
     - if user_signed_in?
       p
         ' Hello
         = current_user.name
         ' !
-        - unless current_user.avatar.blank?
-          br
-          = image_tag current_user.avatar.thumb.url
+        br
+        = link_to 'Show profile', account_path(current_user.id)
         br
         = link_to 'Edit profile', edit_user_registration_path
         br
@@ -20,3 +20,11 @@ section.holder
         = link_to 'Sign in', new_user_session_path
         '  or
         = link_to 'register', new_user_registration_path
+
+  h3 About the project
+  p Some inspirational text about Docuassist.
+
+  h3 Search checklists
+  = form_tag search_path, method: :get, class: 'tmp-search-form tmp-search-form-shy'
+    .field
+      = text_field_tag :daq, params[:daq]

@@ -33,6 +33,7 @@ User.create! email: 'user@example.com',
              password: 'password',
              password_confirmation: 'password',
              name: 'Default Doctor',
+             company: 'Main Hospital of USA',
              position: 'MD'
 
 puts "#{time_point_string}: Seeding is done!"

@@ -61,7 +61,7 @@ html lang=I18n.locale
     #wrap
       header#header
         .holder
-          = setting_value(:app_humanized_name)
+          = link_to setting_value(:app_humanized_name), root_url
 
       = yield
 

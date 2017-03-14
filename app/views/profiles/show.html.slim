@@ -1,0 +1,10 @@
+section.holder
+  .tmp-user-profile
+    - unless @user.avatar.blank?
+      .tmp-u-photo
+        = image_tag @user.avatar.thumb.url
+    .tmp-u-info
+      h1 = @user.name
+      p = "#{@user.position} at #{@user.company}"
+      - if current_user == @user
+        = link_to 'edit profile', edit_user_registration_path
