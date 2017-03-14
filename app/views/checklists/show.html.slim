@@ -28,8 +28,12 @@ section.holder
         - cur_sb_group = citem.sb_group
       div
         = citem.title
-    h3 Actions
-    p
-      = link_to "edit", edit_checklist_path(@checklist)
-      br
-      = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }
+    - if current_user == @user
+      h3 Actions
+      p
+        = link_to "edit", edit_checklist_path(@checklist)
+        br
+        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }
+
+    br
+    br

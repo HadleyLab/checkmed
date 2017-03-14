@@ -1,3 +1,4 @@
+- owner_in_da_house = current_user == @user
 section.holder
   .tmp-user-profile
     - unless @user.avatar.blank?
@@ -6,16 +7,18 @@ section.holder
     .tmp-u-info
       h1 = @user.name
       p = "#{@user.position} at #{@user.company}"
-      - if current_user == @user
+      - if owner_in_da_house
         = link_to 'edit profile', edit_user_registration_path
   .tmp-checklists-list
     h3 Checklists
     - @checklists.each do |checklist|
       = link_to checklist.name, checklist_path(checklist)
-      |  (
-      = link_to 'edit', edit_checklist_path(checklist)
-      | )
+      - if owner_in_da_house
+        |  (
+        = link_to 'edit', edit_checklist_path(checklist)
+        | )
+    - if owner_in_da_house
       br
-    = link_to "Add new checklist", new_checklist_path
+      = link_to "Add new checklist", new_checklist_path
     br
     br

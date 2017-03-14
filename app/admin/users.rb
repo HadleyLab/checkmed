@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :name, :company, :position,
-                :avatar, :avatar_cache, :remove_avatar
+                :avatar, :avatar_cache, :remove_avatar,
+                :password, :password_confirmation
 
   ### Setting up the menu element of this page
   menu priority: 1
@@ -79,6 +80,10 @@ ActiveAdmin.register User do
                                 'have no avatar')
       f.input :avatar_cache, as: :hidden
       f.input :remove_avatar, as: :boolean if f.object.avatar?
+      if f.object.new_record?
+        f.input :password
+        f.input :password_confirmation
+      end
     end
 
     f.actions
