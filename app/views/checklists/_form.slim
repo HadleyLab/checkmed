@@ -1,30 +1,38 @@
 = form_for @checklist do |f|
-  .field
+  p.field
     = f.label :name
     br
     = f.text_field :name, autofocus: true
 
-  .field
+  p.field
     = f.label :executor_role_id
     br
     = f.collection_select :executor_role_id, ExecutorRole.ordered, :id, :name
 
-  .field
+  p.field
     = f.label :treat_stage
     br
-    = f.select :treat_stage, options_for_select((1..5).to_a.map { |i| [i.to_s, i] }), { include_blank: true }
+    = f.select :treat_stage, options_for_select((1..5).to_a.map { |i| [i.to_s, i] }, f.object.treat_stage), { include_blank: true }
 
-  .field
+  p.field
     = f.label :descr
     br
     = f.text_area :descr
 
-  .field
+  p.field
     = f.label :hided
     '  &nbsp;
     = f.check_box :hided
 
-  .field
+  h2 Items
+
+  = f.fields_for :items do |a|
+    = render partial: "item_fields", locals: { f: a }
+
+  p.field
+    = link_to_add_checklist_item "Add question", f, :items
+
+  p.field
     = f.submit
 
 - if @checklist.errors.any?

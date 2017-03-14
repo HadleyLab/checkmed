@@ -62,7 +62,15 @@ class ChecklistsController < FrontendController
           :treat_stage,
           :descr,
           :prior,
-          :hided
+          :hided,
+          items_attributes: [
+              :id,
+              :title,
+              :sb_group,
+              :descr,
+              :prior,
+              :_destroy
+            ]
         )
     end
 end

@@ -30,22 +30,38 @@ puts "#{time_point_string}: Start seeding"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Users"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-User.create! email: 'user@example.com',
-             password: 'password',
-             password_confirmation: 'password',
-             name: 'Default Doctor',
-             company: 'Main Hospital of USA',
-             position: 'MD'
+def_user = User.create! email: 'user@example.com',
+                        password: 'password',
+                        password_confirmation: 'password',
+                        name: 'Default Doctor',
+                        company: 'Main Hospital of USA',
+                        position: 'MD'
 
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Executor Roles"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-ExecutorRole.create!([
+executor_roles = ExecutorRole.create!([
     { name: 'Medical Students', prior: 1 },
     { name: 'Interns',          prior: 2 },
     { name: 'Nursing staff',    prior: 3 },
     { name: 'Pharmacists',      prior: 4 }
   ])
+
+
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+puts "#{time_point_string}: seed Checklists and it's Items"
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+def_user.checklists.create!({
+    name: "The first Checklist",
+    executor_role: executor_roles[3],
+    treat_stage: 1,
+    descr: "This is the first created checklist of the first created user.",
+    items_attributes: [
+      { sb_group: 1, title: "Has runny or stuffy nose?", prior: 0 },
+      { sb_group: 1, title: "Has cough?",                prior: 1 },
+      { sb_group: 3, title: "Hemoglobin level",          prior: 2 }
+    ]
+  })
 
 puts "#{time_point_string}: Seeding is done!"

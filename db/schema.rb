@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314053841) do
+ActiveRecord::Schema.define(version: 20170314081351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklist_items", force: :cascade do |t|
+    t.integer  "checklist_id",             null: false
+    t.string   "title",                    null: false
+    t.integer  "sb_group",                 null: false
+    t.text     "descr"
+    t.integer  "prior",        default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "checklist_items", ["checklist_id"], name: "index_checklist_items_on_checklist_id", using: :btree
 
   create_table "checklists", force: :cascade do |t|
     t.integer  "user_id",                          null: false
@@ -78,5 +90,6 @@ ActiveRecord::Schema.define(version: 20170314053841) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "checklist_items", "checklists"
   add_foreign_key "checklists", "users"
 end

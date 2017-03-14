@@ -16,3 +16,20 @@ section.holder
       br
       ' Published:
       = (!@checklist.hided).to_s
+    h3
+      | Questions
+      |  (
+      = @checklist.items.count
+      | )
+    - cur_sb_group = nil
+    - @checklist.items.ordered.each do |citem|
+      - if cur_sb_group != citem.sb_group
+        h5 = [nil, 'Symptoms questions', 'Physical exams questions', 'Labs questions', 'Procedures questions', 'Medications questions'][citem.sb_group]
+        - cur_sb_group = citem.sb_group
+      div
+        = citem.title
+    h3 Actions
+    p
+      = link_to "edit", edit_checklist_path(@checklist)
+      br
+      = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }
