@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311225560) do
+ActiveRecord::Schema.define(version: 20170314053841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklists", force: :cascade do |t|
+    t.integer  "user_id",                          null: false
+    t.string   "name",                             null: false
+    t.integer  "executor_role_id",                 null: false
+    t.integer  "treat_stage"
+    t.text     "descr"
+    t.integer  "prior",            default: 0,     null: false
+    t.boolean  "hided",            default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "checklists", ["executor_role_id"], name: "index_checklists_on_executor_role_id", using: :btree
+  add_index "checklists", ["hided"], name: "index_checklists_on_hided", using: :btree
+  add_index "checklists", ["prior"], name: "index_checklists_on_prior", using: :btree
+  add_index "checklists", ["treat_stage"], name: "index_checklists_on_treat_stage", using: :btree
+  add_index "checklists", ["user_id"], name: "index_checklists_on_user_id", using: :btree
+
+  create_table "executor_roles", force: :cascade do |t|
+    t.string   "name",                   null: false
+    t.integer  "prior",      default: 9, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "executor_roles", ["prior"], name: "index_executor_roles_on_prior", using: :btree
 
   create_table "static_files", force: :cascade do |t|
     t.integer  "holder_id"
@@ -51,4 +78,5 @@ ActiveRecord::Schema.define(version: 20170311225560) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "checklists", "users"
 end

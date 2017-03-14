@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :checklists, inverse_of: :user, dependent: :destroy
+
   mount_uploader :avatar, UserAvatarUploader
 
   validates :name, presence: true

@@ -1,0 +1,18 @@
+section.holder
+  .content
+    h1 = @checklist.name
+    p
+      ' by
+      = @user.name
+    p
+      ' Executor role:
+      = @checklist.executor_role.name
+      br
+      ' Treatment stage:
+      = @checklist.treat_stage
+      br
+      ' Description:
+      = @checklist.descr
+      br
+      ' Published:
+      = (!@checklist.hided).to_s

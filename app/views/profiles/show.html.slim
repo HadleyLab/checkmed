@@ -8,3 +8,14 @@ section.holder
       p = "#{@user.position} at #{@user.company}"
       - if current_user == @user
         = link_to 'edit profile', edit_user_registration_path
+  .tmp-checklists-list
+    h3 Checklists
+    - @checklists.each do |checklist|
+      = link_to checklist.name, checklist_path(checklist)
+      |  (
+      = link_to 'edit', edit_checklist_path(checklist)
+      | )
+      br
+    = link_to "Add new checklist", new_checklist_path
+    br
+    br

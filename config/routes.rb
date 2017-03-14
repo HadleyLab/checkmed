@@ -8,7 +8,14 @@ Rails.application.routes.draw do
                        registrations: 'users/registrations',
                        sessions: 'users/sessions' }
 
+  scope 'profile' do
+    resources :checklists, except: :index
+  end
+
   get 'account/:id', to: 'profiles#show', as: :account
+
+  get 'profile',            to: 'profiles#redirect_to_show', as: :profile_root
+  get 'profile/checklists', to: 'profiles#redirect_to_show', as: :profile_checklists_root
 
   get 'search', to: 'pages#search', as: :search
 

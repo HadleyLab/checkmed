@@ -1,0 +1,32 @@
+= form_for @checklist do |f|
+  .field
+    = f.label :name
+    br
+    = f.text_field :name, autofocus: true
+
+  .field
+    = f.label :executor_role_id
+    br
+    = f.collection_select :executor_role_id, ExecutorRole.ordered, :id, :name
+
+  .field
+    = f.label :treat_stage
+    br
+    = f.select :treat_stage, options_for_select((1..5).to_a.map { |i| [i.to_s, i] }), { include_blank: true }
+
+  .field
+    = f.label :descr
+    br
+    = f.text_area :descr
+
+  .field
+    = f.label :hided
+    '  &nbsp;
+    = f.check_box :hided
+
+  .field
+    = f.submit
+
+- if @checklist.errors.any?
+  .errors-messages
+    = @checklist.errors.messages.inspect

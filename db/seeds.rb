@@ -26,6 +26,7 @@ puts "#{time_point_string}: Start seeding"
 # sig.file = seedfile "example_pic.jpg"
 # sig.save
 
+
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Users"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
@@ -35,5 +36,16 @@ User.create! email: 'user@example.com',
              name: 'Default Doctor',
              company: 'Main Hospital of USA',
              position: 'MD'
+
+
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+puts "#{time_point_string}: seed Executor Roles"
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+ExecutorRole.create!([
+    { name: 'Medical Students', prior: 1 },
+    { name: 'Interns',          prior: 2 },
+    { name: 'Nursing staff',    prior: 3 },
+    { name: 'Pharmacists',      prior: 4 }
+  ])
 
 puts "#{time_point_string}: Seeding is done!"
