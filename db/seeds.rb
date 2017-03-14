@@ -28,6 +28,14 @@ puts "#{time_point_string}: Start seeding"
 
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+puts "#{time_point_string}: seed Admin Users"
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+AdminUser.create!(email: 'admin@example.com',
+                  password: 'password',
+                  password_confirmation: 'password')
+
+
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Users"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 def_user = User.create! email: 'user@example.com',

@@ -24,6 +24,9 @@ gem 'therubyracer', platforms: :ruby, group: :production
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '4.2.0'
 
+# The administration framework for Ruby on Rails applications.
+gem 'activeadmin', '~> 1.0.0.pre5'
+
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', '1.0.0'
 gem 'carrierwave-i18n', '0.1.0'
@@ -47,6 +50,8 @@ gem 'css-class-string', '0.1.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+
+gem 'jquery-ui-rails', '~> 5.0.5' # activeadmin 1.0.0.pre4 needs this version
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -62,6 +67,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Use Mina for deployment
+# gem 'mina', '1.0.6', group: :development
+# gem 'mina-whenever', '1.0.0', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
