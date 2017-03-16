@@ -1,11 +1,7 @@
 doctype html
 html lang=I18n.locale
   head
-    meta charset=Rails.application.config.encoding
-    meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1.0"
-    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
-    /[if (lt IE 9) & (!IEMobile)]
-      script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"
+    = render 'layouts/head_begin'
 
     title = seo.title
     - if seo.description
@@ -29,42 +25,28 @@ html lang=I18n.locale
     meta property="og:site_name" content=setting_value(:app_humanized_name)
     / meta property="fb:app_id" content="00000000000"
 
-    // Favicons and touch icons
-    = favicon_link_tag '/favicon.ico', rel: 'icon', sizes: '16x16 32x32 48x48 64x64'
-    /[if IE]
-      = favicon_link_tag '/favicon.ico'
-    link rel="apple-touch-icon" href=asset_path('ico/check_med_touch_icon.png')
-
-    // Windows pinned sites icon https://msdn.microsoft.com/en-us/library/hh772707.aspx
-    meta name="msapplication-TileColor" content="#ffffff"
-    meta name="msapplication-TileImage" content=asset_path('ico/check_med_icon_msapp.png')
-
     // RSS
     / =# auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/check-med", \
     /                                  { title: setting_value(:app_humanized_name) })
 
     link rel="author" type="text/plain" href=asset_path('humans.txt')
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    // Will be better to move javascript_include_tag to the end of body tag
-    //  if you don't plan to use turbolinks
-    = csrf_meta_tags
+    = render 'layouts/head_end'
 
   body
-    // Flash notices
-    / - if flash[:notice]
-    /   p.notice = flash[:notice]
-    / - if flash[:alert]
-    /   p.alert = flash[:alert]
+    .check-med-layout.mdl-layout.mdl-js-layout.mdl-layout--no-desktop-drawer-button
 
-    #wrap
-      header#header
-        .holder
-          = link_to setting_value(:app_humanized_name), root_url
+      = render 'layouts/header'
 
-      = yield
+      main.mdl-layout__content
+        = yield
 
-    footer#footer
-      .holder
-        = "#{setting_value(:app_humanized_name)}, #{Date.today.year}"
+      = render 'layouts/footer'
+
+      - if flash[:notice] || flash[:alert] || flash[:error]
+        #flash-snackbar.mdl-snackbar.mdl-js-snackbar
+          .mdl-snackbar__text
+          button.mdl-snackbar__action type="button"
+        #flash-message-deliverer data-msg-notice=flash[:notice] data-msg-alert=flash[:alert] data-msg-error=flash[:error]
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

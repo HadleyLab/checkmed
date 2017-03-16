@@ -1,0 +1,32 @@
+header.mdl-layout__header
+  .mdl-layout__header-row
+    span.mdl-layout-title = setting_value(:app_humanized_name)
+    .mdl-layout-spacer
+    nav.mdl-navigation
+      = link_to "Home", root_url, :class => 'mdl-navigation__link'
+    - if user_signed_in? && current_user.avatar.present?
+      span.header-user-avatar = image_tag current_user.avatar.thumb.url
+    button#header-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon
+      i.material-icons more_vert
+    ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for="header-menu-lower-right"
+      - if user_signed_in?
+        li.mdl-menu__item disabled="disabled" = current_user.name
+        li.mdl-menu__item = link_to 'Show profile', account_path(current_user.id)
+        li.mdl-menu__item = link_to 'Edit profile', edit_user_registration_path
+        li.mdl-menu__item = link_to 'Sign out', destroy_user_session_path, method: :delete
+      - else
+        li.mdl-menu__item = link_to 'Sign in', new_user_session_path
+        li.mdl-menu__item = link_to 'Register', new_user_registration_path
+
+.check-med-drawer.mdl-layout__drawer
+  span.mdl-layout-title = setting_value(:app_humanized_name)
+  nav.mdl-navigation
+    = link_to "Home", root_url, :class => 'mdl-navigation__link'
+    - if user_signed_in?
+      span.mdl-navigation__link href="" = current_user.name
+      = link_to 'Show profile', account_path(current_user.id), :class => 'mdl-navigation__link'
+      = link_to 'Edit profile', edit_user_registration_path, :class => 'mdl-navigation__link'
+      = link_to 'Sign out', destroy_user_session_path, method: :delete, :class => 'mdl-navigation__link'
+    - else
+      = link_to 'Sign in', new_user_session_path, :class => 'mdl-navigation__link'
+      = link_to 'Register', new_user_registration_path, :class => 'mdl-navigation__link'

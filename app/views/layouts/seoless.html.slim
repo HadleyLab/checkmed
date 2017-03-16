@@ -1,39 +1,20 @@
 doctype html
 html lang=I18n.locale
   head
-    meta charset=Rails.application.config.encoding
-    meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1.0"
-    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
-    /[if (lt IE 9) & (!IEMobile)]
-      script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"
+    = render 'layouts/head_begin'
 
     title = setting_value(:app_humanized_name)
 
-    // Favicons and touch icons
-    = favicon_link_tag '/favicon.ico', rel: 'icon', sizes: '16x16 32x32 48x48 64x64'
-    /[if IE]
-      = favicon_link_tag '/favicon.ico'
-
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    // Will be better to move javascript_include_tag to the end of body tag
-    //  if you don't plan to use turbolinks
-    = csrf_meta_tags
+    = render 'layouts/head_end'
 
   body
-    // Flash notices
-    / - if flash[:notice]
-    /   p.notice = flash[:notice]
-    / - if flash[:alert]
-    /   p.alert = flash[:alert]
+    .check-med-layout.mdl-layout.mdl-js-layout.mdl-layout--no-desktop-drawer-button
 
-    #wrap
-      header#header
-        .holder
-          = setting_value(:app_humanized_name)
+      = render 'layouts/header'
 
-      = yield
+      main.mdl-layout__content
+        = yield
 
-    footer#footer
-      .holder
-        = "#{setting_value(:app_humanized_name)}, #{Date.today.year}"
+      = render 'layouts/footer'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

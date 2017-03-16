@@ -11,6 +11,7 @@
  * file per style scope.
  *
  * do not require_tree .
- *= require tmp_styles
+ *= require material
+ *= require main
  *= require_self
  */

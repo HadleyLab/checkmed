@@ -1,0 +1,14 @@
+// Favicons and touch icons
+= favicon_link_tag '/favicon.ico', rel: 'icon', sizes: '16x16 32x32 48x48 64x64'
+/[if IE]
+  = favicon_link_tag '/favicon.ico'
+link rel="apple-touch-icon" href=asset_path('ico/check_med_touch_icon.png')
+
+// Windows pinned sites icon https://msdn.microsoft.com/en-us/library/hh772707.aspx
+meta name="msapplication-TileColor" content="#ffffff"
+meta name="msapplication-TileImage" content=asset_path('ico/check_med_icon_msapp.png')
+
+link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
+link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+= csrf_meta_tags

@@ -1,24 +1,30 @@
 - owner_in_da_house = current_user == @user
-section.holder
-  .tmp-user-profile
+
+.mdl-grid
+  .mdl-cell.mdl-cell--2-col.mdl-cell--hide-tablet.mdl-cell--hide-phone
+  .check-med-profile-avatar.mdl-cell.mdl-cell--2-col
     - unless @user.avatar.blank?
-      .tmp-u-photo
-        = image_tag @user.avatar.thumb.url
-    .tmp-u-info
-      h1 = @user.name
-      p = "#{@user.position} at #{@user.company}"
+      = image_tag @user.avatar.thumb.url
+  .check-med-profile-info.mdl-color--white.mdl-shadow--4dp.mdl-cell.mdl-cell--6-col
+    h2 = @user.name
+    p
+      = "#{@user.position} at #{@user.company}"
       - if owner_in_da_house
-        = link_to 'edit profile', edit_user_registration_path
-  .tmp-checklists-list
-    h3 Checklists
-    - @checklists.each do |checklist|
-      = link_to checklist.name, checklist_path(checklist)
+        '
+        = link_to '(edit)', edit_user_registration_path
+
+    .mdl-typography--title Checklists
+    ul.mdl-list
+      - @checklists.each do |checklist|
+        li.mdl-list__item
+          span.mdl-list__item-primary-content
+            = link_to checklist.name, checklist_path(checklist)
+            - if owner_in_da_house
+                |  (
+                = link_to 'edit', edit_checklist_path(checklist)
+                | )
       - if owner_in_da_house
-        |  (
-        = link_to 'edit', edit_checklist_path(checklist)
-        | )
-    - if owner_in_da_house
-      br
-      = link_to "Add new checklist", new_checklist_path
-    br
-    br
+        li.mdl-list__item
+          span.mdl-list__item-primary-content
+            i.material-icons.mdl-list__item-icon add
+            = link_to "add a new checklist", new_checklist_path
