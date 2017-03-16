@@ -23,7 +23,7 @@ html lang=I18n.locale
     meta property="og:type" content="website"
     meta property="og:title" content=seo.title
     meta property="og:url" content=request.original_url
-    / meta property="og:image" content=(seo.image || asset_url('ico/fav_310.png'))
+    meta property="og:image" content=(seo.image || asset_url('ico/check_med_icon_big.png'))
     - if seo.description
       meta property="og:description" content=seo.description
     meta property="og:site_name" content=setting_value(:app_humanized_name)
@@ -33,11 +33,11 @@ html lang=I18n.locale
     = favicon_link_tag '/favicon.ico', rel: 'icon', sizes: '16x16 32x32 48x48 64x64'
     /[if IE]
       = favicon_link_tag '/favicon.ico'
-    / link rel="apple-touch-icon" href=asset_path('ico/fav_180.png') TODO
+    link rel="apple-touch-icon" href=asset_path('ico/check_med_touch_icon.png')
 
     // Windows pinned sites icon https://msdn.microsoft.com/en-us/library/hh772707.aspx
-    / meta name="msapplication-TileColor" content="#ffffff"
-    / meta name="msapplication-TileImage" content=asset_path('ico/fav_144.png')
+    meta name="msapplication-TileColor" content="#ffffff"
+    meta name="msapplication-TileImage" content=asset_path('ico/check_med_icon_msapp.png')
 
     // RSS
     / =# auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/check-med", \
