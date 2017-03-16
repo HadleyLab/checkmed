@@ -1,5 +1,5 @@
-Docuassist
-==========
+CheckMed
+========
 
 Medical checklists... TODO
 

@@ -20,7 +20,7 @@ require File.expand_path('../../lib/seo.rb', __FILE__)
 require File.expand_path('../../lib/static_files_holding.rb', __FILE__)
 require File.expand_path('../../lib/url_string_preparator.rb', __FILE__)
 
-module Docuassist
+module CheckMed
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -38,6 +38,6 @@ module Docuassist
     config.active_record.raise_in_transactional_callbacks = true
 
     # Application humanized name
-    config.app_humanized_name = "Docuassist"
+    config.app_humanized_name = "CheckMed"
   end
 end

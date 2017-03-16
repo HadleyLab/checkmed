@@ -2,7 +2,7 @@ doctype html
 html lang=I18n.locale
   head
     meta charset=Rails.application.config.encoding
-    meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"
+    meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1.0"
     meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
     /[if (lt IE 9) & (!IEMobile)]
       script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"
@@ -15,7 +15,7 @@ html lang=I18n.locale
 
     // Twitter Card (https://dev.twitter.com/cards)
     meta name="twitter:card" content="summary"
-    / meta name="twitter:site" content="@docuassist"
+    / meta name="twitter:site" content="@check-med"
     / meta name="twitter:creator" content="@doctor_account"
     // Title, description and image Twitter will get from Open Graph tags.
 
@@ -40,7 +40,7 @@ html lang=I18n.locale
     / meta name="msapplication-TileImage" content=asset_path('ico/fav_144.png')
 
     // RSS
-    / =# auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/docuassist", \
+    / =# auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/check-med", \
     /                                  { title: setting_value(:app_humanized_name) })
 
     link rel="author" type="text/plain" href=asset_path('humans.txt')
