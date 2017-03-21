@@ -1,6 +1,10 @@
-footer.mdl-mini-footer
-  .mdl-mini-footer__left-section
-    .mdl-logo = "#{setting_value(:app_humanized_name)}, #{Date.today.year}"
-    ul.mdl-mini-footer__link-list
-      li: a href="#" Help
-      li: a href="#" Privacy & Terms
+footer.check-med-footer.mdl-mini-footer
+  / .mdl-mini-footer__left-section
+  /   button.mdl-mini-footer__social-btn
+  /   button.mdl-mini-footer__social-btn
+  /   button.mdl-mini-footer__social-btn
+
+  .mdl-mini-footer__right-section
+    ' &copy;
+    =
+    = "#{Date.today.year} #{setting_value(:app_humanized_name)}."

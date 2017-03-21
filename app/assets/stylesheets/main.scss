@@ -1,28 +1,95 @@
-// .check-med-layout {
-//   background: #000;
-// }
+.check-med-header {
+  .mdl-button--icon {
+    color: rgb(63,81,181);
+  }
 
-#flash-message-deliverer { display: none; }
+  .mdl-menu__text {
+    display: block;
+    border: none;
+    color: rgba(0,0,0, 0.87);
+    background-color: transparent;
+    text-align: left;
+    margin: 0;
+    padding: 0 16px;
+    outline-color: rgb(189,189,189);
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-decoration: none;
+    cursor: default;
+    line-height: 48px;
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+  }
+  .mdl-menu__container.is-visible .mdl-menu__text { opacity: 1; }
+  .mdl-menu__gap {
+    display: block;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 16px;
+    outline-color: rgb(189,189,189);
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 14px;
+  }
+  .mdl-menu__container.is-visible .mdl-menu__gap { opacity: 1; }
 
-.header-user-avatar {
-  display: inline-block;
-  vertical-align: middle;
-  height: 48px;
-  & > img {
-    width: 48px;
+  .header-user-avatar {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 24px;
     height: 48px;
-    border-radius: 24px;
+    & > img {
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+    }
   }
 }
 
+#flash-message-deliverer { display: none; }
+
 .check-med-drawer {
   .mdl-navigation {
-    span.mdl-navigation__link {
-      border-top: 1px solid #000;
-      color: #000;
-      &:hover { background-color: transparent; }
+    span.mdl-navigation__user-data {
+      display: block;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0 40px 16px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0;
+      opacity: 1;
+      color: rgb(0,0,0);
+      @media screen and (max-width: 1024px) { padding: 0 16px 16px; }
+
+      .user-avatar {
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 6px;
+        height: 48px;
+        & > img {
+          width: 48px;
+          height: 48px;
+          border-radius: 24px;
+        }
+      }
     }
   }
+}
+
+.check-med-footer {
+  color: rgb(66,66,66);
+  background-color: rgb(255,255,255);
+  .mdl-mini-footer__social-btn { background-color: rgb(255,255,255); }
 }
 
 .auth-help-links-block {

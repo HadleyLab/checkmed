@@ -38,6 +38,6 @@ module CheckMed
     config.active_record.raise_in_transactional_callbacks = true
 
     # Application humanized name
-    config.app_humanized_name = "CheckMed"
+    config.app_humanized_name = "Checkmed"
   end
 end
