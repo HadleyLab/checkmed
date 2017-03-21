@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    image: registry.bro.engineering/checkmed/checkmed:master
+    environment:
+      DATABASE_URL: postgres://postgres@db/postgres
+      RAILE_ENV: production
+    env_file: .env
+    depends_on:
+    - db
+    ports:
+    - 80:80
+
+  db:
+    image: postgres:9.6-alpine
