@@ -12,6 +12,8 @@
  *
  * do not require_tree .
  *= require material
- *= require main
+ *= require common
+ *= require the_box
+ *= require homepage
  *= require_self
  */

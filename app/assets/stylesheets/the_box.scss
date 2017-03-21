@@ -1,3 +1,10 @@
+// !
+// The box includes header, footer and main columns of layout
+//
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Header _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 .check-med-header {
   .mdl-button--icon {
     color: rgb(63,81,181);
@@ -53,6 +60,9 @@
   }
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Flash messages _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #flash-message-deliverer { display: none; }
 
 .check-med-drawer {
@@ -86,19 +96,11 @@
   }
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Footer _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 .check-med-footer {
   color: rgb(66,66,66);
   background-color: rgb(255,255,255);
   .mdl-mini-footer__social-btn { background-color: rgb(255,255,255); }
-}
-
-.auth-help-links-block {
-  margin-top: 20px;
-}
-
-.check-med-profile-avatar {
-  & > img { max-width: 100%; }
-}
-.check-med-profile-info {
-  padding: 0 40px 40px;
 }
