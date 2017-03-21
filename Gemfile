@@ -30,6 +30,7 @@ gem 'activeadmin', '~> 1.0.0.pre5'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', '1.0.0'
 gem 'carrierwave-i18n', '0.1.0'
+gem 'fog-aws', '1.2.1'
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick', '4.6.1'
 
