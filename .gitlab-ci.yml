@@ -5,7 +5,7 @@ stages:
 
 variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
-  BUILD_IMAGE: skiniq-api:$CI_BUILD_REF
+  BUILD_IMAGE: checkmed:$CI_BUILD_REF
 
 build:
   stage: build
