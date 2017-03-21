@@ -46,3 +46,8 @@ Deploy
 ------
 
 Deploy with Docker... TODO
+
+
+Production server ip address
+----------------------------
+[34.204.218.138](http://34.204.218.138/)
