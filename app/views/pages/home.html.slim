@@ -1,10 +1,23 @@
 .mdl-grid
-  .mdl-cell.mdl-cell--8-col
-    .mdl-typography--text-center
-      h1 Hello world!
-      p This is a small step for a programmer and a big step for the project!
+  .mdl-cell.mdl-cell--12-col.mdl-typography--text-center
+    p = image_tag 'ill.png', style: "width: 100%; max-width: 450px;"
+    h2
+      | Medical checklists made easy.
+      br
+      | Create, share and use checklists
+      br
+      | for every condition
+    p
+      - bclss = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect'
+      = link_to "CREATE NEW", \
+                (user_signed_in? ? new_checklist_path : new_user_session_path), \
+                :class => "#{bclss} mdl-button--primary"
+      ' &nbsp;
+      b OR
+      ' &nbsp;
+      = link_to "FIND READY", \
+                (user_signed_in? ? '#' : new_user_session_path), \
+                :class => "#{bclss} mdl-button--accent"
 
-      h3 About the project
-      p Some inspirational text about Check Med.
-  .mdl-cell.mdl-cell--4-col
-    p Sign in form will be placed here.
+  / .mdl-cell.mdl-cell--4-col
+  /   p Sign in form will be placed here.
