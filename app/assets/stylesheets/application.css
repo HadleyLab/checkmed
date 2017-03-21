@@ -14,6 +14,7 @@
  *= require material
  *= require common
  *= require the_box
+ *= require user_profile
  *= require homepage
  *= require_self
  */

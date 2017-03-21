@@ -1,30 +1,49 @@
 - owner_in_da_house = current_user == @user
 
 .mdl-grid
-  .mdl-cell.mdl-cell--2-col.mdl-cell--hide-tablet.mdl-cell--hide-phone
-  .check-med-profile-avatar.mdl-cell.mdl-cell--2-col
-    - unless @user.avatar.blank?
-      = image_tag @user.avatar.thumb.url
-  .check-med-profile-info.mdl-color--white.mdl-shadow--4dp.mdl-cell.mdl-cell--6-col
-    h2 = @user.name
-    p
-      = "#{@user.position} at #{@user.company}"
-      - if owner_in_da_house
-        '
-        = link_to '(edit)', edit_user_registration_path
+  .mdl-cell.mdl-cell--2-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+  .mdl-cell.mdl-cell--6-col
+    .check-med-user-profile
+      - unless @user.avatar.blank?
+        .user-profile-ava = image_tag @user.avatar.thumb.url
+        .user-profile-info
+          .user-profile-name = @user.name
+          - user_position_strings = []
+          - user_position_strings << @user.company if @user.company.present?
+          - user_position_strings << @user.position if @user.position.present?
+          - if user_position_strings.any?
+            .user-profile-position
+              - user_position_strings.each_with_index do |pos_str, indx|
+                - unless indx == 0
+                  br
+                = pos_str
+          / = link_to('(edit)', edit_user_registration_path) if owner_in_da_house
+
+    hr
 
     .mdl-typography--title Checklists
-    ul.mdl-list
+
+    // Search form TODO
+    / = form_tag account_path(@user.id), method: :get
+    /   .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
+    /     .mdl-textfield__expandable-holder
+    /       = search_field_tag :csq, '', :class => 'mdl-textfield__input'
+    /       / label.mdl-textfield__label for="sample-expandable" Expandable Input
+    /     = label_tag :csq, '', :class => 'mdl-button mdl-js-button mdl-button--icon'
+    /       i.material-icons search
+
+    ul.check-med-clst-list
       - @checklists.each do |checklist|
-        li.mdl-list__item
-          span.mdl-list__item-primary-content
-            = link_to checklist.name, checklist_path(checklist)
-            - if owner_in_da_house
-                |  (
-                = link_to 'edit', edit_checklist_path(checklist)
-                | )
+        li.check-med-clst-list-item
+          .chlst-exec-role = checklist.executor_role.name
+          .chlst-name = link_to checklist.name, checklist_path(checklist)
+            / - if owner_in_da_house
+            /     |  (
+            /     = link_to 'edit', edit_checklist_path(checklist)
+            /     | )
       - if owner_in_da_house
-        li.mdl-list__item
-          span.mdl-list__item-primary-content
-            i.material-icons.mdl-list__item-icon add
-            = link_to "add a new checklist", new_checklist_path
+        li.check-med-clst-list-item
+          .chlst-name
+            i.material-icons add
+            '
+            = link_to "Create a checklist", new_checklist_path
