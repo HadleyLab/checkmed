@@ -13,7 +13,10 @@ html lang=I18n.locale
       = render 'layouts/header'
 
       main.mdl-layout__content
-        = yield
+        .mdl-grid
+          .mdl-cell.mdl-cell--2-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+          .mdl-cell.mdl-cell--6-col
+            = yield
 
       = render 'layouts/footer'
 

@@ -1,0 +1,14 @@
+h2 Resend confirmation instructions
+
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  /-#= devise_error_messages!
+
+  .row
+    .mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => resource.errors[:email].any?)
+      = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), :class => 'mdl-textfield__input'
+      = f.label :email, :class => 'mdl-textfield__label'
+
+  .row
+    = f.submit "Resend instructions", :class => 'mdl-button mdl-js-button mdl-button--raised'
+
+= render "users/shared/links"
