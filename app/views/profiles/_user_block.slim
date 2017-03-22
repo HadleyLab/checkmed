@@ -1,0 +1,12 @@
+.check-med-user-profile.mini-user-profile
+  - unless user.avatar.blank?
+    .user-profile-ava = image_tag user.avatar.thumb.url
+  .user-profile-info
+    .user-profile-name = link_to user.name, account_path(user)
+    .user-profile-position
+      - if user.position.present?
+        = user.position
+      - if user.position.present? && user.company.present?
+        '  in
+      - if user.company.present?
+        = user.company

@@ -34,4 +34,20 @@ $(document).ready(function() {
     );
     // TODO can't take MaterialSnackbar
   }
+
+  // Activate correct user profile tab on page opening
+  if ($("#user-profile-tabs").length && window.location.hash) {
+    var tabsBlock = $("#user-profile-tabs");
+    tabsBlock.find('.mdl-tabs__panel').each(function(indx) {
+      var tabPanel = $(this);
+      if (! tabPanel.hasClass('is-active')) {
+        if ('#' + tabPanel.attr('id') == window.location.hash) {
+          tabsBlock.find('.mdl-tabs__panel.is-active').removeClass('is-active');
+          tabPanel.addClass('is-active');
+          tabsBlock.find('.mdl-tabs__tab.is-active').removeClass('is-active');
+          tabsBlock.find(".mdl-tabs__tab[href='#" + tabPanel.attr('id') + "']").addClass('is-active');
+        }
+      }
+    });
+  }
 });

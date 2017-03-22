@@ -9,7 +9,7 @@ class ProfilesController < FrontendController
         seo_image: (@user.avatar.present? ? @user.avatar.url : nil)
       })
 
-    @checklists = @user.checklists.visibles.ordered.includes(:executor_role)
+    @checklists = @user.checklists.visibles.ordered
 
     respond_to do |format|
       format.html

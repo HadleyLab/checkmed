@@ -1,0 +1,13 @@
+- can_add_new ||= false
+
+.check-med-clst-list
+  - if can_add_new
+    = link_to new_checklist_path, :class => 'check-med-clst-list-item check-med-clst-add-new'
+      span.chlst-name
+        i.material-icons add
+        br
+        | Create a checklist
+
+  - checklists.each do |checklist|
+    = link_to checklist_path(checklist), :class => 'check-med-clst-list-item'
+      span.chlst-name = checklist.name

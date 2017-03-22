@@ -1,26 +1,24 @@
-section.holder
-  .content
-    h1 = @checklist.name
-    p
-      ' by
-      = @user.name
-    p
-      ' Executor role:
-      = @checklist.executor_role.name
-      br
-      ' Treatment stage:
-      = @checklist.treat_stage
-      br
-      ' Description:
-      = @checklist.descr
-      br
-      ' Published:
-      = (!@checklist.hided).to_s
-    h3
-      | Questions
-      |  (
-      = @checklist.items.count
-      | )
+- owner_in_da_house = current_user == @user
+
+.mdl-grid
+  .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+  .mdl-cell.mdl-cell--6-col
+    h6 = @checklist.executor_role.name
+    h3 = @checklist.name
+    - if owner_in_da_house
+      p
+        = link_to "edit", edit_checklist_path(@checklist)
+        ' &nbsp;
+        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }
+
+    - if @checklist.descr.present?
+      p = @checklist.descr
+    - if @checklist.treat_stage.present?
+      p
+        ' Treatment stage:
+        = @checklist.treat_stage
+    = render partial: 'profiles/user_block', locals: { user: @user }
+
     - cur_sb_group = nil
     - @checklist.items.ordered.each do |citem|
       - if cur_sb_group != citem.sb_group
@@ -28,12 +26,3 @@ section.holder
         - cur_sb_group = citem.sb_group
       div
         = citem.title
-    - if current_user == @user
-      h3 Actions
-      p
-        = link_to "edit", edit_checklist_path(@checklist)
-        br
-        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }
-
-    br
-    br
