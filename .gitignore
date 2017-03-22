@@ -34,3 +34,6 @@
 /public/uploads/*
 /public/system/*
 /public/sitemap*
+
+# Ignore configuration for docker-compose services
+.env
