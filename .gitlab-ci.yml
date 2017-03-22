@@ -1,11 +1,14 @@
 stages:
   - build
   - release
+  - deploy
   - cleanup
 
 variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
   BUILD_IMAGE: checkmed:$CI_BUILD_REF
+  DOCKER_LOGIN_USERNAME: gitlab-ci-token
+  DOCKER_LOGIN_PASSWORD: $CI_BUILD_TOKEN
 
 build:
   stage: build
@@ -20,7 +23,17 @@ release:
     - docker push $CONTAINER_RELEASE_IMAGE
   only:
     - master
-    - develop
+
+deploy:
+  stage: deploy
+  script:
+    - eval $(docker-machine env checkmed)
+    - docker login -u $DOCKER_LOGIN_USERNAME -p $DOCKER_LOGIN_PASSWORD $CI_REGISTRY
+    - docker-compose -f docker-compose.production.yml pull
+    - docker-compose -f docker-compose.production.yml run --rm web rake db:migrate
+    - docker-compose -f docker-compose.production.yml up -d
+  only:
+    - master
 
 cleanup:
   stage: cleanup
