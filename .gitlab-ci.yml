@@ -29,6 +29,7 @@ deploy:
   script:
     - eval $(docker-machine env checkmed)
     - docker login -u $DOCKER_LOGIN_USERNAME -p $DOCKER_LOGIN_PASSWORD $CI_REGISTRY
+    - env > .env
     - docker-compose -f docker-compose.production.yml pull
     - docker-compose -f docker-compose.production.yml run --rm web rake db:migrate
     - docker-compose -f docker-compose.production.yml up -d
