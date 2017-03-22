@@ -18,6 +18,9 @@
 # Ignore application configuration
 /config/application.yml
 
+# Ignore configuration for docker-compose services
+.env
+
 # Ignore systems and tools files
 *.DS_Store
 .ruby-gemset
@@ -34,6 +37,3 @@
 /public/uploads/*
 /public/system/*
 /public/sitemap*
-
-# Ignore configuration for docker-compose services
-.env

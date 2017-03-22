@@ -3,6 +3,8 @@ CheckMed
 
 Medical checklists... TODO
 
+Production server ip address: [34.204.218.138](http://34.204.218.138/)
+
 This is Ruby on Rails project,
 partially based on [Mayak Rails website template](http://mayak.io/).
 
@@ -46,8 +48,3 @@ Deploy
 ------
 
 Deploy with Docker... TODO
-
-
-Production server ip address
-----------------------------
-[34.204.218.138](http://34.204.218.138/)

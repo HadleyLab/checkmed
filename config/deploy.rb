@@ -12,7 +12,7 @@ require 'mina/git'
 set :application_name, 'check_med'
 set :domain, 'codenohito.server' # checkmed.dymio.net
 set :deploy_to, '/home/dymio/www/check_med'
-set :repository, 'git@gitlab.bro.engineering:docuassist/docuassist.git'
+set :repository, 'git@gitlab.bro.engineering:checkmed/checkmed.git'
 set :branch, 'master'
 
 # Optional settings:
