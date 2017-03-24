@@ -32,7 +32,7 @@ ADD rails-env.conf /etc/nginx/main.d/rails-env.conf
 # Add the Rails app
 ADD . /home/app/webapp
 RUN cp /home/app/webapp/config/database_prod.yml /home/app/webapp/config/database.yml
-RUN chown -R app:app /home/app/webapp
 
 WORKDIR /home/app/webapp
 RUN RAILS_ENV=production rake assets:precompile
+RUN chown -R app:app /home/app/webapp
