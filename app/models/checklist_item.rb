@@ -1,9 +1,17 @@
 class ChecklistItem < ActiveRecord::Base
-  belongs_to :checklist, inverse_of: :items
+  # belongs_to :checklist, inverse_of: :items
+  belongs_to :group, class_name: 'ChecklistGroup', inverse_of: :items
 
-  validates :title, :sb_group, presence: true
-  validates :sb_group, inclusion: { in: (1..5) }
+  has_many :answers, class_name: 'ChecklistItemAnswer',
+                     inverse_of: :checklist_item,
+                     dependent: :destroy
+  accepts_nested_attributes_for :answers,
+                                allow_destroy: true,
+                                reject_if: :all_blank
+
+  validates :title, :group, presence: true
   validates :prior, numericality: { only_integer: true }
+  validates_associated :answers
 
-  scope :ordered, -> { order(sb_group: :asc, prior: :asc, id: :asc) }
+  scope :ordered, -> { order(prior: :asc, id: :asc) }
 end

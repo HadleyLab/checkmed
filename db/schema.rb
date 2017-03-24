@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314092434) do
+ActiveRecord::Schema.define(version: 20170324064950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,17 +26,41 @@ ActiveRecord::Schema.define(version: 20170314092434) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
 
-  create_table "checklist_items", force: :cascade do |t|
+  create_table "checklist_groups", force: :cascade do |t|
     t.integer  "checklist_id",             null: false
-    t.string   "title",                    null: false
-    t.integer  "sb_group",                 null: false
-    t.text     "descr"
+    t.string   "name",                     null: false
     t.integer  "prior",        default: 0, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "checklist_items", ["checklist_id"], name: "index_checklist_items_on_checklist_id", using: :btree
+  add_index "checklist_groups", ["checklist_id"], name: "index_checklist_groups_on_checklist_id", using: :btree
+  add_index "checklist_groups", ["prior"], name: "index_checklist_groups_on_prior", using: :btree
+
+  create_table "checklist_item_answers", force: :cascade do |t|
+    t.integer  "checklist_item_id",             null: false
+    t.string   "val",                           null: false
+    t.string   "tip"
+    t.boolean  "commentable"
+    t.integer  "prior",             default: 0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "checklist_item_answers", ["checklist_item_id"], name: "index_checklist_item_answers_on_checklist_item_id", using: :btree
+  add_index "checklist_item_answers", ["prior"], name: "index_checklist_item_answers_on_prior", using: :btree
+
+  create_table "checklist_items", force: :cascade do |t|
+    t.integer  "group_id",               null: false
+    t.string   "title",                  null: false
+    t.text     "descr"
+    t.integer  "prior",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "checklist_items", ["group_id"], name: "index_checklist_items_on_group_id", using: :btree
+  add_index "checklist_items", ["prior"], name: "index_checklist_items_on_prior", using: :btree
 
   create_table "checklists", force: :cascade do |t|
     t.integer  "user_id",                          null: false
@@ -100,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170314092434) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "checklist_items", "checklists"
+  add_foreign_key "checklist_groups", "checklists"
+  add_foreign_key "checklist_item_answers", "checklist_items"
   add_foreign_key "checklists", "users"
 end

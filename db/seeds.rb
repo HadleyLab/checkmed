@@ -65,10 +65,27 @@ def_user.checklists.create!({
     executor_role: executor_roles[3],
     treat_stage: 1,
     descr: "This is the first created checklist of the first created user.",
-    items_attributes: [
-      { sb_group: 1, title: "Has runny or stuffy nose?", prior: 0 },
-      { sb_group: 1, title: "Has cough?",                prior: 1 },
-      { sb_group: 3, title: "Hemoglobin level",          prior: 2 }
+    groups_attributes: [
+      {
+        name: 'Symptoms questions',
+        prior: 0,
+        items_attributes: [
+          { title: "Has runny or stuffy nose?", prior: 0 },
+          { title: "Has cough?",                prior: 1 }
+        ]
+      },
+      {
+        name: 'Labs questions',
+        prior: 1,
+        items_attributes: [
+          { title: "Hemoglobin level", prior: 0, answers_attributes: [
+              { val: "Low",   tip: "It's bad",     prior: 0 },
+              { val: "Hight", tip: "It's bad too", prior: 1 },
+              { val: "Other", commentable: true,   prior: 2 }
+            ]
+          }
+        ]
+      }
     ]
   })
 

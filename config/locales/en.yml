@@ -43,6 +43,9 @@ en:
       static_file:
         one:   "Uploaded file"
         other: "Uploaded files"
+      executor_role:
+        one:   "Category"
+        other: "Categories"
     attributes:
       static_file:
         file:        "File"
@@ -52,3 +55,12 @@ en:
         size:        "Size, Kb"
         holder:      "Owner"
         holder_type: "Owner type"
+      executor_role:
+        prior: "Priority"
+      checklist:
+        name: "Diagnosis name"
+        descr: "Short description"
+        executor_role: "Category"
+        executor_role_id: "Category"
+        prior: "Priority"
+        hided: "Hidden?"
