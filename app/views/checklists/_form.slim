@@ -10,31 +10,36 @@
     = f.text_area :descr
 
   p.field
-    = f.label :executor_role_id
-    br
     = f.collection_select :executor_role_id, ExecutorRole.ordered, :id, :name
 
   p.field
     = f.label :treat_stage
     br
-    = f.field :treat_stage, min: 1
+    = f.number_field :treat_stage, min: 1
 
-  / p.field
-  /   = f.label :hided
-  /   '  &nbsp;
-  /   = f.check_box :hided
+  / :hided
 
-  h2 Items
-
-  = f.fields_for :items do |a|
-    = render partial: "item_fields", locals: { f: a }
+  .group-box
+    header
+      | Symptoms
+      .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
+        i.material-icons swap_vert
+      .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
+        i.material-icons delete
+    body
+      .question-block
+        | Has runny or stuffy nose?
+      .question-block
+        | Has cough?
 
   p.field
-    = link_to_add_checklist_item "Add question", f, :items
-
-  p.field
+    br
+    br
+    br
+    br
+    br
     = f.submit
 
-- if @checklist.errors.any?
-  .errors-messages
-    = @checklist.errors.messages.inspect
+/ - if @checklist.errors.any?
+/   .errors-messages
+/     = @checklist.errors.messages.inspect

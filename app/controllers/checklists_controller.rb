@@ -3,6 +3,7 @@ class ChecklistsController < FrontendController
 
   def show
     @checklist = Checklist.find params[:id]
+    @seo_carrier = OpenStruct.new title: "Checklist: #{@checklist.name}"
     @user = @checklist.user
     # TODO @seo_carrier
     respond_to do |format|
@@ -12,7 +13,7 @@ class ChecklistsController < FrontendController
 
   def new
     @checklist = Checklist.new
-    # TODO @seo_carrier
+    @seo_carrier = OpenStruct.new title: "New checklist"
     respond_to do |format|
       format.html
     end
@@ -20,7 +21,7 @@ class ChecklistsController < FrontendController
 
   def edit
     @checklist = Checklist.find(params[:id])
-    # TODO @seo_carrier
+    @seo_carrier = OpenStruct.new title: "Edit checklist: #{@checklist.name}"
     respond_to do |format|
       format.html
     end
@@ -63,13 +64,27 @@ class ChecklistsController < FrontendController
           :descr,
           :prior,
           :hided,
-          items_attributes: [
+          groups_attributes: [
               :id,
-              :title,
-              :sb_group,
-              :descr,
+              :name,
               :prior,
-              :_destroy
+              :_destroy,
+              items_attributes: [
+                  :id,
+                  :title,
+                  :sb_group,
+                  :descr,
+                  :prior,
+                  :_destroy,
+                  answers_attributes: [
+                      :id,
+                      :val,
+                      :tip,
+                      :commentable,
+                      :prior,
+                      :_destroy
+                    ]
+                ]
             ]
         )
     end

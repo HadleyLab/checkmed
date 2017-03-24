@@ -62,5 +62,6 @@ en:
         descr: "Short description"
         executor_role: "Category"
         executor_role_id: "Category"
+        threat_stage: "Treatment stage (day)"
         prior: "Priority"
         hided: "Hidden?"

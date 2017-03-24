@@ -15,6 +15,7 @@
  *= require common
  *= require the_box
  *= require user_profile
+ *= require checklists
  *= require homepage
  *= require_self
  */

@@ -1,0 +1,23 @@
+// !
+// Checklists elements styles, include cr/edit form
+//
+
+@import "mixins";
+
+.group-box {
+  & > header {
+    padding: 0 12px;
+    line-height: 40px;
+    background: navy;
+    color: #fff;
+    .ctrl-flag {
+      float: right;
+      vertical-align: middle;
+    }
+    i.material-icons { vertical-align: middle; cursor: pointer; }
+  }
+  .question-block {
+    border-bottom: 1px solid #000;
+    padding: 12px 24px;
+  }
+}
