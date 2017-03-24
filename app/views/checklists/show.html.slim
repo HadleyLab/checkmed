@@ -20,9 +20,16 @@
     = render partial: 'profiles/user_block', locals: { user: @user }
 
     - cur_sb_group = nil
-    - @checklist.items.ordered.each do |citem|
-      - if cur_sb_group != citem.sb_group
-        h5 = [nil, 'Symptoms questions', 'Physical exams questions', 'Labs questions', 'Procedures questions', 'Medications questions'][citem.sb_group]
-        - cur_sb_group = citem.sb_group
-      div
-        = citem.title
+    - @checklist.groups.ordered.each do |group|
+      - if group.items.any?
+        h5 = group.name
+        - group.items.ordered.each do |question|
+          div
+            strong = question.title
+            - question.answers.ordered.each do |answer|
+              br
+              input type="radio" name="q#{question.id}"
+              '
+              = answer.val
+              - if answer.commentable?
+                |  &nbsp; ___________
