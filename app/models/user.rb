@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 
   has_many :checklists, inverse_of: :user, dependent: :destroy
 
+  has_many :checklists_visits, class_name: 'UsersChecklistsVisit',
+                               inverse_of: :user,
+                               dependent: :destroy
+
+
   mount_uploader :avatar, UserAvatarUploader
 
   validates :name, presence: true

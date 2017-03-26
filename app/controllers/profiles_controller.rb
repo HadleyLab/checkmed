@@ -11,6 +11,14 @@ class ProfilesController < FrontendController
 
     @checklists = @user.checklists.visibles.ordered
 
+    # @recent_checklists = @user.checklists_visits.group(:checklist_id)
+    # .map do |cv|
+    #   cv.checklist
+    # end
+    @recent_checklists = Checklist.joins(:users_visits).
+                                   where(users_checklists_visits: { user_id: @user.id }).
+                                   group(:id)
+
     respond_to do |format|
       format.html
     end

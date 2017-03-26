@@ -33,7 +33,10 @@
         .mdl-tabs__panel#checklists-search
           p Work in progress
         .mdl-tabs__panel#recent-browsed
-          p Work in progress
+          - if @recent_checklists.any?
+            = render partial: 'checklists/list', locals: { checklists: @recent_checklists }
+          - else
+            .mdl-typography--subhead style="margin-top:14px" Have no recently browsed checklists
 
     - else
       hr

@@ -45,6 +45,13 @@ def_user = User.create! email: 'user@example.com',
                         company: 'Main Hospital of USA',
                         position: 'MD'
 
+sec_user = User.create! email: 'user2@example.com',
+                        password: 'password',
+                        password_confirmation: 'password',
+                        name: 'Jason Born',
+                        company: 'Village UPFC',
+                        position: 'Intern'
+
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Executor Roles"
@@ -87,6 +94,12 @@ def_user.checklists.create!({
         ]
       }
     ]
+  })
+
+sec_user.checklists.create!({
+    name: "Outpatient CHF",
+    executor_role: executor_roles[1],
+    treat_stage: 1
   })
 
 puts "#{time_point_string}: Seeding is done!"

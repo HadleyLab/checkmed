@@ -5,7 +5,12 @@ class ChecklistsController < FrontendController
     @checklist = Checklist.find params[:id]
     @seo_carrier = OpenStruct.new title: "Checklist: #{@checklist.name}"
     @user = @checklist.user
-    # TODO @seo_carrier
+
+    # log a visit
+    unless current_user == @user
+      current_user.checklists_visits.create checklist: @checklist
+    end
+
     respond_to do |format|
       format.html
     end

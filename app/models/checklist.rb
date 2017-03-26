@@ -13,6 +13,10 @@ class Checklist < ActiveRecord::Base
   #                  inverse_of: :checklist,
   #                  dependent: :destroy
 
+  has_many :users_visits, class_name: 'UsersChecklistsVisit',
+                          inverse_of: :checklist,
+                          dependent: :destroy
+
   validates :name, :user, :executor_role, presence: true
   validates :treat_stage, numericality: { only_integer: true, greater_than: 0 },
                           allow_nil: true
