@@ -4,54 +4,16 @@
 
 @import "mixins";
 
-.chlk-form {
-  // .chlk-form-line {
-  //   margin-bottom: 20px;
-  // }
-
-  // label {
-  //   display: block;
-  //   font-size: 12px;
-  //   line-height: 16px;
-  //   color: $primary-color;
-  // }
-
-  // input[type="text"], input[type="number"], textarea, select {
-  //   line-height: 22px;
-  //   font-size: 14px;
-  // }
-
-  // input[type="text"], input[type="number"],  {
-  //   padding: 2px 6px;
-  //   width: 100%;
-  //   max-width: 260px;
-  // }
-
-  // textarea {
-  //   padding: 2px 6px;
-  //   width: 100%;
-  //   max-width: 262px;
-  // }
-
-  // select {
-  //   line-height: 22px;
-  //   font-size: 14px;
-  //   width: 100%;
-  //   max-width: 276px;
-  // }
-}
-
 .chkl-form-group {
   margin-top: 22px;
   background: #dbdbdb;
 
-  .ctrl-flag {
-    float: right;
-    vertical-align: middle;
-  }
-
   .ordering-handler {
+    vertical-align: middle;
     cursor: move;
+    &.answer-ordering-handler, &.question-ordering-handler {
+      float: right;
+    }
   }
 
   & > header {
@@ -62,7 +24,12 @@
     .mdl-textfield__input {
       border-bottom-color: #fff;
     }
-    i.material-icons { vertical-align: middle; cursor: pointer; }
+    .mdl-icon-toggle__label {
+      color: #fff;
+    }
+    .mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
+      color: $accent-color;
+    }
   }
 }
 

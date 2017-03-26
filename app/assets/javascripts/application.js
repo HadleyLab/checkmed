@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require material
+//= require Sortable
 // do not require turbolinks because of material js
 // do not require_tree .
 
@@ -54,6 +55,48 @@ $(document).ready(function() {
   //   $link.before($link.data('fields-template').replace(regexp, new_id));
   //   return false;
   // });
+
+  $(".chkl-form-groups").each(function(indx) {
+    var groupsSortable = new Sortable(this, {
+      handle: ".group-ordering-handler",
+      onUpdate: function(evnt) {
+        $(evnt.item).closest(".chkl-form-groups").
+                     find(".chkl-form-group > input.ordering-prior-input").
+                     each(function(indx) {
+          $(this).val(indx);
+        });
+        var item
+      }
+    });
+  });
+
+  $(".chkl-form-group-questions").each(function(indx) {
+    var questionsSortable = new Sortable(this, {
+      handle: ".question-ordering-handler",
+      onUpdate: function(evnt) {
+        $(evnt.item).closest(".chkl-form-group-questions").
+                     find(".chkl-form-question > input.ordering-prior-input").
+                     each(function(indx) {
+          $(this).val(indx);
+        });
+        var item
+      }
+    });
+  });
+
+  $(".chkl-form-question-answers").each(function(indx) {
+    var answersSortable = new Sortable(this, {
+      handle: ".answer-ordering-handler",
+      onUpdate: function(evnt) {
+        $(evnt.item).closest(".chkl-form-question-answers").
+                     find(".chkl-form-answer > input.ordering-prior-input").
+                     each(function(indx) {
+          $(this).val(indx);
+        });
+        var item
+      }
+    });
+  });
 });
 
 function add_nested_item_fields(link, association, content) {

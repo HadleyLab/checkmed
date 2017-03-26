@@ -1,6 +1,6 @@
 .chkl-form-question
-  .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
-    i.material-icons swap_vert
+  i.ordering-handler.question-ordering-handler.material-icons swap_vert
+  = f.hidden_field :prior, class: 'ordering-prior-input'
   .chlk-form-line
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.text_field :title, class: 'mdl-textfield__input'
@@ -19,4 +19,4 @@
       = render partial: 'answer_fields', locals: { f: a }
     = link_to_add_fields f, :answers, class: "mdl-button mdl-js-button mdl-button--primary"
       i.material-icons add
-      |  new answer
+      |  add answer

@@ -1,6 +1,6 @@
 .chkl-form-answer
-  .ctrl-flag
-    i.ordering-handler.material-icons swap_vert
+  i.ordering-handler.answer-ordering-handler.material-icons swap_vert
+  = f.hidden_field :prior, class: 'ordering-prior-input'
   .chlk-form-line
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.text_field :val, class: 'mdl-textfield__input'

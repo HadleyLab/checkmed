@@ -20,29 +20,26 @@
 
   / :hided
 
-  - if @checklist.groups.any?
-    = f.fields_for :groups, @checklist.groups.ordered do |a|
-      = render partial: 'group_fields', locals: { f: a }
-  - elsif f.object.new_record?
-    - def_groups = [ \
-        ChecklistGroup.new(name: 'Symptoms questions',       prior: 0), \
-        ChecklistGroup.new(name: 'Physical exams questions', prior: 1), \
-        ChecklistGroup.new(name: 'Labs questions',           prior: 2), \
-        ChecklistGroup.new(name: 'Procedures questions',     prior: 3), \
-        ChecklistGroup.new(name: 'Medications questions',    prior: 4) \
-      ]
-    = f.fields_for :groups, def_groups do |a|
-      = render partial: 'group_fields', locals: { f: a }
+  .chkl-form-groups
+    - if @checklist.groups.any?
+      = f.fields_for :groups, @checklist.groups.ordered do |a|
+        = render partial: 'group_fields', locals: { f: a }
+    - elsif f.object.new_record?
+      - def_groups = [ \
+          ChecklistGroup.new(name: 'Symptoms questions',       prior: 0), \
+          ChecklistGroup.new(name: 'Physical exams questions', prior: 1), \
+          ChecklistGroup.new(name: 'Labs questions',           prior: 2), \
+          ChecklistGroup.new(name: 'Procedures questions',     prior: 3), \
+          ChecklistGroup.new(name: 'Medications questions',    prior: 4) \
+        ]
+      = f.fields_for :groups, def_groups do |a|
+        = render partial: 'group_fields', locals: { f: a }
 
-  = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-    i.material-icons add
-    |  new group
+    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+      i.material-icons add
+      |  new group
 
   p.field
-    br
-    br
-    br
-    br
     br
     = f.submit :class => 'mdl-button mdl-js-button mdl-button--raised'
     '
