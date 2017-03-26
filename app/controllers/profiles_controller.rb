@@ -11,13 +11,22 @@ class ProfilesController < FrontendController
 
     @checklists = @user.checklists.visibles.ordered
 
-    # @recent_checklists = @user.checklists_visits.group(:checklist_id)
-    # .map do |cv|
-    #   cv.checklist
-    # end
-    @recent_checklists = Checklist.joins(:users_visits).
+    # search
+    if params[:sf] && params[:sf][:q].present?
+      sq = params[:sf][:q]
+      @found_checklists = Checklist.visibles.
+        joins(:user).
+        where("checklists.name ILIKE ? OR checklists.descr ILIKE ? OR " \
+              "users.name ILIKE ? OR users.company ILIKE ?",
+              "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+    end
+
+    # recently browsed
+    @recent_checklists = Checklist.visibles.
+                                   joins(:users_visits).
                                    where(users_checklists_visits: { user_id: @user.id }).
                                    group(:id)
+                                   # TODO correct ordering
 
     respond_to do |format|
       format.html

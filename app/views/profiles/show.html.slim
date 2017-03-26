@@ -1,4 +1,5 @@
 - owner_in_da_house = current_user == @user
+- search_in_progress = params.try(:[], 'sf').try(:[], 'q').present?
 
 .mdl-grid
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
@@ -24,14 +25,24 @@
 
       .mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect#user-profile-tabs
         .mdl-tabs__tab-bar
-            a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
-            a.mdl-tabs__tab href="#checklists-search" Find ready checklists
+            a.mdl-tabs__tab href="#my-checklists" class=class_string('is-active' => !search_in_progress) My checklists
+            a.mdl-tabs__tab href="#checklists-search" class=class_string('is-active' => search_in_progress) Find ready checklists
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
 
-        .mdl-tabs__panel.is-active#my-checklists
+        .mdl-tabs__panel#my-checklists class=class_string('is-active' => !search_in_progress)
           = render partial: 'checklists/list', locals: { checklists: @checklists, can_add_new: true }
-        .mdl-tabs__panel#checklists-search
-          p Work in progress
+
+        .mdl-tabs__panel#checklists-search class=class_string('is-active' => search_in_progress)
+          = form_tag account_path(@user.id), method: :get
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
+              label.mdl-button.mdl-js-button.mdl-button--icon for="chkls-search-i"
+                i.material-icons search
+              .mdl-textfield__expandable-holder
+                = text_field_tag 'sf[q]', params.try(:[], 'sf').try(:[], 'q'), id: 'chkls-search-i', class: 'mdl-textfield__input'
+                label.mdl-textfield__label Search cheklists
+          - @found_checklists && @found_checklists.any?
+            = render partial: 'checklists/list', locals: { checklists: @found_checklists }
+
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?
             = render partial: 'checklists/list', locals: { checklists: @recent_checklists }
