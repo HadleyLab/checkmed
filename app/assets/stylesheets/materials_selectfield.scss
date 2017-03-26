@@ -1,0 +1,46 @@
+// Material Design Lite extension: select field
+
+.mdl-selectfield {
+  position: relative;
+  font-size: 16px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 300px;
+  max-width: 100%;
+  margin: 0;
+  padding: 20px 0;
+
+  .mdl-selectfield__select {
+    appearance: none;
+    // display: block;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0, 0.12);
+    border-radius: 0;
+    padding: 4px 0;
+    background-color: transparent;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    font-family: "Helvetica", "Arial", sans-serif;
+    color: inherit;
+    &:focus { outline: none}
+  }
+
+  label { display: none; }
+
+  &:after {
+    position: absolute;
+    top: 30px;
+    right: 0.5em;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: .25em solid transparent;
+    border-right: .25em solid transparent;
+    border-top: .375em solid #000;
+    pointer-events: none;
+  }
+}

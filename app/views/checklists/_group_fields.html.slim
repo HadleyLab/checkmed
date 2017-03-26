@@ -1,0 +1,14 @@
+.chkl-form-group
+  header
+    .mdl-textfield.mdl-js-textfield
+      = f.text_field :name, class: 'mdl-textfield__input'
+    .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
+      i.material-icons swap_vert
+    .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
+      i.material-icons delete
+  body
+    = f.fields_for :items, f.object.items.ordered do |a|
+      = render partial: 'item_fields', locals: { f: a }
+    = link_to_add_fields f, :items, class: "mdl-button mdl-js-button mdl-button--primary"
+      i.material-icons add
+      |  new question

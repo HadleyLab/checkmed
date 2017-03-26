@@ -65,3 +65,7 @@ en:
         threat_stage: "Treatment stage (day)"
         prior: "Priority"
         hided: "Hidden?"
+      checklist_item:
+        descr: "Description"
+      checklist_item_answer:
+        val: "Value"

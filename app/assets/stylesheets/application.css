@@ -12,6 +12,7 @@
  *
  * do not require_tree .
  *= require material
+ *= require materials_selectfield
  *= require common
  *= require the_box
  *= require user_profile

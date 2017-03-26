@@ -16,12 +16,6 @@
 // do not require turbolinks because of material js
 // do not require_tree .
 
-function add_checklist_item_fields(link, association, content) {
-  var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g")
-  $(link).parent().before(content.replace(regexp, new_id));
-}
-
 $(document).ready(function() {
   var flmd;
   if ((flmd = $("#flash-message-deliverer")).length) {
@@ -50,4 +44,20 @@ $(document).ready(function() {
       }
     });
   }
+
+  // // Add nested fields to the form
+  // $(".chlk-add-nested-fields-btn").click(function(evnt) {
+  //   evnt.preventDefault();
+  //   $link = $(this);
+  //   var new_id = new Date().getTime();
+  //   var regexp = new RegExp("new_" + $link.data('fields-association'), "g");
+  //   $link.before($link.data('fields-template').replace(regexp, new_id));
+  //   return false;
+  // });
 });
+
+function add_nested_item_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+}
