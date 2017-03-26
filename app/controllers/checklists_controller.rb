@@ -1,5 +1,5 @@
 class ChecklistsController < FrontendController
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!
 
   def show
     @checklist = Checklist.find params[:id]

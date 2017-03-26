@@ -2,10 +2,15 @@ header.check-med-header.mdl-layout__header.mdl-layout__header--transparent
   .mdl-layout__header-row
     span.mdl-layout-title = link_to image_tag('name_logo.png'), root_url
     .mdl-layout-spacer
-    - if user_signed_in? && current_user.avatar.present?
-      = link_to image_tag(current_user.avatar.thumb.url), \
-                account_path(current_user.id), \
-                :class => 'header-user-avatar'
+    - if user_signed_in?
+      - if current_user.avatar.present?
+        = link_to image_tag(current_user.avatar.thumb.url), \
+                  account_path(current_user.id), \
+                  :class => 'header-user-avatar'
+      - else
+        = link_to current_user.name, \
+                  account_path(current_user.id), \
+                  :class => 'header-user-avatar'
     button#header-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon
       i.material-icons more_vert
     ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for="header-menu-lower-right"

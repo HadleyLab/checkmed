@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'profile',            to: 'profiles#redirect_to_show', as: :profile_root
   get 'profile/checklists', to: 'profiles#redirect_to_show', as: :profile_checklists_root
 
-  get 'search', to: 'pages#search', as: :search
+  # get 'search', to: 'pages#search', as: :search
 
   root 'pages#home'
 end
