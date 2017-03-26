@@ -20,6 +20,13 @@
 
   / :hided
 
+  / TODO default groups list on create
+  / TODO Each list item may have answer options, such as:
+  / single text answer ????
+  / multiple answers as checkboxes
+  / no answers. ????
+
+
   = f.fields_for :groups, @checklist.groups.ordered do |a|
     = render partial: 'group_fields', locals: { f: a }
   = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--primary"

@@ -9,7 +9,7 @@
                 :class => "#{bclss} mdl-button--primary"
       b.between-start-buttons OR
       = link_to "FIND READY", \
-                (user_signed_in? ? '#' : new_user_session_path), \
+                (user_signed_in? ? "#{account_path(current_user.id)}#checklists-search" : new_user_session_path), \
                 :class => "#{bclss} mdl-button--accent"
 
   / .mdl-cell.mdl-cell--4-col

@@ -1,8 +1,6 @@
 CheckMed
 ========
 
-Medical checklists... TODO
-
 Production server ip address: [34.204.218.138](http://34.204.218.138/)
 
 This is Ruby on Rails project,
@@ -42,9 +40,3 @@ Install demo data using command: `bin/rake db:seed` if you need.
 Application ready for start. You can launch webserver with
 command `bin/rails server` and see home page
 at [localhost:3000](http://localhost:3000/) url.
-
-
-Deploy
-------
-
-Deploy with Docker... TODO

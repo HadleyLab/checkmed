@@ -28,7 +28,7 @@ class ProfilesController < FrontendController
                                    joins(:users_visits).
                                    where(users_checklists_visits: { user_id: @user.id }).
                                    group(:id)
-                                   # TODO correct ordering
+                                   # TODO correct ordering of the recent browsed checklists
 
     respond_to do |format|
       format.html

@@ -40,8 +40,26 @@
               .mdl-textfield__expandable-holder
                 = text_field_tag 'sf[q]', params.try(:[], 'sf').try(:[], 'q'), id: 'chkls-search-i', class: 'mdl-textfield__input'
                 label.mdl-textfield__label Search cheklists
-          - @found_checklists && @found_checklists.any?
+            // TODO filters by categories, add user position to search
+          - if @found_checklists && @found_checklists.any?
             = render partial: 'checklists/list', locals: { checklists: @found_checklists }
+            // TODO The checklists list items have:
+            / Diagnosis name as a link to the checklist detail page
+            / Diagnosis description
+            / Category
+            / Treatment stage
+            / Author user name as a link to the user profile page
+            / Author user hospital
+            / Author user position
+            / Date created
+            / The Checklists list can be ordered by:
+            / Diagnosis name
+            / Author user name
+            / Date created
+            / Hospital name
+
+          - elsif search_in_progress
+            .mdl-typography--subhead style="margin-top:14px" No results
 
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?

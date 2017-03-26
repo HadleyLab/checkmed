@@ -17,9 +17,13 @@
       p
         ' Treatment stage:
         = @checklist.treat_stage
+    p
+      ' Created at:
+      = l @checklist.created_at, format: "%B %e, %Y"
     = render partial: 'profiles/user_block', locals: { user: @user }
 
-    - cur_sb_group = nil
+    / TODO Any user can share a checklist on Facebook or twitter by clicking the proper icon on the page
+
     - @checklist.groups.ordered.each do |group|
       - if group.items.any?
         h5 = group.name

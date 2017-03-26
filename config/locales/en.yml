@@ -55,6 +55,8 @@ en:
         size:        "Size, Kb"
         holder:      "Owner"
         holder_type: "Owner type"
+      user:
+        company: "Hospital"
       executor_role:
         prior: "Priority"
       checklist:

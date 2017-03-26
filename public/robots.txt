@@ -22,13 +22,11 @@
 
 # User-agent: Googlebot
 # Disallow: /admin/
-# Disallow: /humans.txt
 # Disallow: /*.xls$
 # Allow: /
 #
 # User-agent: *
 # Disallow: /admin/
-# Disallow: /humans.txt
 # Disallow: /temp/privatedata.xls
 # Disallow:
 #
