@@ -34,7 +34,7 @@
     = f.fields_for :groups, def_groups do |a|
       = render partial: 'group_fields', locals: { f: a }
 
-  = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--primary"
+  = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
     i.material-icons add
     |  new group
 

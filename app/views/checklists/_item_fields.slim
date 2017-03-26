@@ -1,8 +1,6 @@
 .chkl-form-question
   .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
     i.material-icons swap_vert
-  .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
-    i.material-icons delete
   .chlk-form-line
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.text_field :title, class: 'mdl-textfield__input'
@@ -11,9 +9,10 @@
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.text_area :descr, class: 'mdl-textfield__input'
       = f.label :descr, class: 'mdl-textfield__label'
-  / = f.label :_destroy
-  / '  &nbsp;
-  / = f.check_box :_destroy
+  .chlk-form-line.mdl-typography--text-right
+    = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
+      = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
+      i.mdl-icon-toggle__label.material-icons delete
 
   .chkl-form-question-answers
     = f.fields_for :answers, f.object.answers.ordered do |a|

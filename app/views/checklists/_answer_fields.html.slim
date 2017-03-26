@@ -1,8 +1,6 @@
 .chkl-form-answer
-  .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
-    i.material-icons swap_vert
-  .ctrl-flag.mdl-button.mdl-js-button.mdl-button--icon
-    i.material-icons delete
+  .ctrl-flag
+    i.ordering-handler.material-icons swap_vert
   .chlk-form-line
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.text_field :val, class: 'mdl-textfield__input'
@@ -12,10 +10,10 @@
       = f.text_field :tip, class: 'mdl-textfield__input'
       = f.label :tip, class: 'mdl-textfield__label'
   .chlk-form-line
-    = f.label :commentable, :class => 'mdl-switch mdl-js-switch mdl-js-ripple-effect'
-      = f.check_box :commentable, :class => 'mdl-switch__input'
-      span.mdl-switch__label With text comment
-  .chlk-form-line
-    = f.label :_destroy, :class => 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
-      = f.check_box :_destroy, :class => 'mdl-checkbox__input'
-      span.mdl-checkbox__label Delete this answer on update
+    = f.label :commentable, :class => 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
+      = f.check_box :commentable, :class => 'mdl-checkbox__input'
+      span.mdl-checkbox__label Comment is available
+  .chlk-form-line.mdl-typography--text-right
+    = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
+      = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
+      i.mdl-icon-toggle__label.material-icons delete
