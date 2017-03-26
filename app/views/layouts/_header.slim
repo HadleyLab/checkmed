@@ -32,10 +32,11 @@ header.check-med-header.mdl-layout__header.mdl-layout__header--transparent
   nav.mdl-navigation
     - if user_signed_in?
       span.mdl-navigation__user-data
-        = link_to image_tag(current_user.avatar.thumb.url), \
-                  account_path(current_user.id), \
-                  :class => 'user-avatar'
-        br
+        - if current_user.avatar.present?
+          = link_to image_tag(current_user.avatar.thumb.url), \
+                    account_path(current_user.id), \
+                    :class => 'user-avatar'
+          br
         = current_user.name
       = link_to 'Edit profile', edit_user_registration_path, :class => 'mdl-navigation__link'
       = link_to 'My checklists', account_path(current_user.id), :class => 'mdl-navigation__link'

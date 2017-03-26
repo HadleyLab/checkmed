@@ -5,19 +5,14 @@
   .mdl-cell.mdl-cell--6-col
     h6 = @checklist.executor_role.name
     h3 = @checklist.name
-    - if owner_in_da_house
-      p
-        = link_to "edit", edit_checklist_path(@checklist)
-        ' &nbsp;
-        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }
-
-    - if @checklist.descr.present?
-      p = @checklist.descr
-    - if @checklist.treat_stage.present?
-      p
+    p
+      - if @checklist.descr.present?
+        = @checklist.descr
+        br
+      - if @checklist.treat_stage.present?
         ' Treatment stage:
         = @checklist.treat_stage
-    p
+        br
       ' Created at:
       = l @checklist.created_at, format: "%B %e, %Y"
     = render partial: 'profiles/user_block', locals: { user: @user }
@@ -27,13 +22,28 @@
     - @checklist.groups.ordered.each do |group|
       - if group.items.any?
         h5 = group.name
-        - group.items.ordered.each do |question|
-          div
-            strong = question.title
-            - question.answers.ordered.each do |answer|
-              br
-              input type="radio" name="q#{question.id}"
-              '
-              = answer.val
-              - if answer.commentable?
-                |  &nbsp; ___________
+        ol
+          - group.items.ordered.each do |question|
+            li
+              strong = question.title
+              - if question.descr.present?
+                br
+                = question.descr
+              - question.answers.ordered.each do |answer|
+                br
+                input type="radio" name="q#{question.id}"
+                '
+                = answer.val
+                - if answer.tip.present?
+                  '
+                  span.material-icons id="answer-tip-#{answer.id}" style="font-size: 16px" help_outline
+                  .mdl-tooltip data-mdl-for="answer-tip-#{answer.id}" = answer.tip
+                - if answer.commentable?
+                  |  &nbsp; ___________
+
+    - if owner_in_da_house
+      p
+        br
+        = link_to "edit", edit_checklist_path(@checklist), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary'
+        ' &nbsp;
+        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent'
