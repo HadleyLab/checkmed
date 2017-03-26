@@ -14,13 +14,35 @@ class ProfilesController < FrontendController
     @checklists = @user.checklists.visibles.ordered
 
     # search
-    if params[:sf] && params[:sf][:q].present?
-      sq = params[:sf][:q]
-      @found_checklists = Checklist.visibles.
-        joins(:user).
-        where("checklists.name ILIKE ? OR checklists.descr ILIKE ? OR " \
-              "users.name ILIKE ? OR users.company ILIKE ?",
-              "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+    if params[:sf] && (params[:sf][:q].present? || params[:sf][:eri].present?)
+      @found_checklists = Checklist.visibles.joins(:user)
+
+      if params[:sf][:q].present?
+        sq = params[:sf][:q]
+        @found_checklists = @found_checklists.
+          where("checklists.name ILIKE ? OR checklists.descr ILIKE ? OR " \
+                "users.name ILIKE ? OR users.company ILIKE ? OR users.position ILIKE ?",
+                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+      end
+
+      if params[:sf][:eri].present?
+        @found_checklists = @found_checklists.where(executor_role_id: params[:sf][:eri])
+      end
+
+      if params[:sf][:ord].present?
+        @found_checklists = case params[:sf][:ord]
+                            when 'dn'
+                              @found_checklists.order(name: :asc)
+                            when 'an'
+                              @found_checklists.order('users.name ASC')
+                            when 'dc'
+                              @found_checklists.order(created_at: :asc)
+                            when 'hn'
+                              @found_checklists.order('users.company ASC')
+                            else
+                              @found_checklists
+                            end
+      end
     end
 
     # recently browsed

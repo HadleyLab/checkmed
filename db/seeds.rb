@@ -49,7 +49,7 @@ sec_user = User.create! email: 'user2@example.com',
                         password: 'password',
                         password_confirmation: 'password',
                         name: 'Jason Born',
-                        company: 'Village UPFC',
+                        company: 'Angkor WAT UPFC',
                         position: 'Intern'
 
 
