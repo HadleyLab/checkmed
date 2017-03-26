@@ -20,15 +20,25 @@
 
   / :hided
 
-  / TODO default groups list on create
   / TODO Each list item may have answer options, such as:
-  / single text answer ????
-  / multiple answers as checkboxes
-  / no answers. ????
+  /   single text answer ????
+  /   multiple answers as checkboxes
+  /   no answers. ????
 
+  - if @checklist.groups.any?
+    = f.fields_for :groups, @checklist.groups.ordered do |a|
+      = render partial: 'group_fields', locals: { f: a }
+  - elsif f.object.new_record?
+    - def_groups = [ \
+        ChecklistGroup.new(name: 'Symptoms questions',       prior: 0), \
+        ChecklistGroup.new(name: 'Physical exams questions', prior: 1), \
+        ChecklistGroup.new(name: 'Labs questions',           prior: 2), \
+        ChecklistGroup.new(name: 'Procedures questions',     prior: 3), \
+        ChecklistGroup.new(name: 'Medications questions',    prior: 4) \
+      ]
+    = f.fields_for :groups, def_groups do |a|
+      = render partial: 'group_fields', locals: { f: a }
 
-  = f.fields_for :groups, @checklist.groups.ordered do |a|
-    = render partial: 'group_fields', locals: { f: a }
   = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--primary"
     i.material-icons add
     |  new group
