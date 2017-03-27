@@ -8,6 +8,9 @@
       - unless @user.avatar.blank?
         .user-profile-ava = image_tag @user.avatar.thumb.url
       .user-profile-info
+        - if owner_in_da_house
+          = link_to edit_user_registration_path, class: 'mdl-button mdl-js-button mdl-button--icon', style: 'float:right'
+            i.material-icons create
         .user-profile-name = @user.name
         - user_position_strings = []
         - user_position_strings << @user.company if @user.company.present?
@@ -18,7 +21,6 @@
               - unless indx == 0
                 br
               = pos_str
-        / = link_to('(edit)', edit_user_registration_path) if owner_in_da_house
 
     - if owner_in_da_house
       hr style="margin-bottom:0;"
