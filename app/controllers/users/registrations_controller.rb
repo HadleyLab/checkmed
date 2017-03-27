@@ -20,9 +20,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    begin
+      super
+    rescue Exception => e
+      @excp_err = e
+      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+      # respond_with resource, location: edit_user_registration_path(resource)
+      render :edit
+    end
+  end
 
   # DELETE /resource
   # def destroy

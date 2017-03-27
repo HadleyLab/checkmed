@@ -39,5 +39,8 @@ module CheckMed
 
     # Application humanized name
     config.app_humanized_name = "Checkmed"
+
+    # Prevent from_for to show div with class 'field_with_errors' on error fields
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
