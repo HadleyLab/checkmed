@@ -7,8 +7,8 @@ CarrierWave.configure do |config|
     region:                ENV.fetch('AWS_REGION', ''),
   }
   config.fog_directory   = ENV.fetch('S3_BUCKET_NAME', '')
-  config.fog_host        = "//s3.amazonaws.com/#{ENV.fetch('S3_BUCKET_NAME', '')}"
-  # config.asset_host      = "//s3.amazonaws.com/#{ENV.fetch('S3_BUCKET_NAME', '')}"
+  # config.fog_host        = "//s3.amazonaws.com/#{ENV.fetch('S3_BUCKET_NAME', '')}"
+  config.asset_host      = "//s3.amazonaws.com/#{ENV.fetch('S3_BUCKET_NAME', '')}"
   # define storage only after fog_credentials is configured. Otherwise error will be rised.
   config.storage         = :fog
 end
