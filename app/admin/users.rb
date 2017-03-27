@@ -52,6 +52,9 @@ ActiveAdmin.register User do
 
     panel "Tracking" do
       attributes_table_for user do
+        row 'Other users checklists visited' do
+          user.checklists_visits.group(:checklist_id).count.length
+        end
         row :sign_in_count
         row :current_sign_in_at
         row :last_sign_in_at

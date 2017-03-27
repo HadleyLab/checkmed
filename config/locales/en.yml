@@ -60,6 +60,8 @@ en:
       executor_role:
         prior: "Priority"
       checklist:
+        user: "Author"
+        user_id: "Author"
         name: "Diagnosis name"
         descr: "Short description"
         executor_role: "Category"
