@@ -1,20 +1,20 @@
 = form_for @checklist, html: { class: 'chlk-form edit_hecklist' } do |f|
   .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
       = f.text_field :name, autofocus: true, class: 'mdl-textfield__input'
       = f.label :name, class: 'mdl-textfield__label'
 
   .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
       = f.text_area :descr, class: 'mdl-textfield__input'
       = f.label :descr, class: 'mdl-textfield__label'
 
   .chlk-form-line
-    .mdl-selectfield
+    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:executor_role_id].any?)
       = f.collection_select :executor_role_id, ExecutorRole.ordered, :id, :name, {}, class: 'mdl-selectfield__select'
 
   .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:treat_stage].any?)
       = f.text_field :treat_stage, min: 1, class: 'mdl-textfield__input'
       = f.label :treat_stage, class: 'mdl-textfield__label'
 
@@ -22,7 +22,7 @@
 
   .chkl-form-groups
     - if @checklist.groups.any?
-      = f.fields_for :groups, @checklist.groups.ordered do |a|
+      = f.fields_for :groups, @checklist.groups.sort_by {|cg| cg.prior} do |a|
         = render partial: 'group_fields', locals: { f: a }
     - elsif f.object.new_record?
       - def_groups = [ \

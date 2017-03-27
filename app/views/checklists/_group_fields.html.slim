@@ -3,7 +3,7 @@
   header
     .mdl-grid
       .mdl-cell.mdl-cell--3-col.mdl-cell--6-col-tablet.mdl-cell--8-col-desktop
-        .mdl-textfield.mdl-js-textfield
+        .mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => f.object.errors[:name].any?)
           = f.text_field :name, class: 'mdl-textfield__input'
       .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet.mdl-cell--4-col-desktop.mdl-typography--text-right
         = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
@@ -12,7 +12,7 @@
         i.ordering-handler.group-ordering-handler.material-icons swap_vert
   body
     .chkl-form-group-questions
-      = f.fields_for :items, f.object.items.ordered do |a|
+      = f.fields_for :items, f.object.items.sort_by {|gi| gi.prior} do |a|
         = render partial: 'item_fields', locals: { f: a }
       = link_to_add_fields f, :items, class: "mdl-button mdl-js-button mdl-button--primary"
         i.material-icons add
