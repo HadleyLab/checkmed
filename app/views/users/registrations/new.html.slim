@@ -45,6 +45,8 @@ h2 Sign up
       = f.label :avatar, :class => 'mdl-textfield__label'
       - if have_avatar_errors
         span.mdl-textfield__error = resource.errors[:avatar].join(', ')
+    - if resource.avatar.present?
+      div = image_tag resource.avatar.thumb.url
 
   .row
     - have_company_errors = resource.errors[:company].any?

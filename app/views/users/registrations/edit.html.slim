@@ -49,6 +49,14 @@ h2 Edit profile
       = f.label :avatar, :class => 'mdl-textfield__label'
       - if have_avatar_errors
         span.mdl-textfield__error = resource.errors[:avatar].join(', ')
+    - if resource.avatar.present?
+      div = image_tag resource.avatar.thumb.url
+
+  - if resource.avatar.present?
+    .row
+      = f.label :remove_avatar, :class => 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
+        = f.check_box :remove_avatar, :class => 'mdl-checkbox__input'
+        span.mdl-checkbox__label Remove avatar
 
   .row.actions
     = f.submit "Update", :class => 'mdl-button mdl-js-button mdl-button--raised'
