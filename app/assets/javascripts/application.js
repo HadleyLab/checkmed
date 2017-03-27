@@ -18,16 +18,12 @@
 // do not require_tree .
 
 $(document).ready(function() {
+  // Flash messages thru mdl snackbar
   var flmd;
   if ((flmd = $("#flash-message-deliverer")).length) {
-    var msg = flmd.data('error') || flmd.data('alert') || flmd.data('notice');
-    var notification = document.querySelector('.mdl-js-snackbar');
-    notification.MaterialSnackbar.showSnackbar(
-      {
-        message: msg
-      }
-    );
-    // TODO can't take MaterialSnackbar
+    var msg = flmd.data('msg-error') || flmd.data('msg-alert') || flmd.data('msg-notice');
+    var marSb = new MaterialSnackbar(document.querySelector('.mdl-js-snackbar'));
+    marSb.showSnackbar({ message: msg });
   }
 
   // Activate correct user profile tab on page opening

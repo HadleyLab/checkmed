@@ -1,0 +1,5 @@
+- if flash[:notice] || flash[:alert] || flash[:error]
+  #flash-snackbar.mdl-snackbar.mdl-js-snackbar
+    .mdl-snackbar__text
+    button.mdl-snackbar__action type="button"
+  #flash-message-deliverer data-msg-notice=flash[:notice] data-msg-alert=flash[:alert] data-msg-error=flash[:error]

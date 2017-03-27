@@ -41,10 +41,6 @@ html lang=I18n.locale
 
       = render 'layouts/footer'
 
-      - if flash[:notice] || flash[:alert] || flash[:error]
-        #flash-snackbar.mdl-snackbar.mdl-js-snackbar
-          .mdl-snackbar__text
-          button.mdl-snackbar__action type="button"
-        #flash-message-deliverer data-msg-notice=flash[:notice] data-msg-alert=flash[:alert] data-msg-error=flash[:error]
+      = render 'layouts/flash_messages'
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

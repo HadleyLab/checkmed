@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :name, :company, :position,
                 :avatar, :avatar_cache, :remove_avatar,
-                :password, :password_confirmation
+                :password, :password_confirmation, :banned
 
   ### Setting up the menu element of this page
   menu priority: 1
@@ -18,6 +18,7 @@ ActiveAdmin.register User do
   filter :company
   filter :position
   filter :created_at
+  filter :banned
 
   ### Index as table
   index download_links: false do
@@ -25,6 +26,7 @@ ActiveAdmin.register User do
     column :email
     column :company
     column :position
+    column :banned
     column :created_at
     actions
   end
@@ -40,6 +42,7 @@ ActiveAdmin.register User do
       row :avatar do
         image_tag(user.avatar.thumb.url) unless user.avatar.blank?
       end
+      row :banned
       row :created_at
       row :updated_at
       row 'Profile link' do
@@ -84,6 +87,7 @@ ActiveAdmin.register User do
         f.input :password
         f.input :password_confirmation
       end
+      f.input :banned
     end
 
     f.actions
