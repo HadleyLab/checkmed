@@ -31,6 +31,7 @@ puts "#{time_point_string}: Start seeding"
 puts "#{time_point_string}: seed Admin Users"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 AdminUser.create!(email: 'admin@example.com',
+                  name: 'Master Admin',
                   password: 'password',
                   password_confirmation: 'password')
 
