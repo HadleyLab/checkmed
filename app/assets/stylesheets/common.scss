@@ -5,3 +5,10 @@
 .auth-help-links-block {
   margin-top: 20px;
 }
+
+form .row {
+  &.actions {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
