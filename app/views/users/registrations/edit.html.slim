@@ -58,16 +58,16 @@ h2 Edit profile
     '
     = link_to 'Cancel', :back, :class => 'mdl-button mdl-js-button'
 
-- if resource.errors.any?
-  p: br
-  p.errors-messages
-    = resource.errors.messages.inspect
+/ - if resource.errors.any?
+/   p: br
+/   p.errors-messages
+/     = resource.errors.messages.inspect
 
-- if @excp_err
-  p: br
-  p style="color:red" EXCEPTION!
-  p style="color:red" = @excp_err.message
-  p style="color:red" = @excp_err.backtrace.inspect
+/ - if @excp_err
+/   p: br
+/   p style="color:red" EXCEPTION!
+/   p style="color:red" = @excp_err.message
+/   p style="color:red" = @excp_err.backtrace.inspect
 
 / h3 Cancel my account
 / p
