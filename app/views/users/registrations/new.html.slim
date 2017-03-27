@@ -26,7 +26,7 @@ h2 Sign up
       = f.label :name, :class => 'mdl-textfield__label'
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:name].any?)
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder class=class_string('is-invalid' => resource.errors[:avatar].any?)
       = f.file_field :avatar, :class => 'mdl-textfield__input'
       = f.hidden_field :avatar_cache
       = f.label :avatar, :class => 'mdl-textfield__label'
