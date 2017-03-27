@@ -4,42 +4,63 @@ h2 Sign up
   /-#= devise_error_messages!
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:email].any?)
+    - have_email_errors = resource.errors[:email].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_email_errors)
       = f.email_field :email, autofocus: true, :class => 'mdl-textfield__input'
       = f.label :email, :class => 'mdl-textfield__label'
+      - if have_email_errors
+        span.mdl-textfield__error = resource.errors[:email].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:password].any?)
+    - have_password_errors = resource.errors[:password].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_errors)
       = f.password_field :password, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :password, \
         "Password" + (@minimum_password_length ? " (#{@minimum_password_length} characters minimum)" : ''), \
         :class => 'mdl-textfield__label'
+      - if have_password_errors
+        span.mdl-textfield__error = resource.errors[:password].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:password_confirmation].any?)
+    - have_password_confirmation_errors = resource.errors[:password_confirmation].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_confirmation_errors)
       = f.password_field :password_confirmation, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :password_confirmation, :class => 'mdl-textfield__label'
+      - if have_password_confirmation_errors
+        span.mdl-textfield__error = resource.errors[:password_confirmation].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:name].any?)
+    - have_name_errors = resource.errors[:name].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_name_errors)
       = f.text_field :name, :class => 'mdl-textfield__input'
       = f.label :name, :class => 'mdl-textfield__label'
+      - if have_name_errors
+        span.mdl-textfield__error = resource.errors[:name].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder class=class_string('is-invalid' => resource.errors[:avatar].any?)
+    - have_avatar_errors = resource.errors[:avatar].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder class=class_string('is-invalid' => have_avatar_errors)
       = f.file_field :avatar, :class => 'mdl-textfield__input'
       = f.hidden_field :avatar_cache
       = f.label :avatar, :class => 'mdl-textfield__label'
+      - if have_avatar_errors
+        span.mdl-textfield__error = resource.errors[:avatar].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:company].any?)
+    - have_company_errors = resource.errors[:company].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_company_errors)
       = f.text_field :company, :class => 'mdl-textfield__input'
       = f.label :company, :class => 'mdl-textfield__label'
+      - if have_company_errors
+        span.mdl-textfield__error = resource.errors[:company].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:position].any?)
+    - have_position_errors = resource.errors[:position].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_position_errors)
       = f.text_field :position, :class => 'mdl-textfield__input'
       = f.label :position, :class => 'mdl-textfield__label'
+      - if have_position_errors
+        span.mdl-textfield__error = resource.errors[:position].join(', ')
 
   .row
     = f.submit "Sign up", :class => 'mdl-button mdl-js-button mdl-button--raised'
