@@ -9,6 +9,9 @@ CMD ["/sbin/my_init"]
 # Expose Nginx HTTP port
 EXPOSE 80
 
+# Install Imagemagick
+RUN apt-get install imagemagick
+
 # Enable Nginx / Passenger on start
 RUN rm -f /etc/service/nginx/down
 
