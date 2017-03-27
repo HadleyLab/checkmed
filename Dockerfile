@@ -10,7 +10,7 @@ CMD ["/sbin/my_init"]
 EXPOSE 80
 
 # Install Imagemagick
-RUN apt-get install imagemagick
+RUN apt-get update && apt-get install -y imagemagick
 
 # Enable Nginx / Passenger on start
 RUN rm -f /etc/service/nginx/down
