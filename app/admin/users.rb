@@ -27,6 +27,9 @@ ActiveAdmin.register User do
     column :company
     column :position
     column :banned
+    column 'Checklists' do |user|
+      user.checklists.size
+    end
     column :created_at
     actions
   end
