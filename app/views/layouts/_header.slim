@@ -13,19 +13,29 @@ header.check-med-header.mdl-layout__header.mdl-layout__header--transparent
                   :class => 'header-user-avatar'
     button#header-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon
       i.material-icons more_vert
-    ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for="header-menu-lower-right"
+
+    .mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for="header-menu-lower-right"
       - if user_signed_in?
-        li.mdl-menu__text = current_user.name
-        li.mdl-menu__item = link_to 'Edit profile', edit_user_registration_path
-        li.mdl-menu__gap
-        li.mdl-menu__item = link_to 'My checklists', account_path(current_user.id)
-        li.mdl-menu__item = link_to 'Find ready checklists', "#{account_path(current_user.id)}#checklists-search"
-        li.mdl-menu__item = link_to 'Recently browsed', "#{account_path(current_user.id)}#recent-browsed"
-        li.mdl-menu__gap
-        li.mdl-menu__item = link_to 'Log out', destroy_user_session_path, method: :delete
+        .mdl-menu__text = current_user.name
+        = link_to 'Edit profile', \
+                  edit_user_registration_path, \
+                  class: 'mdl-menu__item mdl-menu__item--full-bleed-divider'
+        = link_to 'My checklists', \
+                  account_path(current_user.id), \
+                  class: 'mdl-menu__item'
+        = link_to 'Find ready checklists', \
+                  "#{account_path(current_user.id)}#checklists-search", \
+                  class: 'mdl-menu__item'
+        = link_to 'Recently browsed', \
+                  "#{account_path(current_user.id)}#recent-browsed",\
+                  class: 'mdl-menu__item mdl-menu__item--full-bleed-divider'
+        = link_to 'Log out', \
+                  destroy_user_session_path, \
+                  method: :delete, \
+                  class: 'mdl-menu__item'
       - else
-        li.mdl-menu__item = link_to 'Log in', new_user_session_path
-        li.mdl-menu__item = link_to 'Sign up', new_user_registration_path
+        = link_to 'Log in', new_user_session_path, class: 'mdl-menu__item'
+        = link_to 'Sign up', new_user_registration_path, class: 'mdl-menu__item'
 
 .check-med-drawer.mdl-layout__drawer
   span.mdl-layout-title = link_to image_tag('name_logo.png'), root_url

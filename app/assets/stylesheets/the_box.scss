@@ -2,6 +2,8 @@
 // The box includes header, footer and main columns of layout
 //
 
+@import "mixins";
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Header _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -17,20 +19,20 @@
     background-color: transparent;
     text-align: left;
     margin: 0;
-    padding: 0 16px;
+    padding: 15px 16px;
     outline-color: rgb(189,189,189);
     position: relative;
     overflow: hidden;
     font-size: 14px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 18px;
     letter-spacing: 0;
     text-decoration: none;
     cursor: default;
-    line-height: 48px;
     opacity: 0;
     transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     user-select: none;
+    color: $primary-color;
   }
   .mdl-menu__container.is-visible .mdl-menu__text { opacity: 1; }
   .mdl-menu__gap {
