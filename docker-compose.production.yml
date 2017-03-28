@@ -3,8 +3,12 @@ services:
   web:
     image: registry.bro.engineering/checkmed/checkmed:master
     environment:
+      RAILS_ENV: production
       DATABASE_URL: postgres://postgres@db/postgres
-      RAILE_ENV: production
+      SMTP_SERVER: exim_1
+      SMTP_PORT: 25
+      SMTP_DOMAIN: checkmed.net
+      SMTP_EMAIL_FROM: noreply@checkmed.net
     env_file: .env
     depends_on:
     - db
@@ -13,3 +17,9 @@ services:
 
   db:
     image: postgres:9.6-alpine
+
+  exim:
+    image: elsdoerfer/exim-sender
+    environment:
+      PRIMARY_HOST: checkmed.net
+      ALLOWED_HOSTS: 172.17.0.0/16
