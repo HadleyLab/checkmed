@@ -1,5 +1,6 @@
 // Material Design Lite additionals:
 //   Select field
+//   Just info mdl-textfield
 
 .mdl-selectfield {
   position: relative;
@@ -43,5 +44,17 @@
     border-right: .25em solid transparent;
     border-top: .375em solid #000;
     pointer-events: none;
+  }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.mdl-textfield.is-just-info {
+  .mdl-textfield__input {
+    border-bottom-color: #fff;
+    pointer-events: none;
+  }
+  &.mdl-textfield--floating-label.has-placeholder .mdl-textfield__label {
+    color: #000;
   }
 }
