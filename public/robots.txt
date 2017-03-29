@@ -30,7 +30,7 @@
 # Disallow: /temp/privatedata.xls
 # Disallow:
 #
-# Sitemap: http://example.com/sitemap.xml.gz
+# Sitemap: http://checkmed.net/sitemap.xml.gz
 
 # Ban all spiders from the entire site
 User-agent: *

@@ -58,14 +58,14 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  # config.action_controller.asset_host = 'http://assets.checkmed.net'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
   # Mailer settings.
-  config.action_mailer.default_url_options = { :host => ENV["SMTP_DOMAIN"] }
+  config.action_mailer.default_url_options = { :host => 'checkmed.net' }
   config.action_mailer.default_options = { :from => ENV["SMTP_EMAIL_FROM"] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
