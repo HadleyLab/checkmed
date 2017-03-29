@@ -5,18 +5,24 @@ h2 Change your password
   = f.hidden_field :reset_password_token
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:password].any?)
+    - have_password_errors = resource.errors[:password].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_errors)
       = f.password_field :password, autofocus: true, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :password, \
         "New password" + (@minimum_password_length ? " (#{@minimum_password_length} characters minimum)" : ''), \
         :class => 'mdl-textfield__label'
+      - if have_password_errors
+        span.mdl-textfield__error = resource.errors[:password].join(', ')
 
   .row
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => resource.errors[:password_confirmation].any?)
+    - have_password_confirmation_errors = resource.errors[:password_confirmation].any?
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_confirmation_errors)
       = f.password_field :password_confirmation, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :password_confirmation, 'Confirm new password',  :class => 'mdl-textfield__label'
+      - if have_password_confirmation_errors
+        span.mdl-textfield__error = resource.errors[:password_confirmation].join(', ')
 
-  .row
+  .row.actions
     = f.submit "Change my password", :class => 'mdl-button mdl-js-button mdl-button--raised'
 
 = render "users/shared/links"
