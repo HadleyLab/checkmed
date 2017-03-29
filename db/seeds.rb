@@ -8,9 +8,9 @@
 
 def time_point_string; Time.now.strftime("%H:%M:%S:%L") end
 
-# def seedfile(fname)
-#   File.open File.join(Rails.root, "public/content/seeds/", fname)
-# end
+def seedfile(fname)
+  File.open File.join(Rails.root, "db/seeds_files/", fname)
+end
 
 # Use code of file 'db/seeds_contents.rb'. This is the way to split big
 # seeds.rb file. You can use instance variables (@var) declared in that file.
@@ -26,6 +26,20 @@ puts "#{time_point_string}: Start seeding"
 # sig.file = seedfile "example_pic.jpg"
 # sig.save
 
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+puts "#{time_point_string}: seed Settings"
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+settings = Setting.create!([
+  { ident: "outer_links",
+    vtype: Setting::VTYPE_TEXT,
+    often: true },
+  { ident: "homepage_greeting_image",
+    vtype: Setting::VTYPE_FILE },
+  { ident: "homepage_greeting_text",
+    vtype: Setting::VTYPE_TEXT }
+])
+settings[1].value = seedfile "ill.png"
+settings[1].save
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Admin Users"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327111622) do
+ActiveRecord::Schema.define(version: 20170328203122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,18 @@ ActiveRecord::Schema.define(version: 20170327111622) do
   end
 
   add_index "executor_roles", ["prior"], name: "index_executor_roles_on_prior", using: :btree
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "ident",      null: false
+    t.integer  "vtype"
+    t.text     "val"
+    t.boolean  "often"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "settings", ["ident"], name: "index_settings_on_ident", using: :btree
+  add_index "settings", ["often"], name: "index_settings_on_often", using: :btree
 
   create_table "static_files", force: :cascade do |t|
     t.integer  "holder_id"
