@@ -11,6 +11,15 @@ class Users::PasswordsController < Devise::PasswordsController
   # def create
   #   super
   # end
+  def create
+    begin
+      super
+    rescue Exception => e
+      @ex_on = e
+      self.resource = resource_class.new
+      render action: 'new'
+    end
+  end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit
