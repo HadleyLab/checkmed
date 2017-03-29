@@ -64,7 +64,7 @@ h2 Sign up
       - if have_position_errors
         span.mdl-textfield__error = resource.errors[:position].join(', ')
 
-  .row
+  .row.actions
     = f.submit "Sign up", :class => 'mdl-button mdl-js-button mdl-button--raised'
 
 = render "users/shared/links"
