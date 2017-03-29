@@ -1,3 +1,8 @@
+- if user_signed_in?
+  - content_for :under_header
+    - link_cnt = current_user.avatar.present? ? image_tag(current_user.avatar.thumb.url) : current_user.name
+    = link_to link_cnt, account_path(current_user.id), class: 'check-med-user-float-data'
+
 .check-med-homepage.mdl-grid
   .mdl-cell.mdl-cell--12-col.mdl-typography--text-center
     p.homepage-greeting-image = image_tag 'ill.png'
@@ -11,6 +16,3 @@
       = link_to "FIND READY", \
                 (user_signed_in? ? "#{account_path(current_user.id)}#checklists-search" : new_user_session_path), \
                 :class => "#{bclss} mdl-button--accent"
-
-  / .mdl-cell.mdl-cell--4-col
-  /   p Sign in form will be placed here.

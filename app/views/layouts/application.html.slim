@@ -36,6 +36,8 @@ html lang=I18n.locale
 
       = render 'layouts/header'
 
+      = yield :under_header
+
       main.mdl-layout__content
         = yield
 

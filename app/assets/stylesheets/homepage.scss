@@ -56,3 +56,20 @@
     }
   }
 }
+
+.check-med-user-float-data {
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 24px;
+  height: 48px;
+  line-height: 48px;
+  overflow: hidden;
+  z-index: 4;
+  & > img {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+  }
+  @include upfrom1024 { display: none; }
+}
