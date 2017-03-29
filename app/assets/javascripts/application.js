@@ -26,20 +26,40 @@ $(document).ready(function() {
     marSb.showSnackbar({ message: msg });
   }
 
-  // Activate correct user profile tab on page opening
-  if ($("#user-profile-tabs").length && window.location.hash) {
+  // Activate correct user profile tab with menu item click or hash in the url
+  if ($("#user-profile-tabs").length) {
     var tabsBlock = $("#user-profile-tabs");
-    tabsBlock.find('.mdl-tabs__panel').each(function(indx) {
-      var tabPanel = $(this);
-      if (! tabPanel.hasClass('is-active')) {
-        if ('#' + tabPanel.attr('id') == window.location.hash) {
-          tabsBlock.find('.mdl-tabs__panel.is-active').removeClass('is-active');
-          tabPanel.addClass('is-active');
-          tabsBlock.find('.mdl-tabs__tab.is-active').removeClass('is-active');
-          tabsBlock.find(".mdl-tabs__tab[href='#" + tabPanel.attr('id') + "']").addClass('is-active');
+
+    function activateUserProfileTab(sHash) {
+      tabsBlock.find('.mdl-tabs__panel').each(function(indx) {
+        var tabPanel = $(this);
+        if (! tabPanel.hasClass('is-active')) {
+          if ('#' + tabPanel.attr('id') == sHash) {
+            tabsBlock.find('.mdl-tabs__panel.is-active').removeClass('is-active');
+            tabPanel.addClass('is-active');
+            tabsBlock.find('.mdl-tabs__tab.is-active').removeClass('is-active');
+            tabsBlock.find(".mdl-tabs__tab[href='#" + tabPanel.attr('id') + "']").addClass('is-active');
+            return false;
+          }
         }
+      });
+    }
+
+    $(".special-menu-link-of-subpart-of-page").click(function(evnt) {
+      evnt.preventDefault();
+      var linkhref = $(this).attr('href');
+      var hashPart = linkhref.substr(linkhref.search(/\#/));
+      activateUserProfileTab(hashPart);
+      // Hack to close the Drawer
+      if ($(".mdl-layout__drawer").hasClass('is-visible')) {
+        $(".mdl-layout__drawer").removeClass('is-visible').attr('aria-hidden', 'true');
+        $(".mdl-layout__obfuscator").removeClass('is-visible');
+        $(".mdl-layout__drawer-button").attr('aria-expanded', 'false');
       }
+      return false;
     });
+
+    if (window.location.hash) activateUserProfileTab(window.location.hash);
   }
 
   // // Add nested fields to the form
