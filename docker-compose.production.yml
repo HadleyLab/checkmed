@@ -23,4 +23,4 @@ services:
     image: elsdoerfer/exim-sender
     environment:
       PRIMARY_HOST: checkmed.net
-      ALLOWED_HOSTS: 172.17.0.0/16
+      ALLOWED_HOSTS: 172.18.0.0/16
