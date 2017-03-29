@@ -5,8 +5,10 @@
 
 .check-med-homepage.mdl-grid
   .mdl-cell.mdl-cell--12-col.mdl-typography--text-center
-    p.homepage-greeting-image = image_tag 'ill.png'
-    p.homepage-greeting-text Medical checklists made easy. Create, share and&nbsp;use checklists for&nbsp;every condition
+    p.homepage-greeting-image
+      - if hgi = setting_value(:homepage_greeting_image)
+        = image_tag hgi.file.url
+    p.homepage-greeting-text == setting_value :homepage_greeting_text
     .homepage-start-buttons
       - bclss = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect'
       = link_to "CREATE NEW", \

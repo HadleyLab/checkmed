@@ -1,0 +1,23 @@
+// Dirty hack to add settings to the production without seeding
+- if (hp_g_i_s = Setting.find_by_ident("homepage_greeting_image")).nil?
+  - hp_g_i_s = Setting.create! ident: "homepage_greeting_image", vtype: Setting::VTYPE_FILE
+- if (hp_g_t_s = Setting.find_by_ident("homepage_greeting_text")).nil?
+  - hp_g_t_s = Setting.create! ident: "homepage_greeting_text", vtype: Setting::VTYPE_TEXT
+
+= form_tag(admin_homepage_update_content_path, method: :post, multipart: true)
+  fieldset.inputs
+    ol
+      li.file.input
+        = label_tag 'homepage[greeting_image]', "Greeting image", :class => "label"
+        = file_field_tag('homepage[greeting_image]')
+        - if hp_g_i_s.value
+          p.inline-hints
+            = image_tag(hp_g_i_s.value.file.url, style: 'width:100%;max-width:200px;')
+      li.text.input
+        = label_tag 'homepage[greeting_text]', "Greeting words", :class => "label"
+        = text_area_tag 'homepage[greeting_text]', hp_g_t_s.value, rows: 3
+        p.inline-hints HTML is allowed
+
+    ol
+      li.action.input_action
+        = submit_tag("Update")

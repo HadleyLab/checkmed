@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     when :app_humanized_name
       Rails.application.config.app_humanized_name
     else
-      nil
+      SettingProvider.instance.value_of setting_name
     end
   end
 

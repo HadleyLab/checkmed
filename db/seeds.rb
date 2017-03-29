@@ -36,7 +36,8 @@ settings = Setting.create!([
   { ident: "homepage_greeting_image",
     vtype: Setting::VTYPE_FILE },
   { ident: "homepage_greeting_text",
-    vtype: Setting::VTYPE_TEXT }
+    vtype: Setting::VTYPE_TEXT,
+    val: 'Medical checklists made easy. Create, share and&nbsp;use checklists for&nbsp;every condition' }
 ])
 settings[1].value = seedfile "ill.png"
 settings[1].save
