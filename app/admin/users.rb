@@ -6,6 +6,26 @@ ActiveAdmin.register User do
   ### Setting up the menu element of this page
   menu priority: 1
 
+  ### Custom Controller Actions
+  member_action :ban_this_user, method: [:get, :post] do
+    if resource.banned?
+      ntcmsg = "Already banned."
+    else
+      resource.update banned: true
+      ntcmsg = "#{resource.name} banned!"
+    end
+    redirect_to resource_path, notice: ntcmsg
+  end
+  member_action :unban_this_user, method: [:get, :post] do
+    if resource.banned?
+      resource.update banned: false
+      ntcmsg = "#{resource.name} unbanned!"
+    else
+      ntcmsg = "Already have no ban."
+    end
+    redirect_to resource_path, notice: ntcmsg
+  end
+
 ## INDEX
 
   ### Index page Configuration
@@ -31,7 +51,13 @@ ActiveAdmin.register User do
       user.checklists.size
     end
     column :created_at
-    actions
+    actions do |user|
+      if user.banned?
+        link_to "Unban", unban_this_user_admin_user_path(user)
+      else
+        link_to "Ban", ban_this_user_admin_user_path(user)
+      end
+    end
   end
 
 ## SHOW
