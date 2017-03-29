@@ -40,3 +40,27 @@ Install demo data using command: `bin/rake db:seed` if you need.
 Application ready for start. You can launch webserver with
 command `bin/rails server` and see home page
 at [localhost:3000](http://localhost:3000/) url.
+
+
+A Little Helpers
+----------------
+
+When you need to show the Exception, but you have no access
+to the production logs add lines to controller:
+
+    # override create method
+    def create
+        begin
+          super
+        rescue Exception => e
+          @ex_on = e
+          self.resource = resource_class.new # necessary for the view
+          render action: 'new'
+        end
+      end
+
+And to the view:
+
+    - if @ex_on
+      p = @ex_on.message
+      p = @ex_on.backtrace.inspect

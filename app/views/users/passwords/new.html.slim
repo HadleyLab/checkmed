@@ -17,5 +17,22 @@ h2 Forgot your password?
 = render "users/shared/links"
 
 - if @ex_on
+  p: br
   p = @ex_on.message
   p = @ex_on.backtrace.inspect
+  p
+    | Connection parameters:
+    br
+    ' Email from:
+    = ENV["SMTP_EMAIL_FROM"]
+    br
+    ' SMTP server address:
+    = ENV["SMTP_SERVER"]
+    br
+    ' SMTP port:
+    = ENV["SMTP_PORT"]
+    br
+    ' SMTP server domain:
+    = ENV["SMTP_DOMAIN"]
+    br
+    | Username and password insn't provided

@@ -71,7 +71,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => ENV["SMTP_SERVER"],
     :port                 => ENV["SMTP_PORT"].to_i,
-    :domain               => ENV["SMTP_DOMAIN"],
+    :domain               => ENV["SMTP_DOMAIN"]
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
