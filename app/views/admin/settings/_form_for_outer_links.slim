@@ -1,13 +1,12 @@
-// Dirty hack to add settings to the production without seeding
 - if (oul = Setting.find_by_ident("outer_links")).nil?
   - oul = Setting.create! ident: "outer_links", vtype: Setting::VTYPE_TEXT, often: true
 
-= form_tag(admin_homepage_update_outlinks_path, method: :post)
+= form_tag(admin_settings_update_outlinks_path, method: :post)
   fieldset.inputs
     ol
       li.text.input
         = label_tag 'settings[outer_links]', "Links", :class => "label"
-        = text_area_tag 'settings[outer_links]', oul.value, rows: 3
+        = text_area_tag 'settings[outer_links]', oul.value, rows: 12
         p.inline-hints
           | One line &mdash; one link
 

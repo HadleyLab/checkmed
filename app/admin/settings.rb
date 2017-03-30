@@ -1,8 +1,8 @@
-ActiveAdmin.register_page "Homepage" do
+ActiveAdmin.register_page "Settings" do
 
-  menu parent: 'Service'
+  menu parent: 'Service', label: 'Homepage and footer links'
 
-  page_action :update_content, method: :post do
+  page_action :update_homepage, method: :post do
     if params[:homepage]
       if file_data = params[:homepage][:greeting_image]
         if found_setting = Setting.find_by_ident('homepage_greeting_image')
@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Homepage" do
         found_setting.save
       end
     end
-    redirect_to admin_homepage_path, notice: "Homepage content was updated"
+    redirect_to admin_settings_path, notice: "Homepage content was updated"
   end
   page_action :update_outlinks, method: :post do
     if params[:settings]
@@ -24,10 +24,10 @@ ActiveAdmin.register_page "Homepage" do
         found_setting.save
       end
     end
-    redirect_to admin_homepage_path, notice: "Outer links were updated"
+    redirect_to admin_settings_path, notice: "Outer links were updated"
   end
 
-  content do
+  content title: "Homepage and footer links" do
     columns do
 
       column do

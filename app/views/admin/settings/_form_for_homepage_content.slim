@@ -1,10 +1,9 @@
-// Dirty hack to add settings to the production without seeding
 - if (hp_g_i_s = Setting.find_by_ident("homepage_greeting_image")).nil?
   - hp_g_i_s = Setting.create! ident: "homepage_greeting_image", vtype: Setting::VTYPE_FILE
 - if (hp_g_t_s = Setting.find_by_ident("homepage_greeting_text")).nil?
   - hp_g_t_s = Setting.create! ident: "homepage_greeting_text", vtype: Setting::VTYPE_TEXT
 
-= form_tag(admin_homepage_update_content_path, method: :post, multipart: true)
+= form_tag(admin_settings_update_homepage_path, method: :post, multipart: true)
   fieldset.inputs
     ol
       li.file.input
