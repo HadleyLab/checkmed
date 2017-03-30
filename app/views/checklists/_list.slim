@@ -11,3 +11,15 @@
   - checklists.each do |checklist|
     = link_to checklist_path(checklist), :class => 'check-med-clst-list-item'
       span.chlst-name = checklist.name
+
+/ div style="margin: 24px 0;"
+/   - checklists.each do |checklist|
+/     .mdl-card.mdl-shadow--2dp
+/       .mdl-card__title.mdl-card--border
+/         h4.mdl-card__title-text
+/           = link_to checklist.name, checklist_path(checklist)
+/       .mdl-card__supporting-text
+/         = checklist.executor_role.name
+/         - if checklist.treat_stage.present?
+/           ' , stage
+/           = checklist.treat_stage
