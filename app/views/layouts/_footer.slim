@@ -1,8 +1,11 @@
 footer.check-med-footer.mdl-mini-footer
-  / .mdl-mini-footer__left-section
-  /   button.mdl-mini-footer__social-btn
-  /   button.mdl-mini-footer__social-btn
-  /   button.mdl-mini-footer__social-btn
+  - outer_links = collect_outer_footer_links
+  - if outer_links.any?
+    .mdl-mini-footer__left-section
+      - outer_links.each do |outer_link|
+        = link_to outer_link[:href], \
+                  class: class_string('mdl-mini-footer__social-btn', outer_link[:class])
+          i.material-icons public
 
   .mdl-mini-footer__right-section
     ' &copy;

@@ -105,5 +105,12 @@
 .check-med-footer {
   color: rgb(66,66,66);
   background-color: rgb(255,255,255);
-  .mdl-mini-footer__social-btn { background-color: rgb(255,255,255); }
+  .mdl-mini-footer__social-btn {
+    display: inline-block;
+    vertical-align: bottom;
+    background-color: rgb(255,255,255);
+    text-align: center;
+    line-height: 36px;
+    & > i { vertical-align: middle; }
+  }
 }

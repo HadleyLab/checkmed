@@ -29,4 +29,36 @@ module ApplicationHelper
     end
   end
 
+  # Get list of footer links from the setting
+  # Check every link to be correct and convert it to the collection of hashes:
+  #   { href: 'some_url', class: 'css_class' }
+  #
+  def collect_outer_footer_links
+    outer_links = setting_value(:outer_links).to_s.lines.collect do |olil|
+      outer_link = nil
+      begin
+        uri = URI.parse(olil.strip)
+        if %w(http https).include?(uri.scheme)
+          css_class = case uri.host.sub(/\Awww\./, '')
+                      when "vk.com" then "soc-lnk-vk"
+                      when "fb.com", "facebook.com" then "soc-lnk-fb"
+                      when "twitter.com" then "soc-lnk-tw"
+                      when "instagram.com" then "soc-lnk-ig"
+                      when "youtube.com" then "soc-lnk-yt"
+                      when "ok.ru", "odnoklassniki.ru" then "soc-lnk-ok"
+                      when "linkedin.com" then "soc-lnk-ln"
+                      when "plus.google.com" then "soc-lnk-gp"
+                      else
+                        ''
+                      end
+          outer_link = { href: uri.to_s, :class => css_class }
+        end
+      rescue URI::InvalidURIError
+        nil
+      end
+      outer_link
+    end
+    outer_links.compact
+  end
+
 end
