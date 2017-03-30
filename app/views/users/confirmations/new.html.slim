@@ -4,11 +4,14 @@ h2 Resend confirmation instructions
   /-#= devise_error_messages!
 
   .row
-    .mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => resource.errors[:email].any?)
+    - have_email_errors = resource.errors[:email].any?
+    .mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => have_email_errors)
       = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), :class => 'mdl-textfield__input'
       = f.label :email, :class => 'mdl-textfield__label'
+      - if have_email_errors
+        span.mdl-textfield__error = resource.errors[:email].join(', ')
 
-  .row
+  .row.actions
     = f.submit "Resend instructions", :class => 'mdl-button mdl-js-button mdl-button--raised'
 
 = render "users/shared/links"

@@ -89,6 +89,9 @@ ActiveAdmin.register User do
         row :last_sign_in_at
         row :current_sign_in_ip
         row :last_sign_in_ip
+        row :confirmation_sent_at
+        row :unconfirmed_email
+        row :confirmed_at
       end
     end
 

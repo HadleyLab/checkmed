@@ -1,4 +1,7 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
+
+  layout 'seoless'
+
   # GET /resource/confirmation/new
   # def new
   #   super

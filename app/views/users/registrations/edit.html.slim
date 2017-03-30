@@ -8,7 +8,10 @@ h2 Edit profile
   // Why? I dont know.
   .row
     .mdl-textfield.mdl-textfield--floating-label.has-placeholder.is-just-info
-      .mdl-textfield__input = resource.email
+      .mdl-textfield__input
+        = resource.email
+        - if devise_mapping.confirmable? && !resource.confirmed?
+          |  (awaits confirmation)
       .mdl-textfield__label Email
   / .row
   /   - have_email_errors = resource.errors[:email].any?

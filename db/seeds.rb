@@ -54,19 +54,23 @@ AdminUser.create!(email: 'admin@example.com',
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Users"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-def_user = User.create! email: 'user@example.com',
-                        password: 'password',
-                        password_confirmation: 'password',
-                        name: 'Default Doctor',
-                        company: 'Main Hospital of USA',
-                        position: 'MD'
+def_user = User.new email: 'user@example.com',
+                    password: 'password',
+                    password_confirmation: 'password',
+                    name: 'Default Doctor',
+                    company: 'Main Hospital of USA',
+                    position: 'MD'
+def_user.skip_confirmation!
+def_user.save
 
-sec_user = User.create! email: 'user2@example.com',
-                        password: 'password',
-                        password_confirmation: 'password',
-                        name: 'Jason Born',
-                        company: 'Angkor WAT UPFC',
-                        position: 'Intern'
+sec_user = User.new email: 'user2@example.com',
+                    password: 'password',
+                    password_confirmation: 'password',
+                    name: 'Jason Born',
+                    company: 'Angkor WAT UPFC',
+                    position: 'Intern'
+sec_user.skip_confirmation!
+sec_user.save
 
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --

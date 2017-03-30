@@ -9,6 +9,7 @@ Rails.application.routes.draw do
                      controllers: {
                        passwords: 'users/passwords',
                        registrations: 'users/registrations',
+                       confirmations: 'users/confirmations',
                        sessions: 'users/sessions' }
 
   scope 'profile' do
