@@ -65,7 +65,7 @@ h2 Edit profile
         span.mdl-checkbox__label Remove avatar
 
   .row.actions
-    = f.submit "Update", :class => 'mdl-button mdl-js-button mdl-button--raised'
+    = f.submit "Update profile", :class => 'mdl-button mdl-js-button mdl-button--raised'
     '
     = link_to 'Cancel', :back, :class => 'mdl-button mdl-js-button'
 
@@ -105,7 +105,7 @@ h3 Change password
         span.mdl-textfield__error = resource.errors[:current_password].join(', ')
 
   .row.actions
-    = f.submit "Update", :class => 'mdl-button mdl-js-button mdl-button--raised'
+    = f.submit "Change password", :class => 'mdl-button mdl-js-button mdl-button--raised'
     '
     = link_to 'Cancel', :back, :class => 'mdl-button mdl-js-button'
 
