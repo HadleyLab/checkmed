@@ -15,9 +15,11 @@
         br
       ' Created at:
       = l @checklist.created_at, format: "%B %e, %Y"
-    = render partial: 'profiles/user_block', locals: { user: @user }
 
-    / TODO Any user can share a checklist on Facebook or twitter by clicking the proper icon on the page
+    - if Rails.env.production? || true
+      p = render 'shared/yandex_share'
+
+    = render partial: 'profiles/user_block', locals: { user: @user }
 
     - @checklist.groups.ordered.each do |group|
       - if group.items.any?
