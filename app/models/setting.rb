@@ -35,10 +35,16 @@ class Setting < ActiveRecord::Base
 
   def value=(typed_value)
     if self.vtype == VTYPE_FILE
-      if self.static_file.present?
-        self.static_file.file = typed_value
+      if typed_value.nil?
+        if self.static_file.present?
+          self.static_file = nil
+        end
       else
-        self.build_static_file file: typed_value
+        if self.static_file.present?
+          self.static_file.file = typed_value
+        else
+          self.build_static_file file: typed_value
+        end
       end
     else
       self.val = case self.vtype

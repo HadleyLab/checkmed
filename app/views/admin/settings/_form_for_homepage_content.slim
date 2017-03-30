@@ -12,6 +12,12 @@
         - if hp_g_i_s.value
           p.inline-hints
             = image_tag(hp_g_i_s.value.file.url, style: 'width:100%;max-width:200px;')
+      - if hp_g_i_s.value
+        li.boolean.input.optional
+          input type="hidden" name="homepage[remove_greeting_image]" value="0"
+          label for="homepage_remove_image"
+            input type="checkbox" name="homepage[remove_greeting_image]" id="homepage_remove_image" value="1"
+            |  Remove greeting image
       li.text.input
         = label_tag 'homepage[greeting_text]', "Greeting words", :class => "label"
         = text_area_tag 'homepage[greeting_text]', hp_g_t_s.value, rows: 3

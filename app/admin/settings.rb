@@ -4,7 +4,12 @@ ActiveAdmin.register_page "Settings" do
 
   page_action :update_homepage, method: :post do
     if params[:homepage]
-      if file_data = params[:homepage][:greeting_image]
+      if params[:homepage][:remove_greeting_image] == '1'
+        if found_setting = Setting.find_by_ident('homepage_greeting_image')
+            found_setting.value = nil
+            found_setting.save
+          end
+      elsif file_data = params[:homepage][:greeting_image]
         if found_setting = Setting.find_by_ident('homepage_greeting_image')
           found_setting.value = file_data.open
           found_setting.save
