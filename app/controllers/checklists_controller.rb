@@ -5,8 +5,11 @@ class ChecklistsController < FrontendController
   def index
     @seo_carrier = OpenStruct.new({ title: "Search checklists" })
 
-    @checklists = Checklist.visibles.joins(:user)
+    # al'a settings
     default_ordering = { name: :asc, treat_stage: :asc }
+    checklists_per_page = 1
+
+    @checklists = Checklist.visibles.joins(:user)
 
     if params[:sf] && (params[:sf][:q].present? || params[:sf][:eri].present?)
       if params[:sf][:q].present?
@@ -38,7 +41,8 @@ class ChecklistsController < FrontendController
       @checklists = @checklists.order(default_ordering)
     end
 
-    @checklists = @checklists.page(params[:page]).per(20)
+    @checklists = @checklists.page(params[:page]).per(checklists_per_page)
+    @start_order_index = [0, params[:page].to_i - 1].max * checklists_per_page
 
     respond_to do |format|
       format.html

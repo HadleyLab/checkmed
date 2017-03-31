@@ -17,7 +17,8 @@ class ProfilesController < FrontendController
         visibles.
         joins(:users_visits).
         where(users_checklists_visits: { user_id: @user.id }).
-        group(:id)
+        group(:id).
+        limit(20)
         # TODO correct ordering of the recent browsed checklists by last visited
 
     respond_to do |format|

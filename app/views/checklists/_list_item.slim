@@ -1,0 +1,21 @@
+.check-med-clst-item.mdl-card.mdl-shadow--2dp
+  .mdl-card__title.mdl-card--border
+    h4.mdl-card__title-text
+      = link_to checklist.name, checklist_path(checklist)
+  .mdl-card__supporting-text
+    ' For:
+    = checklist.executor_role.name
+    br
+    - if checklist.treat_stage.present?
+      ' Threatment stage:
+      = checklist.treat_stage
+      br
+
+    = render partial: 'profiles/user_info_card', \
+             locals: { user: checklist.user }
+
+    ' Created at:
+    = l checklist.created_at, format: "%B %e, %Y"
+  / This is for the future show liked lists
+  / .mdl-card__menu
+  /   i.material-icons favorite

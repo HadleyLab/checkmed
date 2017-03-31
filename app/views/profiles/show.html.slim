@@ -37,8 +37,11 @@
 
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?
-            = render partial: 'checklists/list', \
-                     locals: { checklists: @recent_checklists }
+            ul.check-med-clst-list-full
+              - @recent_checklists.includes(:executor_role).each do |checklist|
+                li
+                  = render partial: 'checklists/list_item', \
+                             locals: { checklist: checklist }
           - else
             .mdl-typography--subhead style="margin-top:14px"
               | Have no recently browsed checklists

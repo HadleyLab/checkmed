@@ -28,34 +28,12 @@
           button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
             i.material-icons search
     - if @checklists && @checklists.any?
-      - @checklists.includes(:executor_role).each do |checklist|
-        ul.demo-list-three.mdl-list
-          li.mdl-list__item.mdl-list__item--three-line
-            span.mdl-list__item-primary-content
-              span
-                = link_to checklist.name, checklist_path(checklist)
-                - if checklist.treat_stage.present?
-                  ' , day
-                  = checklist.treat_stage
-                ' . For
-                = checklist.executor_role.name.downcase
-                | .
-              span.mdl-list__item-text-body
-                - if checklist.descr.present?
-                  = checklist.descr
-                  br
-                ' Made by
-                = link_to checklist.user.name, account_path(checklist.user)
-                - if checklist.user.position.present? || checklist.user.company.present?
-                  ' ,
-                - if checklist.user.position.present?
-                  = checklist.user.position
-                - if checklist.user.position.present? && checklist.user.company.present?
-                  '  in
-                - if checklist.user.company.present?
-                  = checklist.user.company
-                ' , at
-                = l checklist.created_at, format: "%B %e, %Y"
+      ol.check-med-clst-list-full
+        - @checklists.includes(:executor_role).each_with_index do |checklist, indx|
+          li
+            .list-item-order-number = "#{@start_order_index + indx + 1}."
+            = render partial: 'checklists/list_item', \
+                     locals: { checklist: checklist }
 
       = paginate @checklists
       / -# TODO Style up the pagination

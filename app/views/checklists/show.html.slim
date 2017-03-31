@@ -19,7 +19,7 @@
     - if Rails.env.production?
       p = render 'shared/yandex_share'
 
-    = render partial: 'profiles/user_block', locals: { user: @user }
+    = render partial: 'profiles/user_info_card', locals: { user: @user }
 
     - @checklist.groups.ordered.each do |group|
       - if group.items.any?
