@@ -1,0 +1,63 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+  .mdl-cell.mdl-cell--6-col
+    / h1 Find checklists
+    = form_tag search_path, method: :get
+      .mdl-grid
+        .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
+          .mdl-textfield.mdl-js-textfield
+            = text_field_tag 'sf[q]', params.try(:[], 'sf').try(:[], 'q'), class: 'mdl-textfield__input'
+            = label_tag 'sf[q]', 'Search query...', class: 'mdl-textfield__label'
+        .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
+          .mdl-selectfield
+            = select_tag 'sf[eri]', \
+                         options_from_collection_for_select(ExecutorRole.ordered, :id, :name, params.try(:[], 'sf').try(:[], 'eri')), \
+                         prompt: 'Category...', \
+                         class: 'mdl-selectfield__select'
+        .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
+          .mdl-selectfield
+            = select_tag 'sf[ord]', \
+                         options_for_select([ \
+                             ['Diagnosis name', 'dn'], \
+                             ['Author name', 'an'], \
+                             ['Date created', 'dc'], \
+                             ['Hospital name', 'hn'] \
+                           ], params.try(:[], 'sf').try(:[], 'ord')), \
+                         prompt: 'Order by...', \
+                         class: 'mdl-selectfield__select'
+        .mdl-cell.mdl-cell--4-col.mdl-cell--12-col-desktop.mdl-typography--text-right
+          button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
+            i.material-icons search
+    - if @checklists && @checklists.any?
+      - @checklists.includes(:executor_role).each do |checklist|
+        ul.demo-list-three.mdl-list
+          li.mdl-list__item.mdl-list__item--three-line
+            span.mdl-list__item-primary-content
+              span
+                = link_to checklist.name, checklist_path(checklist)
+                - if checklist.treat_stage.present?
+                  ' , day
+                  = checklist.treat_stage
+                ' . For
+                = checklist.executor_role.name.downcase
+                | .
+              span.mdl-list__item-text-body
+                - if checklist.descr.present?
+                  = checklist.descr
+                  br
+                ' Made by
+                = link_to checklist.user.name, account_path(checklist.user)
+                - if checklist.user.position.present? || checklist.user.company.present?
+                  ' ,
+                - if checklist.user.position.present?
+                  = checklist.user.position
+                - if checklist.user.position.present? && checklist.user.company.present?
+                  '  in
+                - if checklist.user.company.present?
+                  = checklist.user.company
+                ' , at
+                = l checklist.created_at, format: "%B %e, %Y"
+
+
+    - elsif @checklists
+      .mdl-typography--subhead style="margin-top:14px" No results

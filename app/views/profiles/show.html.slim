@@ -1,5 +1,4 @@
 - owner_in_da_house = current_user == @user
-- search_in_progress = params[:sf] && (params[:sf][:q].present? || params[:sf][:eri].present?)
 
 .mdl-grid
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
@@ -9,7 +8,9 @@
         .user-profile-ava = image_tag @user.avatar.thumb.url
       .user-profile-info
         - if owner_in_da_house
-          = link_to edit_user_registration_path, class: 'mdl-button mdl-js-button mdl-button--icon', style: 'float:right'
+          = link_to edit_user_registration_path, \
+                    class: 'mdl-button mdl-js-button mdl-button--icon', \
+                    style: 'float:right'
             i.material-icons create
         .user-profile-name = @user.name
         - user_position_strings = []
@@ -27,84 +28,26 @@
 
       .mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect#user-profile-tabs
         .mdl-tabs__tab-bar
-            a.mdl-tabs__tab href="#my-checklists" class=class_string('is-active' => !search_in_progress) My checklists
-            a.mdl-tabs__tab href="#checklists-search" class=class_string('is-active' => search_in_progress) Find ready checklists
+            a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
 
-        .mdl-tabs__panel#my-checklists class=class_string('is-active' => !search_in_progress)
-          = render partial: 'checklists/list', locals: { checklists: @checklists, can_add_new: true }
-
-        .mdl-tabs__panel#checklists-search class=class_string('is-active' => search_in_progress)
-          = form_tag account_path(@user.id), method: :get
-            .mdl-grid
-              .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
-                .mdl-textfield.mdl-js-textfield
-                  = text_field_tag 'sf[q]', params.try(:[], 'sf').try(:[], 'q'), class: 'mdl-textfield__input'
-                  = label_tag 'sf[q]', 'Search query...', class: 'mdl-textfield__label'
-              .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
-                .mdl-selectfield
-                  = select_tag 'sf[eri]', \
-                               options_from_collection_for_select(ExecutorRole.ordered, :id, :name, params.try(:[], 'sf').try(:[], 'eri')), \
-                               prompt: 'Category...', \
-                               class: 'mdl-selectfield__select'
-              .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
-                .mdl-selectfield
-                  = select_tag 'sf[ord]', \
-                               options_for_select([ \
-                                   ['Diagnosis name', 'dn'], \
-                                   ['Author name', 'an'], \
-                                   ['Date created', 'dc'], \
-                                   ['Hospital name', 'hn'] \
-                                 ], params.try(:[], 'sf').try(:[], 'ord')), \
-                               prompt: 'Order by...', \
-                               class: 'mdl-selectfield__select'
-              .mdl-cell.mdl-cell--4-col.mdl-cell--12-col-desktop.mdl-typography--text-right
-                button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
-                  i.material-icons search
-          - if @found_checklists && @found_checklists.any?
-            - @found_checklists.includes(:executor_role).each do |checklist|
-              ul.demo-list-three.mdl-list
-                li.mdl-list__item.mdl-list__item--three-line
-                  span.mdl-list__item-primary-content
-                    span
-                      = link_to checklist.name, checklist_path(checklist)
-                      - if checklist.treat_stage.present?
-                        ' , day
-                        = checklist.treat_stage
-                      ' . For
-                      = checklist.executor_role.name.downcase
-                      | .
-                    span.mdl-list__item-text-body
-                      - if checklist.descr.present?
-                        = checklist.descr
-                        br
-                      ' Made by
-                      = link_to checklist.user.name, account_path(checklist.user)
-                      - if checklist.user.position.present? || checklist.user.company.present?
-                        ' ,
-                      - if checklist.user.position.present?
-                        = checklist.user.position
-                      - if checklist.user.position.present? && checklist.user.company.present?
-                        '  in
-                      - if checklist.user.company.present?
-                        = checklist.user.company
-                      ' , at
-                      = l checklist.created_at, format: "%B %e, %Y"
-
-
-          - elsif search_in_progress
-            .mdl-typography--subhead style="margin-top:14px" No results
+        .mdl-tabs__panel.is-active#my-checklists
+          = render partial: 'checklists/list', \
+                   locals: { checklists: @checklists, can_add_new: true }
 
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?
-            = render partial: 'checklists/list', locals: { checklists: @recent_checklists }
+            = render partial: 'checklists/list', \
+                     locals: { checklists: @recent_checklists }
           - else
-            .mdl-typography--subhead style="margin-top:14px" Have no recently browsed checklists
+            .mdl-typography--subhead style="margin-top:14px"
+              | Have no recently browsed checklists
 
     - else
       hr
       - if @checklists.any?
         .mdl-typography--title Checklists
-        = render partial: 'checklists/list', locals: { checklists: @checklists }
+        = render partial: 'checklists/list', \
+                          locals: { checklists: @checklists }
       -else
         .mdl-typography--subhead User has no checklists

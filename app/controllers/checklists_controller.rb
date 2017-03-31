@@ -1,10 +1,54 @@
 class ChecklistsController < FrontendController
   before_action :authenticate_user!
 
+  # The Search page
+  def index
+    @seo_carrier = OpenStruct.new({ title: "Search checklists" })
+
+    if params[:sf] && (params[:sf][:q].present? || params[:sf][:eri].present?)
+      @checklists = Checklist.visibles.joins(:user)
+
+      if params[:sf][:q].present?
+        sq = params[:sf][:q]
+        @checklists = @checklists.
+          where("checklists.name ILIKE ? OR "\
+                "checklists.descr ILIKE ? OR " \
+                "users.name ILIKE ? OR " \
+                "users.company ILIKE ? OR " \
+                "users.position ILIKE ?",
+                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+      end
+
+      if params[:sf][:eri].present?
+        @checklists = @checklists.where(executor_role_id: params[:sf][:eri])
+      end
+
+      if params[:sf][:ord].present?
+        @checklists = case params[:sf][:ord]
+                      when 'dn' then @checklists.order(name: :asc)
+                      when 'an' then @checklists.order('users.name ASC')
+                      when 'dc' then @checklists.order(created_at: :asc)
+                      when 'hn' then @checklists.order('users.company ASC')
+                      else
+                        @checklists
+                      end
+      end
+    end
+  end
+
   def show
     @checklist = Checklist.find params[:id]
-    @seo_carrier = OpenStruct.new title: "Checklist: #{@checklist.name}"
     @user = @checklist.user
+
+    seo_descr = "Checklist \"#{@checklist.name}\" for #{@checklist.executor_role.name}"
+    seo_descr += ", stage #{@checklist.treat_stage}" if @checklist.treat_stage.present?
+    seo_descr += " by #{@user.name}, #{@user.position} at #{@user.company}"
+    seo_descr += " — #{setting_value(:app_humanized_name)}"
+    @seo_carrier = OpenStruct.new({
+      title: "Checklist \"#{@checklist.name}\"",
+      seo_descr: seo_descr,
+      seo_image: (@user.avatar.present? ? @user.avatar.url : nil)
+    })
 
     # log a visit
     unless current_user == @user

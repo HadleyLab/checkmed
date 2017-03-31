@@ -16,7 +16,7 @@
       ' Created at:
       = l @checklist.created_at, format: "%B %e, %Y"
 
-    - if Rails.env.production? || true
+    - if Rails.env.production?
       p = render 'shared/yandex_share'
 
     = render partial: 'profiles/user_block', locals: { user: @user }

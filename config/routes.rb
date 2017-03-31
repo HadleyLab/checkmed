@@ -15,13 +15,12 @@ Rails.application.routes.draw do
   scope 'profile' do
     resources :checklists, except: :index
   end
+  get 'search', to: 'checklists#index', as: :search
 
   get 'account/:id', to: 'profiles#show', as: :account
 
   get 'profile',            to: 'profiles#redirect_to_show', as: :profile_root
   get 'profile/checklists', to: 'profiles#redirect_to_show', as: :profile_checklists_root
-
-  # TODO page with info about promo??
 
   root 'pages#home'
 end
