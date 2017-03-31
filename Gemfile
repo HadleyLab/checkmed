@@ -34,6 +34,9 @@ gem 'fog-aws', '1.2.1'
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick', '4.6.1'
 
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Rails
+gem 'kaminari', '~> 1.0.1'
+
 # ActiveModel Validation for email
 gem 'valid_email', '0.0.13'
 

@@ -1,7 +1,6 @@
 .mdl-grid
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
   .mdl-cell.mdl-cell--6-col
-    / h1 Find checklists
     = form_tag search_path, method: :get
       .mdl-grid
         .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
@@ -58,6 +57,8 @@
                 ' , at
                 = l checklist.created_at, format: "%B %e, %Y"
 
+      = paginate @checklists
+      / -# TODO Style up the pagination
 
-    - elsif @checklists
+    - else
       .mdl-typography--subhead style="margin-top:14px" No results
