@@ -8,7 +8,6 @@ services:
     env_file: .env
     depends_on:
     - db
-    - exim
     ports:
     - 80:80
 
