@@ -12,3 +12,22 @@ form .row {
     padding-bottom: 20px;
   }
 }
+
+.social-link-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  background-size: 24px 24px;
+  color: rgb(64,196,255);
+  &.soc-lnk-fb { background-image: image-url('icons/facebook.svg'); }
+  &.soc-lnk-gh { background-image: image-url('icons/github.svg'); }
+  &.soc-lnk-gp { background-image: image-url('icons/google-plus.svg'); }
+  &.soc-lnk-ig { background-image: image-url('icons/instagram.svg'); }
+  &.soc-lnk-ln { background-image: image-url('icons/linkedin.svg'); }
+  &.soc-lnk-tb { background-image: image-url('icons/tumblr.svg'); }
+  &.soc-lnk-tw { background-image: image-url('icons/twitter.svg'); }
+  &.soc-lnk-vm { background-image: image-url('icons/vimeo.svg'); }
+  &.soc-lnk-vn { background-image: image-url('icons/vine.svg'); }
+  &.soc-lnk-yt { background-image: image-url('icons/youtube.svg'); }
+}

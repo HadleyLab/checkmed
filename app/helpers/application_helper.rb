@@ -40,14 +40,16 @@ module ApplicationHelper
         uri = URI.parse(olil.strip)
         if %w(http https).include?(uri.scheme)
           css_class = case uri.host.sub(/\Awww\./, '')
-                      when "vk.com" then "soc-lnk-vk"
                       when "fb.com", "facebook.com" then "soc-lnk-fb"
-                      when "twitter.com" then "soc-lnk-tw"
-                      when "instagram.com" then "soc-lnk-ig"
-                      when "youtube.com" then "soc-lnk-yt"
-                      when "ok.ru", "odnoklassniki.ru" then "soc-lnk-ok"
-                      when "linkedin.com" then "soc-lnk-ln"
-                      when "plus.google.com" then "soc-lnk-gp"
+                      when "github.com"             then "soc-lnk-gh"
+                      when "plus.google.com"        then "soc-lnk-gp"
+                      when "instagram.com"          then "soc-lnk-ig"
+                      when "linkedin.com"           then "soc-lnk-ln"
+                      when "tumblr.com"             then "soc-lnk-tb"
+                      when "twitter.com"            then "soc-lnk-tw"
+                      when "vimeo.com"              then "soc-lnk-vm"
+                      when "vine.co"                then "soc-lnk-vn"
+                      when "youtube.com"            then "soc-lnk-yt"
                       else
                         ''
                       end

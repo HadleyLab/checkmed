@@ -3,9 +3,11 @@ footer.check-med-footer.mdl-mini-footer
   - if outer_links.any?
     .mdl-mini-footer__left-section
       - outer_links.each do |outer_link|
-        = link_to outer_link[:href], \
-                  class: class_string('mdl-mini-footer__social-btn', outer_link[:class])
-          i.material-icons public
+        = link_to outer_link[:href], class: 'mdl-mini-footer__social-btn'
+          - if outer_link[:class].present?
+            i.social-link-icon class=outer_link[:class]
+          - else
+            i.material-icons public
 
   .mdl-mini-footer__right-section
     ' &copy;
