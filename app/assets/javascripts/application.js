@@ -71,6 +71,15 @@ $(document).ready(function() {
     if (window.location.hash) activateUserProfileTab(window.location.hash);
   }
 
+  // MDL Accordion by @nickretallack
+  $('.mdl-accordion__content').each(function(){
+    var content = $(this);
+    content.css('margin-top', -content.height());
+  });
+  $(document.body).on('click', '.mdl-accordion__button', function(){
+    $(this).parent('.mdl-accordion').toggleClass('mdl-accordion--opened');
+  });
+
   // Uncollapse collapser
   $("a.uncollapser").click(function(evnt){
     evnt.preventDefault();

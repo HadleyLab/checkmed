@@ -22,26 +22,30 @@
     = render partial: 'profiles/user_info_card', locals: { user: @user }
 
     - @checklist.groups.ordered.each do |group|
-      - if group.items.any?
-        h5 = group.name
-        ol
-          - group.items.ordered.each do |question|
-            li
-              strong = question.title
-              - if question.descr.present?
-                br
-                = question.descr
-              - question.answers.ordered.each do |answer|
-                br
-                input type="radio" name="q#{question.id}"
-                '
-                = answer.val
-                - if answer.tip.present?
-                  '
-                  span.material-icons id="answer-tip-#{answer.id}" style="font-size: 16px" help_outline
-                  .mdl-tooltip data-mdl-for="answer-tip-#{answer.id}" = answer.tip
-                - if answer.commentable?
-                  |  &nbsp; ___________
+      .mdl-accordion.check-med-checklist
+        a.mdl-accordion__button
+          i.material-icons.mdl-accordion__icon.mdl-animation--default expand_more
+          = group.name
+        .mdl-accordion__content-wrapper
+          .mdl-accordion__content.mdl-animation--default
+            ol
+              - group.items.ordered.each do |question|
+                li
+                  strong = question.title
+                  - if question.descr.present?
+                    br
+                    = question.descr
+                  - question.answers.ordered.each do |answer|
+                    br
+                    input type="radio" name="q#{question.id}"
+                    '
+                    = answer.val
+                    - if answer.tip.present?
+                      '
+                      span.material-icons id="answer-tip-#{answer.id}" style="font-size: 16px" help_outline
+                      .mdl-tooltip data-mdl-for="answer-tip-#{answer.id}" = answer.tip
+                    - if answer.commentable?
+                      |  &nbsp; ___________
 
     - if owner_in_da_house
       p

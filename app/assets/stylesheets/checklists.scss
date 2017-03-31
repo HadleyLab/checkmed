@@ -112,6 +112,27 @@ ol.check-med-clst-list-full {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+.check-med-checklist {
+  margin-bottom: 2px;
+  .mdl-accordion__button {
+    display: block;
+    position: relative;
+    padding: 10px 16px;
+    margin: 0;
+    color: #fff;
+    background: $accent-color;
+    cursor: pointer;
+  }
+  &.mdl-accordion--opened {
+    border-bottom: 0;
+    .mdl-accordion__button { color: #fff; }
+  }
+  .mdl-accordion__icon { color: #fff; }
+  .mdl-accordion__content > ol { margin: 0; padding-top: 20px; padding-bottom: 20px; }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 .chkl-form-group {
   margin: 16px 0;
   background: #dbdbdb;
