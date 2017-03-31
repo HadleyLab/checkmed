@@ -44,6 +44,8 @@ class ChecklistsController < FrontendController
       @checklists = @checklists.order(default_ordering)
     end
 
+    @checklists_full_count = @checklists.count
+
     @checklists = @checklists.page(params[:page]).per(checklists_per_page)
     @start_order_index = [0, params[:page].to_i - 1].max * checklists_per_page
 

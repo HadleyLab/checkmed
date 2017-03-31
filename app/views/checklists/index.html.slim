@@ -29,6 +29,13 @@
             i.material-icons search
     a id="search-results-zone-start" data-scroll-to=(@have_a_filter ? "yes" : nil)
     - if @checklists.any?
+      p
+        span.mdl-chip: span.mdl-chip__text
+          = @checklists_full_count
+          '
+          = t(:checklist, count: @checklists_full_count)
+          |  found
+
       ol.check-med-clst-list-full
         - @checklists.includes(:executor_role).each_with_index do |checklist, indx|
           li
@@ -40,4 +47,4 @@
       / -# TODO Style up the pagination
 
     - else
-      .mdl-typography--subhead style="margin-top:14px" No results
+      .mdl-typography--subhead style="margin-top:14px" No checklists found
