@@ -22,6 +22,7 @@
     = render partial: 'profiles/user_info_card', locals: { user: @user }
 
     - @checklist.groups.ordered.each do |group|
+      - next if group.items.empty?
       .mdl-accordion.check-med-checklist
         a.mdl-accordion__button
           i.material-icons.mdl-accordion__icon.mdl-animation--default expand_more
