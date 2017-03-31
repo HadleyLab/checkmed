@@ -1,7 +1,8 @@
 ActiveAdmin.register User do
   permit_params :email, :name, :company, :position,
                 :avatar, :avatar_cache, :remove_avatar,
-                :password, :password_confirmation, :banned
+                :password, :password_confirmation, :banned,
+                :make_user_confirmed
 
   ### Setting up the menu element of this page
   menu priority: 1
@@ -123,6 +124,9 @@ ActiveAdmin.register User do
         f.input :password_confirmation
       end
       f.input :banned
+      unless f.object.confirmed?
+        f.input :make_user_confirmed, label: 'Confirm user', as: :boolean
+      end
     end
 
     f.actions
