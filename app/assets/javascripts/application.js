@@ -71,13 +71,21 @@ $(document).ready(function() {
     if (window.location.hash) activateUserProfileTab(window.location.hash);
   }
 
+  // Uncollapse collapser
+  $("a.uncollapser").click(function(evnt){
+    evnt.preventDefault();
+    var ucClass = $(this).data('uncollapse-class');
+    $(this).closest("." + ucClass).removeClass(ucClass);
+    return false;
+  });
+
   // // Add nested fields to the form
   // $(".chlk-add-nested-fields-btn").click(function(evnt) {
   //   evnt.preventDefault();
   //   $link = $(this);
-  //   var new_id = new Date().getTime();
+  //   var newId = new Date().getTime();
   //   var regexp = new RegExp("new_" + $link.data('fields-association'), "g");
-  //   $link.before($link.data('fields-template').replace(regexp, new_id));
+  //   $link.before($link.data('fields-template').replace(regexp, newId));
   //   return false;
   // });
 
@@ -125,8 +133,19 @@ $(document).ready(function() {
 });
 
 function add_nested_item_fields(link, association, content) {
-  var new_id = new Date().getTime();
+  var jqLink = $(link);
+  var newId = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
-  $(link).before(content.replace(regexp, new_id));
+
+  var newPrior = 0;
+  if (jqLink.data("add-field-class")) {
+    var a_added = $("." + jqLink.data("add-field-class"));
+    if (a_added.length) {
+      newPrior = parseInt(a_added.last().find('.ordering-prior-input').val()) + 1;
+    }
+  }
+
+  jqLink.before(content.replace(regexp, newId));
+  jqLink.prev().find('.ordering-prior-input').val(newPrior);
   componentHandler.upgradeAllRegistered();
 }

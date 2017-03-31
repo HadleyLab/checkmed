@@ -1,4 +1,8 @@
-= form_for @checklist, html: { class: 'chlk-form edit_hecklist' } do |f|
+= form_for @checklist, html: { class: 'chlk-form edit_checklist' } do |f|
+  - if f.object.errors.any?
+    .chlk-form-line style="color:rgb(213,0,0)"
+      p There are errors in the form. Please fix it.
+
   .chlk-form-line
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
       = f.text_field :name, autofocus: true, class: 'mdl-textfield__input'
@@ -23,19 +27,10 @@
   .chkl-form-groups
     - if @checklist.groups.any?
       = f.fields_for :groups, @checklist.groups.sort_by {|cg| cg.prior} do |a|
-        = render partial: 'group_fields', locals: { f: a }
-    - elsif f.object.new_record?
-      - def_groups = [ \
-          ChecklistGroup.new(name: 'Symptoms questions',       prior: 0), \
-          ChecklistGroup.new(name: 'Physical exams questions', prior: 1), \
-          ChecklistGroup.new(name: 'Labs questions',           prior: 2), \
-          ChecklistGroup.new(name: 'Procedures questions',     prior: 3), \
-          ChecklistGroup.new(name: 'Medications questions',    prior: 4) \
-        ]
-      = f.fields_for :groups, def_groups do |a|
-        = render partial: 'group_fields', locals: { f: a }
+        = render partial: 'group_fields', \
+                 locals: { f: a, is_collapsed: a.object.persisted? }
 
-    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", "data-add-field-class" => "chkl-form-group"
       i.material-icons add
       |  new group
 

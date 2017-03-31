@@ -1,5 +1,20 @@
-.chkl-form-group
+- is_collapsed ||= false
+- is_collapsed = false if is_collapsed && !f.object.valid?
+
+.chkl-form-group class=class_string('chkl-form-group-collapsed' => is_collapsed)
   = f.hidden_field :prior, class: 'ordering-prior-input'
+
+  - if is_collapsed
+    .collapsed-header
+      .mdl-grid
+        .mdl-cell.mdl-cell--3-col.mdl-cell--6-col-tablet.mdl-cell--8-col-desktop
+          = link_to f.object.name, \
+                    "javascript:void('open')", \
+                    class: "uncollapser",
+                    'data-uncollapse-class' => 'chkl-form-group-collapsed'
+        .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet.mdl-cell--4-col-desktop.mdl-typography--text-right
+          i.ordering-handler.group-ordering-handler.material-icons swap_vert
+
   header
     .mdl-grid
       .mdl-cell.mdl-cell--3-col.mdl-cell--6-col-tablet.mdl-cell--8-col-desktop
@@ -10,10 +25,11 @@
           = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
           i.mdl-icon-toggle__label.material-icons delete
         i.ordering-handler.group-ordering-handler.material-icons swap_vert
-  body
+  .chkl-form-group-body
     .chkl-form-group-questions
       = f.fields_for :items, f.object.items.sort_by {|gi| gi.prior} do |a|
-        = render partial: 'item_fields', locals: { f: a }
-      = link_to_add_fields f, :items, class: "mdl-button mdl-js-button mdl-button--primary"
+        = render partial: 'item_fields', \
+                 locals: { f: a, is_collapsed: a.object.persisted? }
+      = link_to_add_fields f, :items, class: "mdl-button mdl-js-button mdl-button--primary", "data-add-field-class" => "chkl-form-question"
         i.material-icons add
         |  new question

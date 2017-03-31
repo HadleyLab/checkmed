@@ -1,22 +1,34 @@
-.chkl-form-question
-  i.ordering-handler.question-ordering-handler.material-icons swap_vert
-  = f.hidden_field :prior, class: 'ordering-prior-input'
-  .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
-      = f.text_field :title, class: 'mdl-textfield__input'
-      = f.label :title, class: 'mdl-textfield__label'
-  .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
-      = f.text_area :descr, class: 'mdl-textfield__input'
-      = f.label :descr, class: 'mdl-textfield__label'
-  .chlk-form-line.mdl-typography--text-right
-    = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
-      = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
-      i.mdl-icon-toggle__label.material-icons delete
+- is_collapsed ||= false
+- is_collapsed = false if is_collapsed && !f.object.valid?
 
-  .chkl-form-question-answers
-    = f.fields_for :answers, f.object.answers.sort_by {|ia| ia.prior} do |a|
-      = render partial: 'answer_fields', locals: { f: a }
-    = link_to_add_fields f, :answers, class: "mdl-button mdl-js-button mdl-button--primary"
-      i.material-icons add
-      |  add answer
+.chkl-form-question class=class_string('chkl-form-question-collapsed' => is_collapsed)
+  - if is_collapsed
+    .collapsed-question-body
+      i.ordering-handler.question-ordering-handler.material-icons swap_vert
+      = link_to f.object.title, \
+                "javascript:void('open')", \
+                class: "uncollapser",
+                'data-uncollapse-class' => 'chkl-form-question-collapsed'
+
+  .chkl-form-question-body
+    i.ordering-handler.question-ordering-handler.material-icons swap_vert
+    = f.hidden_field :prior, class: 'ordering-prior-input'
+    .chlk-form-line
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:title].any?)
+        = f.text_field :title, class: 'mdl-textfield__input'
+        = f.label :title, class: 'mdl-textfield__label'
+    .chlk-form-line
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
+        = f.text_area :descr, class: 'mdl-textfield__input'
+        = f.label :descr, class: 'mdl-textfield__label'
+    .chlk-form-line.mdl-typography--text-right
+      = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
+        = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
+        i.mdl-icon-toggle__label.material-icons delete
+
+    .chkl-form-question-answers
+      = f.fields_for :answers, f.object.answers.sort_by {|ia| ia.prior} do |a|
+        = render partial: 'answer_fields', locals: { f: a }
+      = link_to_add_fields f, :answers, class: "mdl-button mdl-js-button mdl-button--primary", "data-add-field-class" => "chkl-form-answer"
+        i.material-icons add
+        |  add answer
