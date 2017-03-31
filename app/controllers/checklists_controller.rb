@@ -10,8 +10,11 @@ class ChecklistsController < FrontendController
     checklists_per_page = 20
 
     @checklists = Checklist.visibles.joins(:user)
+    @have_a_filter = false
 
     if params[:sf] && (params[:sf][:q].present? || params[:sf][:eri].present?)
+      @have_a_filter = true
+
       if params[:sf][:q].present?
         sq = params[:sf][:q]
         @checklists = @checklists.

@@ -27,7 +27,8 @@
         .mdl-cell.mdl-cell--4-col.mdl-cell--12-col-desktop.mdl-typography--text-right
           button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
             i.material-icons search
-    - if @checklists && @checklists.any?
+    a id="search-results-zone-start" data-scroll-to=(@have_a_filter ? "yes" : nil)
+    - if @checklists.any?
       ol.check-med-clst-list-full
         - @checklists.includes(:executor_role).each_with_index do |checklist, indx|
           li

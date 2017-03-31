@@ -26,6 +26,15 @@ $(document).ready(function() {
     marSb.showSnackbar({ message: msg });
   }
 
+  // Scroll to the search results
+  var asrzs = $("#search-results-zone-start");
+  if (asrzs.length && asrzs.data("scroll-to") == "yes") {
+    var asrzstop = asrzs.offset().top;
+    setTimeout(function() {
+      $('.mdl-layout__content').animate({ scrollTop: asrzstop }, 600);
+    }, 400);
+  }
+
   // Activate correct user profile tab with menu item click or hash in the url
   if ($("#user-profile-tabs").length) {
     var tabsBlock = $("#user-profile-tabs");
