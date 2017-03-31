@@ -33,7 +33,7 @@
           li
             .list-item-order-number = "#{@start_order_index + indx + 1}."
             = render partial: 'checklists/list_item', \
-                     locals: { checklist: checklist }
+                     locals: { checklist: checklist, full: true }
 
       = paginate @checklists
       / -# TODO Style up the pagination

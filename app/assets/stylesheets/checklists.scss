@@ -4,6 +4,8 @@
 
 @import "mixins";
 
+// - - Checklists list with full data - - - - - - - - - - - - - - - - - - - - -
+
 .check-med-clst-list-full {
   list-style: none;
   margin: 16px 0;
@@ -12,18 +14,16 @@
   & > li + li { margin-top: 16px; }
 
   .check-med-clst-item {
-    // this element must be mdl-card
+    // this element must be a .mdl-card
     width: auto;
+    .mdl-card__supporting-text { width: auto; }
   }
 }
 ol.check-med-clst-list-full {
-  // counter-reset: clst-list-full;
   padding-left: 40px;
   & > li {
     position: relative;
     .list-item-order-number {
-      // counter-increment: clst-list-full;
-      // content: counter(clst-list-full) ".";
       position: absolute;
       top: 0;
       left: -32px;
@@ -32,53 +32,85 @@ ol.check-med-clst-list-full {
   }
 }
 
-.check-med-clst-list {
-  margin: 14px -8px 14px -8px;
-  padding-left: 0;
-  padding-right: 0;
+// - - Checklists list with short data - - - - - - - - - - - - - - - - - - - -
 
+.check-med-clst-list-short {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
 
-  .check-med-clst-list-item {
-    display: block;
-    margin: 8px 0;
-    padding: 6px 12px;
-    background: #f2f2f2;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-    @media screen and (min-width: 320px)  {
+  & > li { margin-bottom: 12px; }
+
+  .check-med-clst-item {
+    // this element must be a .mdl-card
+    width: auto;
+    min-height: auto;
+    .mdl-card__supporting-text { width: auto; }
+  }
+
+  @include upfrom480 {
+    margin-right: -6px; margin-left: -6px;
+
+    & > li {
       display: inline-block;
       vertical-align: top;
-      margin: 8px;
-      width: calc(50% - 40px);
-      height: 120px;
+      margin: 6px;
     }
-    @media screen and (min-width: 376px) and (max-width: 475px)  {
-      height: 140px;
-    }
-    @media screen and (min-width: 580px) and (max-width: 1135px)  {
-      width: calc(33.3333333333% - 40px);
-    }
-    @media screen and (min-width: 1136px) { width: calc(25% - 40px); }
-    @media screen and (min-width: 1600px) { height: 140px; }
-  }
 
-  .chlst-name {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 28px;
-  }
-
-  .check-med-clst-list-item.check-med-clst-add-new {
-    background: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    .chlst-name {
-      font-size: 18px;
-      font-weight: bold;
-    }
+    .check-med-clst-item { width: 192px; min-height: 192px; }
   }
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// .check-med-clst-list {
+//   margin: 14px -8px 14px -8px;
+//   padding-left: 0;
+//   padding-right: 0;
+
+//   .check-med-clst-list-item {
+//     display: block;
+//     margin: 8px 0;
+//     padding: 6px 12px;
+//     background: #f2f2f2;
+//     text-decoration: none;
+//     &:hover {
+//       text-decoration: underline;
+//     }
+//     @media screen and (min-width: 320px)  {
+//       display: inline-block;
+//       vertical-align: top;
+//       margin: 8px;
+//       width: calc(50% - 40px);
+//       height: 120px;
+//     }
+//     @media screen and (min-width: 376px) and (max-width: 475px)  {
+//       height: 140px;
+//     }
+//     @media screen and (min-width: 580px) and (max-width: 1135px)  {
+//       width: calc(33.3333333333% - 40px);
+//     }
+//     @media screen and (min-width: 1136px) { width: calc(25% - 40px); }
+//     @media screen and (min-width: 1600px) { height: 140px; }
+//   }
+
+//   .chlst-name {
+//     font-size: 16px;
+//     font-weight: 400;
+//     line-height: 28px;
+//   }
+
+//   .check-med-clst-list-item.check-med-clst-add-new {
+//     background: #fff;
+//     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+//     .chlst-name {
+//       font-size: 18px;
+//       font-weight: bold;
+//     }
+//   }
+// }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 .chkl-form-group {
   margin-top: 22px;

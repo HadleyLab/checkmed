@@ -7,7 +7,7 @@ class ChecklistsController < FrontendController
 
     # al'a settings
     default_ordering = { name: :asc, treat_stage: :asc }
-    checklists_per_page = 1
+    checklists_per_page = 20
 
     @checklists = Checklist.visibles.joins(:user)
 

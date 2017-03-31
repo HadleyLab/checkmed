@@ -32,16 +32,27 @@
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
 
         .mdl-tabs__panel.is-active#my-checklists
-          = render partial: 'checklists/list', \
-                   locals: { checklists: @checklists, can_add_new: true }
+          ul.check-med-clst-list-short
+
+            li
+              .check-med-clst-item.mdl-card.mdl-shadow--2dp
+                .mdl-card__title
+                  h4.mdl-card__title-text Create a checklist
+                .mdl-card__supporting-text
+                  = link_to new_checklist_path, \
+                            class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
+                    i.material-icons add
+
+            - @checklists.each do |checklist|
+              li = render partial: 'checklists/list_item', \
+                          locals: { checklist: checklist }
 
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?
             ul.check-med-clst-list-full
               - @recent_checklists.includes(:executor_role).each do |checklist|
-                li
-                  = render partial: 'checklists/list_item', \
-                             locals: { checklist: checklist }
+                li = render partial: 'checklists/list_item', \
+                            locals: { checklist: checklist, full: true }
           - else
             .mdl-typography--subhead style="margin-top:14px"
               | Have no recently browsed checklists
@@ -50,7 +61,9 @@
       hr
       - if @checklists.any?
         .mdl-typography--title Checklists
-        = render partial: 'checklists/list', \
-                          locals: { checklists: @checklists }
+        ul.check-med-clst-list-short
+          - @checklists.each do |checklist|
+            li = render partial: 'checklists/list_item', \
+                        locals: { checklist: checklist }
       -else
         .mdl-typography--subhead User has no checklists
