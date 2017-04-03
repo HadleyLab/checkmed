@@ -1,7 +1,7 @@
 - is_collapsed ||= false
 - is_collapsed = false if is_collapsed && !f.object.valid?
 
-.chkl-form-group class=class_string('chkl-form-group-collapsed' => is_collapsed)
+.chkl-form-group.cm-deletable-block class=class_string('chkl-form-group-collapsed' => is_collapsed)
   = f.hidden_field :prior, class: 'ordering-prior-input'
 
   - if is_collapsed
@@ -22,7 +22,7 @@
           = f.text_field :name, class: 'mdl-textfield__input'
       .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet.mdl-cell--4-col-desktop.mdl-typography--text-right
         = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
-          = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
+          = f.check_box :_destroy, :class => 'mdl-icon-toggle__input cm-delete-cb'
           i.mdl-icon-toggle__label.material-icons delete
         i.ordering-handler.group-ordering-handler.material-icons swap_vert
   .chkl-form-group-body

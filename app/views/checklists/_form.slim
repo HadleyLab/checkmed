@@ -1,3 +1,12 @@
+- content_for :before_body_end
+  dialog.mdl-dialog.delete-confirm-dialog
+    h4.mdl-dialog__title Are you sure?
+    .mdl-dialog__content
+      p Allowing us to collect data will let us get you the information you want faster.
+    .mdl-dialog__actions
+      button type="button" class="mdl-button apply" Yes
+      button type="button" class="mdl-button close" Cancel
+
 = form_for @checklist, html: { class: 'chlk-form edit_checklist' } do |f|
   - if f.object.errors.any?
     .chlk-form-line style="color:rgb(213,0,0)"

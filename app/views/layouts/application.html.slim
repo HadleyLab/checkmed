@@ -45,4 +45,6 @@ html lang=I18n.locale
 
       = render 'layouts/flash_messages'
 
+      = yield :before_body_end
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

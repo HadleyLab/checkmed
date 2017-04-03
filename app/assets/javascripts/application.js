@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require material
+//= require dialog-polyfill
 //= require Sortable
 // do not require turbolinks because of material js
 // do not require_tree .
@@ -79,6 +80,38 @@ $(document).ready(function() {
   $(document.body).on('click', '.mdl-accordion__button', function(){
     $(this).parent('.mdl-accordion').toggleClass('mdl-accordion--opened');
   });
+
+  // Delete elements
+  var dcDialog = document.querySelector('.delete-confirm-dialog');
+  if (dcDialog) {
+    var jqdcDialog = $(dcDialog);
+    if (! dcDialog.showModal) { dialogPolyfill.registerDialog(dcDialog); }
+
+    jqdcDialog.find('button.close').click(function(evnt) {
+      $(jqdcDialog.data('caller')).prop("checked", false);
+      $(jqdcDialog.data('caller')).parent().removeClass('is-checked');
+      jqdcDialog.data('caller', null);
+      dcDialog.close();
+    });
+    jqdcDialog.find('button.apply').click(function(evnt) {
+      $(jqdcDialog.data('caller')).closest(".cm-deletable-block").hide();
+      jqdcDialog.data('caller', null);
+      dcDialog.close();
+    });
+
+    function registerDeleter(evnt) {
+      if ($(this).is(':checked')) {
+        dcDialog.showModal();
+        jqdcDialog.data('caller', this);
+      }
+    }
+
+    $("input.cm-delete-cb").change(registerDeleter);
+
+    $("body").on('nested_item_add', function(evnt, jqAddedBlock) {
+      jqAddedBlock.find("input.cm-delete-cb").change(registerDeleter);
+    });
+  }
 
   // Uncollapse collapser
   $("a.uncollapser").click(function(evnt){
@@ -157,4 +190,6 @@ function add_nested_item_fields(link, association, content) {
   jqLink.before(content.replace(regexp, newId));
   jqLink.prev().find('.ordering-prior-input').val(newPrior);
   componentHandler.upgradeAllRegistered();
+
+  $("body").trigger('nested_item_add', [jqLink.prev()]);
 }

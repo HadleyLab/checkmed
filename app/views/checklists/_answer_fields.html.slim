@@ -1,4 +1,4 @@
-.chkl-form-answer
+.chkl-form-answer.cm-deletable-block
   i.ordering-handler.answer-ordering-handler.material-icons swap_vert
   = f.hidden_field :prior, class: 'ordering-prior-input'
   .chlk-form-line
@@ -15,5 +15,5 @@
       span.mdl-checkbox__label Comment is available
   .chlk-form-line.mdl-typography--text-right
     = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
-      = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
+      = f.check_box :_destroy, :class => 'mdl-icon-toggle__input cm-delete-cb'
       i.mdl-icon-toggle__label.material-icons delete

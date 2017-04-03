@@ -13,6 +13,7 @@
  * do not require_tree .
  *= require material
  *= require materials_additionals
+ *= require dialog-polyfill
  *= require common
  *= require the_box
  *= require user_profile

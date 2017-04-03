@@ -1,7 +1,7 @@
 - is_collapsed ||= false
 - is_collapsed = false if is_collapsed && !f.object.valid?
 
-.chkl-form-question class=class_string('chkl-form-question-collapsed' => is_collapsed)
+.chkl-form-question.cm-deletable-block class=class_string('chkl-form-question-collapsed' => is_collapsed)
   - if is_collapsed
     .collapsed-question-body
       i.ordering-handler.question-ordering-handler.material-icons swap_vert
@@ -23,7 +23,7 @@
         = f.label :descr, class: 'mdl-textfield__label'
     .chlk-form-line.mdl-typography--text-right
       = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
-        = f.check_box :_destroy, :class => 'mdl-icon-toggle__input'
+        = f.check_box :_destroy, :class => 'mdl-icon-toggle__input cm-delete-cb'
         i.mdl-icon-toggle__label.material-icons delete
 
     .chkl-form-question-answers
