@@ -69,10 +69,11 @@ en:
         descr: "Short description"
         executor_role: "Category"
         executor_role_id: "Category"
-        threat_stage: "Treatment stage (day)"
+        treat_stage: "Hospital Length of Stay"
         prior: "Priority"
         hided: "Hidden?"
       checklist_item:
         descr: "Description"
       checklist_item_answer:
-        val: "Value"
+        val: "List answer"
+        tip: "Hint"

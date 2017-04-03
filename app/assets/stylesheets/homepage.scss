@@ -42,8 +42,9 @@
     margin-top: 30px;
     font-size: 13px;
     .between-start-buttons {
-      display: inline-block;
-      margin: 0 10px;
+      display: block;
+      margin: 4px 0;
+      text-align: center;
     }
     @include upfrom480 {
       margin-top: 48px;
@@ -52,6 +53,10 @@
         height: 55px;
         font-size: 18px;
         line-height: 55px;
+      }
+      .between-start-buttons {
+        display: inline-block;
+        margin: 0 10px;
       }
     }
   }

@@ -11,10 +11,10 @@
     p.homepage-greeting-text == setting_value :homepage_greeting_text
     .homepage-start-buttons
       - bclss = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect'
-      = link_to "Create new", \
+      = link_to "Create Checklist", \
                 new_checklist_path, \
                 :class => "#{bclss} mdl-button--primary"
       b.between-start-buttons OR
-      = link_to "Find ready", \
+      = link_to "Find Checklist", \
                 search_path, \
                 :class => "#{bclss} mdl-button--accent"

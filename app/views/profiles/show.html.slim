@@ -34,6 +34,10 @@
         .mdl-tabs__panel.is-active#my-checklists
           ul.check-med-clst-list-short
 
+            - @checklists.each do |checklist|
+              li = render partial: 'checklists/list_item', \
+                          locals: { checklist: checklist }
+
             li
               .check-med-clst-item.mdl-card.mdl-shadow--2dp
                 .mdl-card__title
@@ -42,10 +46,6 @@
                   = link_to new_checklist_path, \
                             class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
                     i.material-icons add
-
-            - @checklists.each do |checklist|
-              li = render partial: 'checklists/list_item', \
-                          locals: { checklist: checklist }
 
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?

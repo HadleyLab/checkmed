@@ -3,23 +3,24 @@
 .mdl-grid
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
   .mdl-cell.mdl-cell--6-col
-    h6 = @checklist.executor_role.name
-    h3 = @checklist.name
+    h4 = @checklist.name
+    = render partial: 'profiles/user_info_card', locals: { user: @user }
     p
+      ' Category:
+      = @checklist.executor_role.name
+      br
+      - if @checklist.treat_stage.present?
+        ' Hospital Length of Stay:
+        = @checklist.treat_stage
+        br
       - if @checklist.descr.present?
         = @checklist.descr
-        br
-      - if @checklist.treat_stage.present?
-        ' Treatment stage:
-        = @checklist.treat_stage
         br
       ' Created at:
       = l @checklist.created_at, format: "%B %e, %Y"
 
     - if Rails.env.production?
       p = render 'shared/yandex_share'
-
-    = render partial: 'profiles/user_info_card', locals: { user: @user }
 
     - @checklist.groups.ordered.each do |group|
       - next if group.items.empty?

@@ -23,7 +23,7 @@ header.check-med-header.mdl-layout__header.mdl-layout__header--transparent
         = link_to 'My checklists', \
                   account_path(current_user.id), \
                   class: 'mdl-menu__item'
-        = link_to 'Find ready checklists', \
+        = link_to 'Find checklists', \
                   search_path, \
                   class: 'mdl-menu__item'
         = link_to 'Recently browsed', \
@@ -51,7 +51,7 @@ header.check-med-header.mdl-layout__header.mdl-layout__header--transparent
         = current_user.name
       = link_to 'Edit profile', edit_user_registration_path, :class => 'mdl-navigation__link'
       = link_to 'My checklists', account_path(current_user.id), :class => 'mdl-navigation__link'
-      = link_to 'Find ready checklists', search_path, :class => 'mdl-navigation__link'
+      = link_to 'Find checklists', search_path, :class => 'mdl-navigation__link'
       = link_to 'Recently browsed', "#{account_path(current_user.id)}#recent-browsed", :class => 'mdl-navigation__link special-menu-link-of-subpart-of-page'
       = link_to 'Log out', destroy_user_session_path, method: :delete, :class => 'mdl-navigation__link'
     - else
