@@ -12,7 +12,9 @@ class ChecklistsController < FrontendController
     @checklists = Checklist.visibles.joins(:user)
     @have_a_filter = false
 
-    if params[:sf] && (params[:sf][:q].present? || params[:sf][:eri].present?)
+    if params[:sf] && (params[:sf][:q].present? ||
+                       params[:sf][:eri].present? ||
+                       params[:sf][:spc].present?)
       @have_a_filter = true
 
       if params[:sf][:q].present?
@@ -22,12 +24,17 @@ class ChecklistsController < FrontendController
                 "checklists.descr ILIKE ? OR " \
                 "users.name ILIKE ? OR " \
                 "users.company ILIKE ? OR " \
+                "users.academ_inst ILIKE ? OR " \
                 "users.position ILIKE ?",
-                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
       end
 
       if params[:sf][:eri].present?
         @checklists = @checklists.where(executor_role_id: params[:sf][:eri])
+      end
+
+      if params[:sf][:spc].present?
+        @checklists = @checklists.where(speciality_id: params[:sf][:spc])
       end
 
       if params[:sf][:ord].present?
@@ -135,6 +142,7 @@ class ChecklistsController < FrontendController
       params.require(:checklist).permit(
           :name,
           :executor_role_id,
+          :speciality_id,
           :treat_stage,
           :descr,
           :prior,

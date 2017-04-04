@@ -15,6 +15,7 @@
         .user-profile-name = @user.name
         - user_position_strings = []
         - user_position_strings << @user.company if @user.company.present?
+        - user_position_strings << @user.academ_inst if @user.academ_inst.present?
         - user_position_strings << @user.position if @user.position.present?
         - if user_position_strings.any?
           .user-profile-position
@@ -50,7 +51,7 @@
         .mdl-tabs__panel#recent-browsed
           - if @recent_checklists.any?
             ul.check-med-clst-list-full
-              - @recent_checklists.includes(:executor_role).each do |checklist|
+              - @recent_checklists.includes(:executor_role, :speciality).each do |checklist|
                 li = render partial: 'checklists/list_item', \
                             locals: { checklist: checklist, full: true }
           - else

@@ -16,6 +16,11 @@
               ' Category:
               = @checklist.executor_role.name
               br
+              - if @checklist.speciality.present?
+                = t 'activerecord.attributes.checklist.speciality'
+                ' :
+                = @checklist.speciality.name
+                br
               - if @checklist.treat_stage.present?
                 = t 'activerecord.attributes.checklist.treat_stage'
                 ' :

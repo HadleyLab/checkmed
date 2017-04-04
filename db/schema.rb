@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330091536) do
+ActiveRecord::Schema.define(version: 20170404102753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,11 +73,13 @@ ActiveRecord::Schema.define(version: 20170330091536) do
     t.boolean  "hided",            default: false, null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "speciality_id"
   end
 
   add_index "checklists", ["executor_role_id"], name: "index_checklists_on_executor_role_id", using: :btree
   add_index "checklists", ["hided"], name: "index_checklists_on_hided", using: :btree
   add_index "checklists", ["prior"], name: "index_checklists_on_prior", using: :btree
+  add_index "checklists", ["speciality_id"], name: "index_checklists_on_speciality_id", using: :btree
   add_index "checklists", ["treat_stage"], name: "index_checklists_on_treat_stage", using: :btree
   add_index "checklists", ["user_id"], name: "index_checklists_on_user_id", using: :btree
 
@@ -101,6 +103,15 @@ ActiveRecord::Schema.define(version: 20170330091536) do
 
   add_index "settings", ["ident"], name: "index_settings_on_ident", using: :btree
   add_index "settings", ["often"], name: "index_settings_on_often", using: :btree
+
+  create_table "specialities", force: :cascade do |t|
+    t.string   "name",                   null: false
+    t.integer  "prior",      default: 9, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "specialities", ["prior"], name: "index_specialities_on_prior", using: :btree
 
   create_table "static_files", force: :cascade do |t|
     t.integer  "holder_id"
@@ -138,6 +149,7 @@ ActiveRecord::Schema.define(version: 20170330091536) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "academ_inst"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -156,6 +168,7 @@ ActiveRecord::Schema.define(version: 20170330091536) do
 
   add_foreign_key "checklist_groups", "checklists"
   add_foreign_key "checklist_item_answers", "checklist_items"
+  add_foreign_key "checklists", "specialities"
   add_foreign_key "checklists", "users"
   add_foreign_key "users_checklists_visits", "checklists"
   add_foreign_key "users_checklists_visits", "users"

@@ -60,6 +60,7 @@ en:
         holder_type: "Owner type"
       user:
         company: "Hospital"
+        academ_inst: "Academic institution"
       executor_role:
         prior: "Priority"
       checklist:
@@ -69,6 +70,8 @@ en:
         descr: "Short description"
         executor_role: "Category"
         executor_role_id: "Category"
+        speciality: "Speciality"
+        speciality_id: "Speciality"
         treat_stage: "Hospital day"
         prior: "Priority"
         hided: "Hidden?"

@@ -15,6 +15,12 @@
                          class: 'mdl-selectfield__select'
         .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
           .mdl-selectfield
+            = select_tag 'sf[spc]', \
+                         options_from_collection_for_select(Speciality.ordered, :id, :name, params.try(:[], 'sf').try(:[], 'spc')), \
+                         prompt: 'Speciality...', \
+                         class: 'mdl-selectfield__select'
+        .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
+          .mdl-selectfield
             = select_tag 'sf[ord]', \
                          options_for_select([ \
                              ['Diagnosis name', 'dn'], \
@@ -24,7 +30,7 @@
                            ], params.try(:[], 'sf').try(:[], 'ord')), \
                          prompt: 'Order by...', \
                          class: 'mdl-selectfield__select'
-        .mdl-cell.mdl-cell--4-col.mdl-cell--12-col-desktop.mdl-typography--text-right
+        .mdl-cell.mdl-cell--4-col.mdl-cell--8-col-tablet.mdl-cell--8-col-desktop.mdl-typography--text-right
           button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
             i.material-icons search
     a id="search-results-zone-start" data-scroll-to=(@have_a_filter ? "yes" : nil)
@@ -37,7 +43,7 @@
           |  found
 
       ol.check-med-clst-list-full
-        - @checklists.includes(:executor_role).each_with_index do |checklist, indx|
+        - @checklists.includes(:executor_role, :speciality).each_with_index do |checklist, indx|
           li
             .list-item-order-number = "#{@start_order_index + indx + 1}."
             = render partial: 'checklists/list_item', \

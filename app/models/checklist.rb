@@ -1,6 +1,7 @@
 class Checklist < ActiveRecord::Base
   belongs_to :user, inverse_of: :checklists, counter_cache: true
   belongs_to :executor_role, inverse_of: :checklists
+  belongs_to :speciality, inverse_of: :checklists
 
   has_many :groups, class_name: 'ChecklistGroup',
                     inverse_of: :checklist,

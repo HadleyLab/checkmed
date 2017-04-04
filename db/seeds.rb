@@ -59,6 +59,7 @@ def_user = User.new email: 'user@example.com',
                     password_confirmation: 'password',
                     name: 'Default Doctor',
                     company: 'Main Hospital of USA',
+                    academ_inst: "NAM",
                     position: 'MD'
 def_user.skip_confirmation!
 def_user.save
@@ -68,6 +69,7 @@ sec_user = User.new email: 'user2@example.com',
                     password_confirmation: 'password',
                     name: 'Jason Born',
                     company: 'Angkor WAT UPFC',
+                    academ_inst: "COD",
                     position: 'Intern'
 sec_user.skip_confirmation!
 sec_user.save
@@ -83,6 +85,15 @@ executor_roles = ExecutorRole.create!([
     { name: 'Pharmacists',      prior: 4 }
   ])
 
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+puts "#{time_point_string}: seed Specialities"
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+specialities = Speciality.create!([
+    { name: 'Immunology',   prior: 1 },
+    { name: 'Cardiology',   prior: 2 },
+    { name: 'Microbiology', prior: 3 },
+    { name: 'Paediatrics',  prior: 4 }
+  ])
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Checklists and it's Items"
@@ -90,6 +101,7 @@ puts "#{time_point_string}: seed Checklists and it's Items"
 def_user.checklists.create!({
     name: "The first Checklist",
     executor_role: executor_roles[3],
+    speciality: specialities[0],
     treat_stage: 1,
     descr: "This is the first created checklist of the first created user.",
     groups_attributes: [
@@ -119,6 +131,7 @@ def_user.checklists.create!({
 sec_user.checklists.create!({
     name: "Outpatient CHF",
     executor_role: executor_roles[1],
+    speciality: specialities[2],
     treat_stage: 1
   })
 

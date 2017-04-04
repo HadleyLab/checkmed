@@ -1,7 +1,7 @@
 ActiveAdmin.register Checklist do
   permit_params :hided
 
-  includes :user, :executor_role
+  includes :user, :executor_role, :speciality
 
   actions :all, except: [:new, :create, :edit, :update, :destroy]
 
@@ -21,6 +21,7 @@ ActiveAdmin.register Checklist do
   filter :descr
   filter :treat_stage
   filter :executor_role
+  filter :speciality
   filter :user_id, label: "Author id"
   filter :hided
   filter :created_at
@@ -31,6 +32,7 @@ ActiveAdmin.register Checklist do
     column :name
     column :treat_stage
     column :executor_role
+    column :speciality
     column :user
     column :hided
     column :created_at do |checklist|
@@ -47,6 +49,7 @@ ActiveAdmin.register Checklist do
       row :descr
       row :treat_stage
       row :executor_role
+      row :speciality
       row :user
       row :hided
       row :created_at

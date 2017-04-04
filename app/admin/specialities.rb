@@ -1,7 +1,7 @@
-ActiveAdmin.register ExecutorRole do
+ActiveAdmin.register Speciality do
   permit_params :name, :prior
 
-  menu priority: 3
+  menu priority: 4
 
   actions :all, except: [:show]
 
