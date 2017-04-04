@@ -69,11 +69,13 @@ en:
         descr: "Short description"
         executor_role: "Category"
         executor_role_id: "Category"
-        treat_stage: "Hospital Length of Stay"
+        treat_stage: "Hospital day"
         prior: "Priority"
         hided: "Hidden?"
+        created_at: "Date created"
       checklist_item:
+        title: "Question text"
         descr: "Description"
       checklist_item_answer:
         val: "List answer"
-        tip: "Hint"
+        tip: "Answer description"

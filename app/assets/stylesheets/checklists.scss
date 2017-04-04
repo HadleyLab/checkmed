@@ -112,23 +112,40 @@ ol.check-med-clst-list-full {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-.check-med-checklist {
+.check-med-checklist, .check-med-checklist-general {
   margin-bottom: 2px;
   .mdl-accordion__button {
     display: block;
     position: relative;
     padding: 10px 16px;
     margin: 0;
-    color: #fff;
-    background: $accent-color;
     cursor: pointer;
   }
   &.mdl-accordion--opened {
+    border-top: 0;
     border-bottom: 0;
-    .mdl-accordion__button { color: #fff; }
+    margin-top: 0;
   }
+}
+
+.check-med-checklist {
+  .mdl-accordion__button {
+    color: #fff;
+    background: $accent-color;
+  }
+  &.mdl-accordion--opened .mdl-accordion__button { color: #fff; }
   .mdl-accordion__icon { color: #fff; }
   .mdl-accordion__content > ol { margin: 0; padding-top: 20px; padding-bottom: 20px; }
+}
+
+.check-med-checklist-general {
+  .mdl-accordion__button {
+    background: rgb(224,224,224);
+    color: #000;
+  }
+  &.mdl-accordion--opened .mdl-accordion__button { color: #000; }
+  .check-med-user-info-card { margin-top: 0; padding-top: 16px; }
+  p.check-med-cltextdata { margin-bottom: 0; padding-bottom: 16px; }
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

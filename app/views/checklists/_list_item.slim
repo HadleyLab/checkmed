@@ -9,14 +9,16 @@
     = checklist.executor_role.name
     - if checklist.treat_stage.present?
       br
-      ' Hospital Length of Stay:
+      = t 'activerecord.attributes.checklist.treat_stage'
+      ' :
       = checklist.treat_stage
 
     - if full
       = render partial: 'profiles/user_info_card', \
                locals: { user: checklist.user }
 
-      ' Created at:
+      = t 'activerecord.attributes.checklist.created_at'
+      ' :
       = l checklist.created_at, format: "%B %e, %Y"
 
   / This is for the future show liked lists

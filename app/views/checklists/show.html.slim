@@ -4,23 +4,29 @@
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
   .mdl-cell.mdl-cell--6-col
     h4 = @checklist.name
-    = render partial: 'profiles/user_info_card', locals: { user: @user }
-    p
-      ' Category:
-      = @checklist.executor_role.name
-      br
-      - if @checklist.treat_stage.present?
-        ' Hospital Length of Stay:
-        = @checklist.treat_stage
-        br
-      - if @checklist.descr.present?
-        = @checklist.descr
-        br
-      ' Created at:
-      = l @checklist.created_at, format: "%B %e, %Y"
 
-    - if Rails.env.production?
-      p = render 'shared/yandex_share'
+    .mdl-accordion.check-med-checklist-general
+        a.mdl-accordion__button
+          i.material-icons.mdl-accordion__icon.mdl-animation--default expand_more
+          | General information
+        .mdl-accordion__content-wrapper
+          .mdl-accordion__content.mdl-animation--default
+            = render partial: 'profiles/user_info_card', locals: { user: @user }
+            p.check-med-cltextdata
+              ' Category:
+              = @checklist.executor_role.name
+              br
+              - if @checklist.treat_stage.present?
+                = t 'activerecord.attributes.checklist.treat_stage'
+                ' :
+                = @checklist.treat_stage
+                br
+              - if @checklist.descr.present?
+                = @checklist.descr
+                br
+              = t 'activerecord.attributes.checklist.created_at'
+              ' :
+              = l @checklist.created_at, format: "%B %e, %Y"
 
     - @checklist.groups.ordered.each do |group|
       - next if group.items.empty?
@@ -48,6 +54,9 @@
                       .mdl-tooltip data-mdl-for="answer-tip-#{answer.id}" = answer.tip
                     - if answer.commentable?
                       |  &nbsp; ___________
+
+    - if Rails.env.production?
+      = render 'shared/yandex_share'
 
     - if owner_in_da_house
       p
