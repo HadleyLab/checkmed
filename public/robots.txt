@@ -22,12 +22,22 @@
 
 # User-agent: Googlebot
 # Disallow: /admin/
-# Disallow: /*.xls$
+# Disallow: /profile/cancel
+# Disallow: /profile/password
+# Disallow: /profile/sign_out
+# Disallow: /profile/sign_in
+# Disallow: /profile/edit
+# Disallow: /profile/confirmation
 # Allow: /
 #
 # User-agent: *
 # Disallow: /admin/
-# Disallow: /temp/privatedata.xls
+# Disallow: /profile/cancel
+# Disallow: /profile/password
+# Disallow: /profile/sign_out
+# Disallow: /profile/sign_in
+# Disallow: /profile/edit
+# Disallow: /profile/confirmation
 # Disallow:
 #
 # Sitemap: http://checkmed.net/sitemap.xml.gz
