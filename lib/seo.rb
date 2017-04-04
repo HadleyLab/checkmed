@@ -118,42 +118,42 @@ end
 # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # # ActiveAdmin component for show page, showing seo parameters
 # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# module ActiveAdmin
-#   module Views
+module ActiveAdmin
+  module Views
 
-#     class SeoPanel < Panel
-#       builder_method :seo_panel_for
+    class SeoPanel < Panel
+      builder_method :seo_panel_for
 
-#       # params:
-#       #   seo_carrier is object of model which acts_as_seo_carrier
-#       #   attributes: hash
-#       #     hide_seo_title - boolean - true if you need to remove seo_title row
-#       #     hide_no_title_postfix - boolean - same for no_title_postfix row
-#       def build(seo_carrier, attributes = {})
-#         super t('seo.seo_parameters'), {}
+      # params:
+      #   seo_carrier is object of model which acts_as_seo_carrier
+      #   attributes: hash
+      #     hide_seo_title - boolean - true if you need to remove seo_title row
+      #     hide_no_title_postfix - boolean - same for no_title_postfix row
+      def build(seo_carrier, attributes = {})
+        super t('seo.seo_parameters'), {}
 
-#         attributes_table_for seo_carrier do
-#           unless attributes[:hide_seo_title]
-#             row I18n.t('seo.carrier_attributes.seo_title') do
-#               seo_carrier.seo_title.present? ? seo_carrier.seo_title :  "<small style=\"color:#999\">#{t('seo.empty_seo_title_info')}</small>".html_safe
-#             end
-#           end
-#           unless attributes[:hide_no_title_postfix]
-#             row I18n.t('seo.carrier_attributes.no_title_postfix') do
-#               seo_carrier.no_title_postfix == '1' ? t('yep') : t('nope')
-#             end
-#           end
-#           row I18n.t('seo.carrier_attributes.seo_descr') do
-#             seo_carrier.seo_descr
-#           end
-#           row I18n.t('seo.carrier_attributes.seo_keywords') do
-#             seo_carrier.seo_keywords
-#           end
-#         end
+        attributes_table_for seo_carrier do
+          unless attributes[:hide_seo_title]
+            row I18n.t('seo.carrier_attributes.seo_title') do
+              seo_carrier.seo_title.present? ? seo_carrier.seo_title :  "<small style=\"color:#999\">#{t('seo.empty_seo_title_info')}</small>".html_safe
+            end
+          end
+          unless attributes[:hide_no_title_postfix]
+            row I18n.t('seo.carrier_attributes.no_title_postfix') do
+              seo_carrier.no_title_postfix == '1' ? t('yep') : t('nope')
+            end
+          end
+          row I18n.t('seo.carrier_attributes.seo_descr') do
+            seo_carrier.seo_descr
+          end
+          row I18n.t('seo.carrier_attributes.seo_keywords') do
+            seo_carrier.seo_keywords
+          end
+        end
 
-#       end
+      end
 
-#     end
+    end
 
-#   end
-# end
+  end
+end

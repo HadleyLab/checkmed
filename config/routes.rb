@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   get 'profile',            to: 'profiles#redirect_to_show', as: :profile_root
   get 'profile/checklists', to: 'profiles#redirect_to_show', as: :profile_checklists_root
 
+  get '*page_path' => 'pages#show', as: :page
+
   root 'pages#home'
 end

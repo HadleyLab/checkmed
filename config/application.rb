@@ -42,5 +42,13 @@ module CheckMed
 
     # Prevent from_for to show div with class 'field_with_errors' on error fields
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+
+    # Mark page object as "fixed" by adding his path to array below.
+    # Fixed pages protected from hiding, deleting and changing path.
+    # Homepage (with empty path) is fixed by default.
+    config.fixed_pages_paths = %w(
+        news
+        feedback
+      )
   end
 end

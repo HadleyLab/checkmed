@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404102753) do
+ActiveRecord::Schema.define(version: 20170404194312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(version: 20170404102753) do
   end
 
   add_index "executor_roles", ["prior"], name: "index_executor_roles_on_prior", using: :btree
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "path",                       null: false
+    t.text     "body"
+    t.text     "seodata"
+    t.integer  "prior",      default: 9,     null: false
+    t.boolean  "hided",      default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "pages", ["hided"], name: "index_pages_on_hided", using: :btree
+  add_index "pages", ["path"], name: "index_pages_on_path", unique: true, using: :btree
+  add_index "pages", ["prior"], name: "index_pages_on_prior", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "ident",      null: false

@@ -16,7 +16,7 @@ class UrlStringPreparator
   end
 
   def self.prepare_part(str)
-    str = Russian::transliterate(str) if I18n.locale == :ru
+    # str = Russian::transliterate(str) if I18n.locale == :ru
     str = str.parameterize.dasherize
     str = '-' if str.blank?
     str

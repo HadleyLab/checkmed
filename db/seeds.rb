@@ -27,6 +27,15 @@ puts "#{time_point_string}: Start seeding"
 # sig.save
 
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+puts "#{time_point_string}: seed Pages"
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
+Page.create!([
+  { title: "About us", path: "about", prior: 1,
+    body: "CheckMed is the good project" }
+])
+
+
+# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Settings"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 settings = Setting.create!([

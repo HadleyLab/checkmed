@@ -20,6 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  yep: "Yes"
+  nope: "No"
   seo:
     seo_parameters: "SEO parameters"
     empty_seo_title_info: "title will be used as page title by default"
@@ -34,6 +36,9 @@ en:
       labels:
         hide: "Hide"
         show: "Show (unhide)"
+    hints:
+      slug: ''
+      path: ''
   checklist:
     one: "checklist"
     other: "checklists"
