@@ -47,8 +47,7 @@ module CheckMed
     # Fixed pages protected from hiding, deleting and changing path.
     # Homepage (with empty path) is fixed by default.
     config.fixed_pages_paths = %w(
-        news
-        feedback
+        about
       )
   end
 end
