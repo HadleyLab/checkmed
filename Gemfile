@@ -40,6 +40,9 @@ gem 'kaminari', '~> 1.0.1'
 # ActiveModel Validation for email
 gem 'valid_email', '0.0.13'
 
+# Postmark
+gem 'postmark-rails'
+
 # SitemapGenerator is a framework-agnostic XML Sitemap generator written in Ruby with automatic Rails integration. It supports Video, News, Image, Geo, Mobile, PageMap and Alternate Links sitemap extensions and includes Rake tasks for managing your sitemaps, as well as many other great features.
 gem 'sitemap_generator', '5.3.1'
 
