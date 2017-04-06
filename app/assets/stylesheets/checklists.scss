@@ -139,48 +139,42 @@ ol.check-med-clst-list-full {
 // }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-.check-med-checklist, .check-med-checklist-general {
-  margin-bottom: 2px;
-  .mdl-accordion__button {
-    display: block;
-    position: relative;
-    padding: 10px 16px;
-    margin: 0;
-    cursor: pointer;
-  }
+.check-med-checklist {
+  margin-bottom: 4px;
   &.mdl-accordion--opened {
     border-top: 0;
     border-bottom: 0;
     margin-top: 0;
   }
-}
 
-.check-med-checklist {
   .mdl-accordion__button {
-    color: #fff;
-    background: $accent-color;
+    display: block;
+    position: relative;
+    padding: 10px 16px;
+    margin: 0;
+    background: #ddd;
+    color: $primary-color;
+    cursor: pointer;
   }
-  &.mdl-accordion--opened .mdl-accordion__button { color: #fff; }
-  .mdl-accordion__icon { color: #fff; }
-  .mdl-accordion__content > ol { margin: 0; padding-top: 20px; padding-bottom: 20px; }
-}
+  &.mdl-accordion--opened .mdl-accordion__button { color: $primary-inverse-color; }
+  .mdl-accordion__icon { color: $primary-inverse-color; }
 
-.check-med-checklist-general {
-  .mdl-accordion__button {
-    background: rgb(224,224,224);
-    color: #000;
+  .mdl-accordion__content {
+    background: #fff;
+    padding-right: 10px;
+    padding-left: 10px;
+    & > ol { margin: 0; padding: 16px 0 16px 25px; }
+    .check-med-user-info-card { margin-top: 0; padding-top: 16px; }
+    p.check-med-cltextdata { margin-bottom: 0; padding-bottom: 16px; }
   }
-  &.mdl-accordion--opened .mdl-accordion__button { color: #000; }
-  .check-med-user-info-card { margin-top: 0; padding-top: 16px; }
-  p.check-med-cltextdata { margin-bottom: 0; padding-bottom: 16px; }
+  // &.check-med-checklist-general {}
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 .chkl-form-group {
-  margin: 16px 0;
-  background: #dbdbdb;
+  margin: 8px 0;
+  background: #fff;
 
   .ordering-handler {
     vertical-align: middle;
@@ -193,14 +187,14 @@ ol.check-med-clst-list-full {
   & > header {
     padding: 0 12px;
     line-height: 40px;
-    background: navy;
-    color: #fff;
+    background: $primary-color;
+    color: $primary-inverse-color;
     .mdl-textfield { padding-top: 0; padding-bottom: 0; }
     .mdl-textfield__input {
-      border-bottom-color: #fff;
+      border-bottom-color: $primary-inverse-color;
     }
     .mdl-icon-toggle__label {
-      color: #fff;
+      color: $primary-inverse-color;
     }
     .mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
       color: $accent-color;
@@ -211,11 +205,11 @@ ol.check-med-clst-list-full {
     display: none;
     padding: 0 12px;
     line-height: 40px;
-    background: navy;
-    color: #fff;
+    background: $primary-color;
+    color: $primary-inverse-color;
     font-family: "Helvetica", "Arial", sans-serif;
     font-size: 16px;
-    a { color: #fff; }
+    a { color: $primary-inverse-color; }
   }
 
   &.chkl-form-group-collapsed {
@@ -226,14 +220,14 @@ ol.check-med-clst-list-full {
 }
 
 .chkl-form-question {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ccc;
   padding: 12px 24px;
 
   & > .collapsed-question-body {
     display: none;
     font-family: "Helvetica", "Arial", sans-serif;
     font-size: 16px;
-    a { color: #000; }
+    a { color: $primary-inverse-color; }
   }
 
   &.chkl-form-question-collapsed {
@@ -253,9 +247,9 @@ ol.check-med-clst-list-full {
     position: absolute;
     top: -8px; left: 10px;
     padding: 0 4px;
-    background: #dbdbdb;
+    background: #fff;
     font-size: 12px;
     line-height: 16px;
-    color: #000;
+    color: $primary-inverse-color;
   }
 }

@@ -2,6 +2,9 @@
 //   Select field
 //   Just info mdl-textfield
 //   Accordeon
+//   Changing primary-contrast color to #000
+
+@import "mixins";
 
 .mdl-selectfield {
   position: relative;
@@ -96,3 +99,22 @@
 
 .mdl-accordion.mdl-accordion--opened .mdl-accordion__content {
   margin-top: 0 !important; }
+
+
+// - - Changing primary-contrast color - - - - - - - - - - - - - - - - - - - -
+
+.mdl-color--primary-contrast { background-color: $primary-inverse-color !important; }
+.mdl-color-text--primary-contrast { color: $primary-inverse-color !important; }
+.mdl-button--raised.mdl-button--colored { color: $primary-inverse-color; }
+.mdl-button--raised.mdl-button--colored .mdl-ripple { background: $primary-inverse-color; }
+.mdl-button--primary.mdl-button--primary .mdl-ripple { background: $primary-inverse-color; }
+.mdl-button--primary.mdl-button--primary.mdl-button--raised,
+.mdl-button--primary.mdl-button--primary.mdl-button--fab { color: $primary-inverse-color; }
+.mdl-layout__drawer-button { color: $primary-inverse-color; }
+.mdl-layout__header .mdl-layout__drawer-button { color: $primary-inverse-color; }
+.mdl-layout__header { color: $primary-inverse-color; }
+.mdl-layout__header-row .mdl-navigation__link { color: $primary-inverse-color; }
+.mdl-layout__tab-bar-button.is-active { color: $primary-inverse-color; }
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active { color: $primary-inverse-color; }
+.mdl-layout__tab .mdl-layout__tab-ripple-container .mdl-ripple {
+  background-color: $primary-inverse-color; }

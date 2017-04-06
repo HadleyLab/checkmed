@@ -11,7 +11,8 @@
  * file per style scope.
  *
  * do not require_tree .
- *= require material
+ * do not require material
+ *= require material.light_blue-blue.min
  *= require materials_additionals
  *= require dialog-polyfill
  *= require common

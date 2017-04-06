@@ -2,6 +2,12 @@
 // Styles of different elements common in different pages
 //
 
+@import "mixins";
+
+.check-med-layout {
+  background: $backg_color;
+}
+
 .auth-help-links-block {
   margin-top: 20px;
 }
@@ -19,7 +25,7 @@ form .row {
   height: 24px;
   line-height: 24px;
   background-size: 24px 24px;
-  color: rgb(64,196,255);
+  color: $accent-color;
   &.soc-lnk-fb { background-image: image-url('icons/facebook.svg'); }
   &.soc-lnk-gh { background-image: image-url('icons/github.svg'); }
   &.soc-lnk-gp { background-image: image-url('icons/google-plus.svg'); }

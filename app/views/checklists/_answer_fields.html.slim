@@ -9,10 +9,10 @@
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:tip].any?)
       = f.text_field :tip, class: 'mdl-textfield__input'
       = f.label :tip, class: 'mdl-textfield__label'
-  .chlk-form-line
-    = f.label :commentable, :class => 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
-      = f.check_box :commentable, :class => 'mdl-checkbox__input'
-      span.mdl-checkbox__label Comment is available
+  / .chlk-form-line
+  /   = f.label :commentable, :class => 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
+  /     = f.check_box :commentable, :class => 'mdl-checkbox__input'
+  /     span.mdl-checkbox__label Comment is available
   .chlk-form-line.mdl-typography--text-right
     = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
       = f.check_box :_destroy, :class => 'mdl-icon-toggle__input cm-delete-cb'

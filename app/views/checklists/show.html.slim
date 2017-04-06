@@ -5,7 +5,7 @@
   .mdl-cell.mdl-cell--6-col
     h4 = @checklist.name
 
-    .mdl-accordion.check-med-checklist-general
+    .mdl-accordion.check-med-checklist.check-med-checklist-general
         a.mdl-accordion__button
           i.material-icons.mdl-accordion__icon.mdl-animation--default expand_more
           | General information
@@ -66,6 +66,6 @@
     - if owner_in_da_house
       p
         br
-        = link_to "edit", edit_checklist_path(@checklist), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary'
+        = link_to "edit", edit_checklist_path(@checklist), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent'
         ' &nbsp;
-        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent'
+        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary'

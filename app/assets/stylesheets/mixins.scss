@@ -1,10 +1,19 @@
 // mixins obviously
 
-$primary-color: rgb(63,81,181);
-$primary-inverse-color: #fff;
+$backg_color: #fafafa;
 
-$accent-color: rgb(64,196,255);
-$accent-inverse-color: rgb(66,66,66);
+$primary-color: rgb(3,169,244);
+// was $primary-inverse-color: rgb(66,66,66); but we want:
+$primary-inverse-color: rgb(0,0,0);
+
+$accent-color: rgb(68,138,255);
+$accent-inverse-color: rgb(255,255,255);
+
+// // Previous version
+// $primary-color: rgb(63,81,181);
+// $primary-inverse-color: #fff;
+// $accent-color: rgb(64,196,255);
+// $accent-inverse-color: rgb(66,66,66);
 
 
 @mixin upfrom480 { @media screen and (min-width: 480px)  { @content; } }

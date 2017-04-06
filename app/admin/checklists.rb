@@ -3,7 +3,7 @@ ActiveAdmin.register Checklist do
 
   includes :user, :executor_role, :speciality
 
-  actions :all, except: [:new, :create, :edit, :update, :destroy]
+  actions :all, except: [:new, :create, :edit, :update]
 
   menu priority: 2
 

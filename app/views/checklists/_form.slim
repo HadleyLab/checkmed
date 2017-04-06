@@ -43,7 +43,7 @@
         = render partial: 'group_fields', \
                  locals: { f: a, is_collapsed: a.object.persisted? }
 
-    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", "data-add-field-class" => "chkl-form-group"
+    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-button--accent", "data-add-field-class" => "chkl-form-group"
       i.material-icons add
       |  new group
 
