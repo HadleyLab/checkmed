@@ -20,28 +20,24 @@
 #
 #   Art by Sulliwan Sucks
 
-# User-agent: Googlebot
-# Disallow: /admin/
-# Disallow: /profile/cancel
-# Disallow: /profile/password
-# Disallow: /profile/sign_out
-# Disallow: /profile/sign_in
-# Disallow: /profile/edit
-# Disallow: /profile/confirmation
-# Allow: /
-#
-# User-agent: *
-# Disallow: /admin/
-# Disallow: /profile/cancel
-# Disallow: /profile/password
-# Disallow: /profile/sign_out
-# Disallow: /profile/sign_in
-# Disallow: /profile/edit
-# Disallow: /profile/confirmation
-# Disallow:
-#
-# Sitemap: http://checkmed.net/sitemap.xml.gz
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /profile/cancel
+Disallow: /profile/password
+Disallow: /profile/sign_out
+Disallow: /profile/sign_in
+Disallow: /profile/edit
+Disallow: /profile/confirmation
+Allow: /
 
-# Ban all spiders from the entire site
 User-agent: *
-Disallow: /
+Disallow: /admin/
+Disallow: /profile/cancel
+Disallow: /profile/password
+Disallow: /profile/sign_out
+Disallow: /profile/sign_in
+Disallow: /profile/edit
+Disallow: /profile/confirmation
+Disallow:
+
+# Sitemap: http://checkmed.net/sitemap.xml.gz
