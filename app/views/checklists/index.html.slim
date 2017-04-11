@@ -49,8 +49,7 @@
             = render partial: 'checklists/list_item', \
                      locals: { checklist: checklist, full: true }
 
-      = paginate @checklists
-      / -# TODO Style up the pagination
+      = paginate @checklists, window: 1, outer_window: 1
 
     - else
       .mdl-typography--subhead style="margin-top:14px" No checklists found
