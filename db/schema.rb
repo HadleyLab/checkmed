@@ -71,24 +71,22 @@ ActiveRecord::Schema.define(version: 20170908054254) do
   add_index "checklist_types", ["prior"], name: "index_checklist_types_on_prior", using: :btree
 
   create_table "checklists", force: :cascade do |t|
-    t.integer  "user_id",                              null: false
-    t.string   "name",                                 null: false
-    t.integer  "executor_role_id",                     null: false
+    t.integer  "user_id",                           null: false
+    t.string   "name",                              null: false
+    t.integer  "executor_role_id",                  null: false
     t.integer  "treat_stage"
     t.text     "descr"
-    t.integer  "prior",                default: 0,     null: false
-    t.boolean  "hided",                default: false, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "prior",             default: 0,     null: false
+    t.boolean  "hided",             default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "speciality_id"
-    t.boolean  "is_visible_in_search", default: true
     t.integer  "checklist_type_id"
   end
 
   add_index "checklists", ["checklist_type_id"], name: "index_checklists_on_checklist_type_id", using: :btree
   add_index "checklists", ["executor_role_id"], name: "index_checklists_on_executor_role_id", using: :btree
   add_index "checklists", ["hided"], name: "index_checklists_on_hided", using: :btree
-  add_index "checklists", ["is_visible_in_search"], name: "index_checklists_on_is_visible_in_search", using: :btree
   add_index "checklists", ["prior"], name: "index_checklists_on_prior", using: :btree
   add_index "checklists", ["speciality_id"], name: "index_checklists_on_speciality_id", using: :btree
   add_index "checklists", ["treat_stage"], name: "index_checklists_on_treat_stage", using: :btree
