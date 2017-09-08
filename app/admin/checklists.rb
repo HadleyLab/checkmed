@@ -10,9 +10,26 @@ ActiveAdmin.register Checklist do
 ## INDEX
 
   ### Index page Configuration
-  config.batch_actions = false
+  config.batch_actions = true
 
-  # ### Index page scopes
+  ### Batch actions
+  batch_action :hide do |ids|
+    batch_action_collection.find(ids).each do |checklist|
+      checklist.hided = true
+      checklist.save
+    end
+    redirect_to collection_path, alert: "The selected checklists became hidden"
+  end
+
+  batch_action :unhide do |ids|
+    batch_action_collection.find(ids).each do |checklist|
+      checklist.hided = false
+      checklist.save
+    end
+    redirect_to collection_path, alert: "The selected checklists became visible"
+  end
+
+# ### Index page scopes
   # scope :all, default: true
   # scope :visibles
 
@@ -28,6 +45,7 @@ ActiveAdmin.register Checklist do
 
   ### Index as table
   index download_links: false do
+    selectable_column
     id_column
     column :name
     column :treat_stage
