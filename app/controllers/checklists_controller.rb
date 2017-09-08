@@ -95,11 +95,7 @@ class ChecklistsController < FrontendController
     @seo_carrier = OpenStruct.new title: "New checklist"
 
     # Add default groups
-    @checklist.groups.build name: 'Symptoms questions',       prior: 0
-    @checklist.groups.build name: 'Physical exams questions', prior: 1
-    @checklist.groups.build name: 'Labs questions',           prior: 2
-    @checklist.groups.build name: 'Procedures questions',     prior: 3
-    @checklist.groups.build name: 'Medications questions',    prior: 4
+    @checklist.groups.build name: 'Symptoms',       prior: 0
 
     respond_to do |format|
       format.html
