@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404194312) do
+ActiveRecord::Schema.define(version: 20170908054254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,21 +63,32 @@ ActiveRecord::Schema.define(version: 20170404194312) do
   add_index "checklist_items", ["group_id"], name: "index_checklist_items_on_group_id", using: :btree
   add_index "checklist_items", ["prior"], name: "index_checklist_items_on_prior", using: :btree
 
-  create_table "checklists", force: :cascade do |t|
-    t.integer  "user_id",                          null: false
-    t.string   "name",                             null: false
-    t.integer  "executor_role_id",                 null: false
-    t.integer  "treat_stage"
-    t.text     "descr"
-    t.integer  "prior",            default: 0,     null: false
-    t.boolean  "hided",            default: false, null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "speciality_id"
+  create_table "checklist_types", force: :cascade do |t|
+    t.string  "name"
+    t.integer "prior", default: 9, null: false
   end
 
+  add_index "checklist_types", ["prior"], name: "index_checklist_types_on_prior", using: :btree
+
+  create_table "checklists", force: :cascade do |t|
+    t.integer  "user_id",                              null: false
+    t.string   "name",                                 null: false
+    t.integer  "executor_role_id",                     null: false
+    t.integer  "treat_stage"
+    t.text     "descr"
+    t.integer  "prior",                default: 0,     null: false
+    t.boolean  "hided",                default: false, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "speciality_id"
+    t.boolean  "is_visible_in_search", default: true
+    t.integer  "checklist_type_id"
+  end
+
+  add_index "checklists", ["checklist_type_id"], name: "index_checklists_on_checklist_type_id", using: :btree
   add_index "checklists", ["executor_role_id"], name: "index_checklists_on_executor_role_id", using: :btree
   add_index "checklists", ["hided"], name: "index_checklists_on_hided", using: :btree
+  add_index "checklists", ["is_visible_in_search"], name: "index_checklists_on_is_visible_in_search", using: :btree
   add_index "checklists", ["prior"], name: "index_checklists_on_prior", using: :btree
   add_index "checklists", ["speciality_id"], name: "index_checklists_on_speciality_id", using: :btree
   add_index "checklists", ["treat_stage"], name: "index_checklists_on_treat_stage", using: :btree
@@ -183,6 +194,7 @@ ActiveRecord::Schema.define(version: 20170404194312) do
 
   add_foreign_key "checklist_groups", "checklists"
   add_foreign_key "checklist_item_answers", "checklist_items"
+  add_foreign_key "checklists", "checklist_types"
   add_foreign_key "checklists", "specialities"
   add_foreign_key "checklists", "users"
   add_foreign_key "users_checklists_visits", "checklists"
