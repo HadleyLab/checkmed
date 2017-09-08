@@ -163,7 +163,14 @@ ol.check-med-clst-list-full {
     background: #fff;
     padding-right: 10px;
     padding-left: 10px;
-    & > ol { margin: 0; padding: 16px 0 16px 25px; }
+    & > ol {
+      margin: 0;
+      padding: 16px 0 16px 25px;
+      list-style-type: none;
+      & > li > input:first-child {
+        margin-left: -18px;
+      }
+    }
     .check-med-user-info-card { margin-top: 0; padding-top: 16px; }
     p.check-med-cltextdata { margin-bottom: 0; padding-bottom: 16px; }
   }

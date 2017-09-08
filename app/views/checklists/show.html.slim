@@ -47,13 +47,14 @@
             ol
               - group.items.ordered.each do |question|
                 li
+                  input type="checkbox" name="q#{group.id}"
                   strong = question.title
                   - if question.descr.present?
                     br
                     = question.descr
                   - question.answers.ordered.each do |answer|
                     br
-                    input type="radio" name="q#{question.id}"
+                    input type="checkbox" name="q#{question.id}"
                     '
                     = answer.val
                     - if answer.tip.present?
