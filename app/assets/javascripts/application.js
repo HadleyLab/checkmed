@@ -172,7 +172,41 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('.chkl-form-question').each(function(indx) {
+    var question = $(this);
+    setUpChainedFieldsForQuestion(question);
+  });
 });
+
+function setUpChainedFieldsForQuestion(question) {
+  function updateFields() {
+    var doesNotHavePicture = question.find('.field-remove-picture input[type=checkbox]').length ?
+      question.find('.field-remove-picture input[type=checkbox]')[0].checked : true;
+
+    if (question.find('.field-title input').val().trim() || question.find('.field-descr textarea').val().trim()) {
+      if (!question.find('.field-remove-picture').hasClass('is-checked')) {
+        question.find('.field-remove-picture').click();
+      }
+      question.find('.field-picture').hide();
+    } else {
+      if (question.find('.field-remove-picture').hasClass('is-checked')) {
+        question.find('.field-remove-picture').click();
+      }
+      question.find('.field-picture').show();
+    }
+    if (question.find('.field-picture input').val().trim() || !doesNotHavePicture) {
+      question.find('.field-title input, .field-descr textarea').val(null);
+      question.find('.field-title, .field-descr').hide();
+    } else {
+      question.find('.field-title, .field-descr').show();
+    }
+  }
+  question.find('.field-title input, .field-descr textarea').keyup(updateFields);
+  question.find('.field-picture input[type=file]').change(updateFields);
+  question.find('.field-remove-picture input[type=checkbox]').change(updateFields);
+  updateFields();
+}
 
 function add_nested_item_fields(link, association, content) {
   var jqLink = $(link);
@@ -189,6 +223,9 @@ function add_nested_item_fields(link, association, content) {
 
   jqLink.before(content.replace(regexp, newId));
   jqLink.prev().find('.ordering-prior-input').val(newPrior);
+  if (jqLink.prev().hasClass('chkl-form-question')) {
+      setUpChainedFieldsForQuestion(jqLink.prev());
+  }
   componentHandler.upgradeAllRegistered();
 
   $("body").trigger('nested_item_add', [jqLink.prev()]);

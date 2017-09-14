@@ -9,7 +9,11 @@ class ChecklistItem < ActiveRecord::Base
                                 allow_destroy: true,
                                 reject_if: :all_blank
 
-  validates :title, :group, presence: true
+  mount_uploader :picture, ChecklistItemPictureUploader
+
+  validates :title, presence: true, unless: -> (item) { item.picture.present? }
+  validates :picture, presence: true, unless: -> (item) { item.title.present? }
+  validates :group, presence: true
   validates :prior, numericality: { only_integer: true }
   validates_associated :answers
 

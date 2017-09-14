@@ -48,10 +48,14 @@
               - group.items.ordered.each do |question|
                 li
                   input type="checkbox" name="q#{group.id}"
-                  strong = question.title
-                  - if question.descr.present?
-                    br
-                    = question.descr
+                  - if question.title.present?
+                    strong = question.title
+                    - if question.descr.present?
+                      br
+                      = question.descr
+                  - else
+                    = link_to question.picture.url, target: '_blank' do
+                      = image_tag question.picture.thumb.url
                   - question.answers.ordered.each do |answer|
                     br
                     input type="checkbox" name="q#{question.id}"

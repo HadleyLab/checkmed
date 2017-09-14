@@ -76,8 +76,17 @@ ActiveAdmin.register Checklist do
 
         if group.items.any?
           table_for group.items.ordered do
-            column :title
-            column :descr
+            column :comment do |question|
+              if question.title.present?
+                span strong question.title
+                br
+                span question.descr
+              else
+                a href: question.picture.url, target: '_blank' do
+                  img src: question.picture.thumb.url
+                end
+              end
+            end
 
             column :answers do |question|
               if question.answers.any?

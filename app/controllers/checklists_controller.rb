@@ -159,6 +159,9 @@ class ChecklistsController < FrontendController
                   :title,
                   :sb_group,
                   :descr,
+                  :picture,
+                  :picture_cache,
+                  :remove_picture,
                   :prior,
                   :_destroy,
                   answers_attributes: [
