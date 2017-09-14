@@ -9,6 +9,12 @@
             = label_tag 'sf[q]', 'Search query...', class: 'mdl-textfield__label'
         .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
           .mdl-selectfield
+            = select_tag 'sf[type]', \
+                         options_from_collection_for_select(ChecklistType.ordered, :id, :name, params.try(:[], 'sf').try(:[], 'type')), \
+                         prompt: 'Type...', \
+                         class: 'mdl-selectfield__select'
+        .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-desktop
+          .mdl-selectfield
             = select_tag 'sf[eri]', \
                          options_from_collection_for_select(ExecutorRole.ordered, :id, :name, params.try(:[], 'sf').try(:[], 'eri')), \
                          prompt: 'Category...', \

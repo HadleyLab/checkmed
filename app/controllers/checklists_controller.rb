@@ -13,6 +13,7 @@ class ChecklistsController < FrontendController
     @have_a_filter = false
 
     if params[:sf] && (params[:sf][:q].present? ||
+                       params[:sf][:type].present? ||
                        params[:sf][:eri].present? ||
                        params[:sf][:spc].present?)
       @have_a_filter = true
@@ -27,6 +28,10 @@ class ChecklistsController < FrontendController
                 "users.academ_inst ILIKE ? OR " \
                 "users.position ILIKE ?",
                 "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+      end
+
+      if params[:sf][:type].present?
+        @checklists = @checklists.where(checklist_type_id: params[:sf][:type])
       end
 
       if params[:sf][:eri].present?
@@ -90,11 +95,7 @@ class ChecklistsController < FrontendController
     @seo_carrier = OpenStruct.new title: "New checklist"
 
     # Add default groups
-    @checklist.groups.build name: 'Symptoms questions',       prior: 0
-    @checklist.groups.build name: 'Physical exams questions', prior: 1
-    @checklist.groups.build name: 'Labs questions',           prior: 2
-    @checklist.groups.build name: 'Procedures questions',     prior: 3
-    @checklist.groups.build name: 'Medications questions',    prior: 4
+    @checklist.groups.build name: 'Symptoms',       prior: 0
 
     respond_to do |format|
       format.html
@@ -142,6 +143,7 @@ class ChecklistsController < FrontendController
       params.require(:checklist).permit(
           :name,
           :executor_role_id,
+          :checklist_type_id,
           :speciality_id,
           :treat_stage,
           :descr,
@@ -157,6 +159,9 @@ class ChecklistsController < FrontendController
                   :title,
                   :sb_group,
                   :descr,
+                  :picture,
+                  :picture_cache,
+                  :remove_picture,
                   :prior,
                   :_destroy,
                   answers_attributes: [

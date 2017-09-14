@@ -33,7 +33,7 @@ There is `config/database_example.yml` file for full example.
 When done, run:
 
     $ bin/bundle install --without production
-    $ bin/rake db:create db:migrate
+    $ bin/rake db:create db:migrate bootstrap:all
 
 Install demo data using command: `bin/rake db:seed` if you need.
 

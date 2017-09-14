@@ -82,7 +82,7 @@ en:
         hided: "Hidden?"
         created_at: "Date created"
       checklist_item:
-        title: "Question text"
+        title: "Comment"
         descr: "Description"
       checklist_item_answer:
         val: "List answer"

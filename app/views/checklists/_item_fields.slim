@@ -5,22 +5,38 @@
   - if is_collapsed
     .collapsed-question-body
       i.ordering-handler.question-ordering-handler.material-icons swap_vert
-      = link_to f.object.title, \
-                "javascript:void('open')", \
+      = link_to "javascript:void('open')", \
                 class: "uncollapser",
-                'data-uncollapse-class' => 'chkl-form-question-collapsed'
+                'data-uncollapse-class' => 'chkl-form-question-collapsed' do
+        - if f.object.title.present?
+          = f.object.title
+        - else
+          = image_tag f.object.picture.thumb.url
 
   .chkl-form-question-body
     i.ordering-handler.question-ordering-handler.material-icons swap_vert
     = f.hidden_field :prior, class: 'ordering-prior-input'
-    .chlk-form-line
+    .chlk-form-line.field-title
       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:title].any?)
         = f.text_field :title, class: 'mdl-textfield__input'
         = f.label :title, class: 'mdl-textfield__label'
-    .chlk-form-line
+    .chlk-form-line.field-descr
       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
         = f.text_area :descr, class: 'mdl-textfield__input'
         = f.label :descr, class: 'mdl-textfield__label'
+    .chlk-form-line.field-picture
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder  class=class_string('is-invalid' => f.object.errors[:picture].any?)
+        = f.file_field :picture, class: 'mdl-textfield__input'
+        = f.hidden_field :picture_cache
+        = f.label :picture, class: 'mdl-textfield__label'
+        - if f.object.picture.present?
+          div
+            = image_tag f.object.picture.thumb.url
+          div
+            = f.label :remove_picture, :class => 'field-remove-picture mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
+              = f.check_box :remove_picture, :class => 'mdl-checkbox__input'
+              span.mdl-checkbox__label Remove picture
+
     .chlk-form-line.mdl-typography--text-right
       = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
         = f.check_box :_destroy, :class => 'mdl-icon-toggle__input cm-delete-cb'

@@ -13,6 +13,9 @@
           .mdl-accordion__content.mdl-animation--default
             = render partial: 'profiles/user_info_card', locals: { user: @user }
             p.check-med-cltextdata
+              ' Type:
+              = @checklist.checklist_type.name
+              br
               ' Category:
               = @checklist.executor_role.name
               br
@@ -44,13 +47,18 @@
             ol
               - group.items.ordered.each do |question|
                 li
-                  strong = question.title
-                  - if question.descr.present?
-                    br
-                    = question.descr
+                  input type="checkbox" name="q#{group.id}"
+                  - if question.title.present?
+                    strong = question.title
+                    - if question.descr.present?
+                      br
+                      = question.descr
+                  - else
+                    = link_to question.picture.url, target: '_blank' do
+                      = image_tag question.picture.thumb.url
                   - question.answers.ordered.each do |answer|
                     br
-                    input type="radio" name="q#{question.id}"
+                    input type="checkbox" name="q#{question.id}"
                     '
                     = answer.val
                     - if answer.tip.present?

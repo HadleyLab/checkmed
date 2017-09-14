@@ -6,6 +6,9 @@
       = link_to checklist.name, checklist_path(checklist)
   .mdl-card__supporting-text
     .supporting-text-line
+      ' Type:
+      = checklist.checklist_type.name
+    .supporting-text-line
       ' For:
       = checklist.executor_role.name
     - if checklist.speciality.present?
