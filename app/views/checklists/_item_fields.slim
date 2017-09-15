@@ -11,7 +11,7 @@
         - if f.object.title.present?
           = f.object.title
         - else
-          = image_tag f.object.picture.thumb.url
+          = image_tag f.object.picture.thumb.url, width: 200, height: 200
 
   .chkl-form-question-body
     i.ordering-handler.question-ordering-handler.material-icons swap_vert
@@ -31,7 +31,7 @@
         = f.label :picture, class: 'mdl-textfield__label'
         - if f.object.picture.present?
           div
-            = image_tag f.object.picture.thumb.url
+            = image_tag f.object.picture.thumb.url, width: 200, height: 200
           div
             = f.label :remove_picture, :class => 'field-remove-picture mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
               = f.check_box :remove_picture, :class => 'mdl-checkbox__input'
