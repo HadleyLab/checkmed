@@ -68,7 +68,6 @@ def_user = User.new email: 'user@example.com',
                     password_confirmation: 'password',
                     name: 'Default Doctor',
                     company: 'Main Hospital of USA',
-                    academ_inst: "NAM",
                     position: 'MD'
 def_user.skip_confirmation!
 def_user.save
@@ -78,7 +77,6 @@ sec_user = User.new email: 'user2@example.com',
                     password_confirmation: 'password',
                     name: 'Jason Born',
                     company: 'Angkor WAT UPFC',
-                    academ_inst: "COD",
                     position: 'Intern'
 sec_user.skip_confirmation!
 sec_user.save
