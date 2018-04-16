@@ -24,11 +24,6 @@
                 ' :
                 = @checklist.speciality.name
                 br
-              - if @checklist.treat_stage.present?
-                = t 'activerecord.attributes.checklist.treat_stage'
-                ' :
-                = @checklist.treat_stage
-                br
               - if @checklist.descr.present?
                 = @checklist.descr
                 br

@@ -34,11 +34,6 @@
     .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:speciality_id].any?)
       = f.collection_select :speciality_id, Speciality.ordered, :id, :name, { include_blank: 'Choose speciality ...' }, class: 'mdl-selectfield__select'
 
-  .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:treat_stage].any?)
-      = f.text_field :treat_stage, min: 1, class: 'mdl-textfield__input'
-      = f.label :treat_stage, class: 'mdl-textfield__label'
-
   / :hided
 
   .chkl-form-groups
