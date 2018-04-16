@@ -9,7 +9,7 @@ class ChecklistsController < FrontendController
     default_ordering = { name: :asc }
     checklists_per_page = 20
 
-    @checklists = Checklist.visibles.joins(:user)
+    @checklists = Checklist.visibles.published.joins(:user)
     @have_a_filter = false
 
     if params[:sf] && (params[:sf][:q].present? ||
@@ -137,6 +137,12 @@ class ChecklistsController < FrontendController
     redirect_to checklists_path
   end
 
+  def publish
+    @checklist = Checklist.find(params[:id])
+    @checklist.update(published: true)
+    redirect_to checklist_path
+  end
+
   private
     def checklist_params
       params.require(:checklist).permit(
@@ -147,6 +153,7 @@ class ChecklistsController < FrontendController
           :descr,
           :prior,
           :hided,
+          :published,
           groups_attributes: [
               :id,
               :name,
