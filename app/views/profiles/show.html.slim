@@ -31,6 +31,7 @@
         .mdl-tabs__tab-bar
             a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
+            a.mdl-tabs__tab href="#unpublished-checklists" Unpublished checklists
 
         .mdl-tabs__panel.is-active#my-checklists
           ul.check-med-clst-list-short
@@ -57,6 +58,12 @@
           - else
             .mdl-typography--subhead style="margin-top:14px"
               | Have no recently browsed checklists
+
+        .mdl-tabs__panel#unpublished-checklists
+          ul.check-med-clst-list-short
+            - @unpublished_checklists.each do |checklist|
+              li = render partial: 'checklists/list_item', \
+                            locals: { checklist: checklist }
 
     - else
       hr

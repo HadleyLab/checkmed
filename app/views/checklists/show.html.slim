@@ -71,4 +71,10 @@
         br
         = link_to "edit", edit_checklist_path(@checklist), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent'
         ' &nbsp;
-        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary'
+        = link_to "delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" },
+                class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary'
+        - unless @checklist.published
+          ' &nbsp;
+          = link_to "publish", checklist_publish_path,
+                  class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent',
+                  method: :post
