@@ -64,6 +64,7 @@ en:
         holder:      "Owner"
         holder_type: "Owner type"
       user:
+        avatar: "Profile picture"
         company: "Hospital/Academic Institution"
       executor_role:
         prior: "Priority"
