@@ -65,7 +65,6 @@ en:
         holder_type: "Owner type"
       user:
         company: "Hospital"
-        academ_inst: "Academic institution"
       executor_role:
         prior: "Priority"
       checklist:
