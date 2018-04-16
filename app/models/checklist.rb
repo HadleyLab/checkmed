@@ -23,6 +23,8 @@ class Checklist < ActiveRecord::Base
   validates :prior, numericality: { only_integer: true }
   validates_associated :groups
 
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
   scope :visibles, -> { where(hided: false) }
   scope :ordered, -> { order(prior: :asc, id: :asc) }
 end
