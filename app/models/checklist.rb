@@ -20,8 +20,6 @@ class Checklist < ActiveRecord::Base
                           dependent: :destroy
 
   validates :name, :user, :executor_role, presence: true
-  validates :treat_stage, numericality: { only_integer: true, greater_than: 0 },
-                          allow_nil: true
   validates :prior, numericality: { only_integer: true }
   validates_associated :groups
 
