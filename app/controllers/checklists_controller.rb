@@ -25,9 +25,8 @@ class ChecklistsController < FrontendController
                 "checklists.descr ILIKE ? OR " \
                 "users.name ILIKE ? OR " \
                 "users.company ILIKE ? OR " \
-                "users.academ_inst ILIKE ? OR " \
                 "users.position ILIKE ?",
-                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
+                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
       end
 
       if params[:sf][:type].present?
