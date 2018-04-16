@@ -121,7 +121,6 @@ def_user.checklists.create!({
     checklist_type: checklist_types[0],
     executor_role: executor_roles[3],
     speciality: specialities[0],
-    treat_stage: 1,
     descr: "This is the first created checklist of the first created user.",
     groups_attributes: [
       {
@@ -151,8 +150,7 @@ sec_user.checklists.create!({
     name: "Outpatient CHF",
     checklist_type: checklist_types[0],
     executor_role: executor_roles[1],
-    speciality: specialities[2],
-    treat_stage: 1
+    speciality: specialities[2]
   })
 
 puts "#{time_point_string}: Seeding is done!"
