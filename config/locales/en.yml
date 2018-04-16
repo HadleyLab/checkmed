@@ -71,7 +71,7 @@ en:
       checklist:
         user: "Author"
         user_id: "Author"
-        name: "Diagnosis name"
+        name: "Title"
         descr: "Short description"
         executor_role: "Category"
         executor_role_id: "Category"
