@@ -84,5 +84,5 @@ en:
         title: "Title"
         descr: "Description"
       checklist_item_answer:
-        val: "List answer"
-        tip: "Answer description"
+        val: "Title"
+        tip: "Description"
