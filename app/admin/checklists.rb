@@ -36,7 +36,6 @@ ActiveAdmin.register Checklist do
   ### Index page filters
   filter :name
   filter :descr
-  filter :treat_stage
   filter :checklist_type
   filter :executor_role
   filter :speciality
@@ -49,7 +48,6 @@ ActiveAdmin.register Checklist do
     selectable_column
     id_column
     column :name
-    column :treat_stage
     column :checklist_type
     column :executor_role
     column :speciality
@@ -67,7 +65,6 @@ ActiveAdmin.register Checklist do
     attributes_table do
       row :name
       row :descr
-      row :treat_stage
       row :checklist_type
       row :executor_role
       row :speciality
