@@ -11,7 +11,8 @@ class ProfilesController < FrontendController
         seo_image: (@user.avatar.present? ? @user.avatar.url : nil)
       })
 
-    @checklists = @user.checklists.visibles.ordered
+    @checklists = @user.checklists.published.visibles.ordered
+    @unpublished_checklists = @user.checklists.unpublished.visibles.ordered
 
     @recent_checklists = Checklist.
         visibles.
