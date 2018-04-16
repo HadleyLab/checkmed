@@ -77,7 +77,6 @@ en:
         executor_role_id: "Category"
         speciality: "Speciality"
         speciality_id: "Speciality"
-        treat_stage: "Hospital day"
         prior: "Priority"
         hided: "Hidden?"
         created_at: "Date created"
