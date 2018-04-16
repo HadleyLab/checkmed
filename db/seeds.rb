@@ -118,6 +118,7 @@ puts "#{time_point_string}: seed Checklists and it's Items"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 def_user.checklists.create!({
     name: "The first Checklist",
+    published: true,
     checklist_type: checklist_types[0],
     executor_role: executor_roles[3],
     speciality: specialities[0],
@@ -148,6 +149,7 @@ def_user.checklists.create!({
 
 sec_user.checklists.create!({
     name: "Outpatient CHF",
+    published: true,
     checklist_type: checklist_types[0],
     executor_role: executor_roles[1],
     speciality: specialities[2]
