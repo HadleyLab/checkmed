@@ -13,25 +13,25 @@
       p There are errors in the form. Please fix it.
 
   .chlk-form-line
-    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:checklist_type_id].any?)
+    .mdl-cell--12-col-desktop.mdl-selectfield class=class_string('is-invalid' => f.object.errors[:checklist_type_id].any?)
       = f.collection_select :checklist_type_id, ChecklistType.ordered, :id, :name, {}, class: 'mdl-selectfield__select'
 
   .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
       = f.text_field :name, autofocus: true, class: 'mdl-textfield__input'
       = f.label :name, class: 'mdl-textfield__label'
 
   .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-tesxtfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-tesxtfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
       = f.text_area :descr, class: 'mdl-textfield__input'
       = f.label :descr, class: 'mdl-textfield__label'
 
   .chlk-form-line
-    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:executor_role_id].any?)
+    .mdl-cell--12-col-desktop.mdl-selectfield class=class_string('is-invalid' => f.object.errors[:executor_role_id].any?)
       = f.collection_select :executor_role_id, ExecutorRole.ordered, :id, :name, {}, class: 'mdl-selectfield__select'
 
   .chlk-form-line
-    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:speciality_id].any?)
+    .mdl-cell--12-col-desktop.mdl-selectfield class=class_string('is-invalid' => f.object.errors[:speciality_id].any?)
       = f.collection_select :speciality_id, Speciality.ordered, :id, :name, { include_blank: 'Choose speciality ...' }, class: 'mdl-selectfield__select'
 
   / :hided
