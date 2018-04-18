@@ -31,9 +31,16 @@
         .mdl-tabs__tab-bar
             a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
-            a.mdl-tabs__tab href="#unpublished-checklists" Unpublished checklists
 
         .mdl-tabs__panel.is-active#my-checklists
+          .mdl-cell.mdl-cell--12-col
+            - if params[:published] == 'true' || params[:published].blank?
+              = link_to 'Show unpublished', params.merge(published: false),
+                      class: 'mdl-button mdl-js-button mdl-button--raised'
+            - else
+              = link_to 'Show published', params.merge(published: true),
+                      class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored'
+
           ul.check-med-clst-list-short
 
             - @checklists.each do |checklist|
@@ -58,12 +65,6 @@
           - else
             .mdl-typography--subhead style="margin-top:14px"
               | Have no recently browsed checklists
-
-        .mdl-tabs__panel#unpublished-checklists
-          ul.check-med-clst-list-short
-            - @unpublished_checklists.each do |checklist|
-              li = render partial: 'checklists/list_item', \
-                            locals: { checklist: checklist }
 
     - else
       hr
