@@ -15,10 +15,13 @@
 //= require material
 //= require dialog-polyfill
 //= require Sortable
+//= require jquery.autosize
 // do not require turbolinks because of material js
 // do not require_tree .
 
 $(document).ready(function() {
+  $('textarea').autosize();
+
   // Flash messages thru mdl snackbar
   var flmd;
   if ((flmd = $("#flash-message-deliverer")).length) {

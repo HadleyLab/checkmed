@@ -59,6 +59,8 @@ gem 'css-class-string', '0.1.1'
 gem 'jquery-rails'
 # jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+
 gem 'jquery-ui-rails', '~> 5.0.5' # activeadmin 1.0.0.pre4 needs this version
+# This gem packages jquery-autosize plugin for jQuery for the Rails 3.1+ asset pipeline.
+gem 'autosize-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
