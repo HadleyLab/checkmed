@@ -9,7 +9,7 @@ class ChecklistsController < FrontendController
     default_ordering = { name: :asc }
     checklists_per_page = 20
 
-    @checklists = Checklist.visibles.published.joins(:user)
+    @checklists = Checklist.visibles.joins(:user)
     @have_a_filter = false
 
     if params[:sf] && (params[:sf][:q].present? ||
@@ -112,7 +112,9 @@ class ChecklistsController < FrontendController
   def create
     @checklist = Checklist.new(checklist_params)
     @checklist.user = current_user
-
+    if params[:commit] != 'Show preview'
+      @checklist.published = true
+    end
     if @checklist.save
       redirect_to @checklist
     else
