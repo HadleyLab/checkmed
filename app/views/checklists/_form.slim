@@ -32,7 +32,8 @@
 
   .chlk-form-line
     .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:speciality_id].any?)
-      = f.collection_select :speciality_id, Speciality.ordered, :id, :name, { include_blank: 'Choose speciality ...' }, class: 'mdl-selectfield__select'
+      = f.collection_select :speciality_id, Speciality.ordered, :id, :name, { include_blank: 'Choose speciality ...' },
+              class: 'mdl-selectfield__select'
 
   / :hided
 
@@ -42,7 +43,9 @@
         = render partial: 'group_fields', \
                  locals: { f: a, is_collapsed: a.object.persisted? }
 
-    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-button--accent", "data-add-field-class" => "chkl-form-group"
+    = link_to_add_fields f, :groups,
+            class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-button--accent",
+                   "data-add-field-class" => "chkl-form-group"
       i.material-icons add
       |  new subtitle
 
@@ -50,7 +53,10 @@
     br
     = f.submit :class => 'mdl-button mdl-js-button mdl-button--raised'
     '
-    = link_to 'Cancel', (f.object.new_record? ? account_path(current_user.id) : checklist_path(@checklist)), class: 'mdl-button mdl-js-button mdl-js-ripple-effect'
+    = f.submit 'Show preview', :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', params: {test_param: :test_pa}
+    '
+    = link_to 'Cancel', (f.object.new_record? ? account_path(current_user.id) : checklist_path(@checklist)),
+            class: 'mdl-button mdl-js-button mdl-js-ripple-effect'
 
 / TODO Each list item may have answer options, such as:
   /   single text answer ????
