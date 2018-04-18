@@ -56,6 +56,8 @@ GEM
     arel (6.0.4)
     autoprefixer-rails (6.7.7)
       execjs
+    autosize-rails (1.18.17)
+      rails (>= 3.1)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -280,6 +282,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin (~> 1.0.0.pre5)
   autoprefixer-rails
+  autosize-rails
   byebug
   carrierwave (= 1.0.0)
   carrierwave-i18n (= 0.1.0)
