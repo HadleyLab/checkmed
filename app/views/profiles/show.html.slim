@@ -32,6 +32,14 @@
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
 
         .mdl-tabs__panel.is-active#my-checklists
+          .mdl-cell.mdl-cell--12-col
+            - if params[:published] == 'true' || params[:published].blank?
+              = link_to 'Show unpublished', params.merge(published: false),
+                      class: 'mdl-button mdl-js-button mdl-button--raised'
+            - else
+              = link_to 'Show published', params.merge(published: true),
+                      class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored'
+
           ul.check-med-clst-list-short
 
             - @checklists.each do |checklist|

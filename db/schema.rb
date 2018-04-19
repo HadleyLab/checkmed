@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416042106) do
+ActiveRecord::Schema.define(version: 20180416065627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20180416042106) do
     t.datetime "updated_at",                        null: false
     t.integer  "speciality_id"
     t.integer  "checklist_type_id"
+    t.boolean  "published",         default: false
   end
 
   add_index "checklists", ["checklist_type_id"], name: "index_checklists_on_checklist_type_id", using: :btree

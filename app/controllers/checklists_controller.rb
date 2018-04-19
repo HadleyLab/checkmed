@@ -107,7 +107,9 @@ class ChecklistsController < FrontendController
   def create
     @checklist = Checklist.new(checklist_params)
     @checklist.user = current_user
-
+    if params[:commit] != 'Show preview'
+      @checklist.published = true
+    end
     if @checklist.save
       redirect_to @checklist
     else
@@ -132,6 +134,12 @@ class ChecklistsController < FrontendController
     redirect_to checklists_path
   end
 
+  def publish
+    @checklist = Checklist.find(params[:id])
+    @checklist.update(published: true)
+    redirect_to checklist_path
+  end
+
   private
     def checklist_params
       params.require(:checklist).permit(
@@ -141,6 +149,7 @@ class ChecklistsController < FrontendController
           :descr,
           :prior,
           :hided,
+          :published,
           groups_attributes: [
               :id,
               :name,

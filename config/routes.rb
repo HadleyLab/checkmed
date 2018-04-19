@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   scope 'profile' do
     resources :checklists, except: :index
+    post 'profile/checklists/:id/publish', to: 'checklists#publish', as: :checklist_publish
   end
   get 'search', to: 'checklists#index', as: :search
 
