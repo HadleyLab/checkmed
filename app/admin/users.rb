@@ -101,7 +101,6 @@ ActiveAdmin.register User do
         column :name
         column :executor_role
         column :speciality
-        column :treat_stage
         column :hided
       end
     end

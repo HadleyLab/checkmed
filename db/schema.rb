@@ -64,18 +64,10 @@ ActiveRecord::Schema.define(version: 20180416042106) do
   add_index "checklist_items", ["group_id"], name: "index_checklist_items_on_group_id", using: :btree
   add_index "checklist_items", ["prior"], name: "index_checklist_items_on_prior", using: :btree
 
-  create_table "checklist_types", force: :cascade do |t|
-    t.string  "name"
-    t.integer "prior", default: 9, null: false
-  end
-
-  add_index "checklist_types", ["prior"], name: "index_checklist_types_on_prior", using: :btree
-
   create_table "checklists", force: :cascade do |t|
     t.integer  "user_id",                           null: false
     t.string   "name",                              null: false
     t.integer  "executor_role_id",                  null: false
-    t.integer  "treat_stage"
     t.text     "descr"
     t.integer  "prior",             default: 0,     null: false
     t.boolean  "hided",             default: false, null: false
@@ -90,7 +82,6 @@ ActiveRecord::Schema.define(version: 20180416042106) do
   add_index "checklists", ["hided"], name: "index_checklists_on_hided", using: :btree
   add_index "checklists", ["prior"], name: "index_checklists_on_prior", using: :btree
   add_index "checklists", ["speciality_id"], name: "index_checklists_on_speciality_id", using: :btree
-  add_index "checklists", ["treat_stage"], name: "index_checklists_on_treat_stage", using: :btree
   add_index "checklists", ["user_id"], name: "index_checklists_on_user_id", using: :btree
 
   create_table "executor_roles", force: :cascade do |t|
@@ -192,7 +183,6 @@ ActiveRecord::Schema.define(version: 20180416042106) do
 
   add_foreign_key "checklist_groups", "checklists"
   add_foreign_key "checklist_item_answers", "checklist_items"
-  add_foreign_key "checklists", "checklist_types"
   add_foreign_key "checklists", "specialities"
   add_foreign_key "checklists", "users"
   add_foreign_key "users_checklists_visits", "checklists"

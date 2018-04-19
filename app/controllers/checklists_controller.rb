@@ -6,7 +6,7 @@ class ChecklistsController < FrontendController
     @seo_carrier = OpenStruct.new({ title: "Search checklists" })
 
     # al'a settings
-    default_ordering = { name: :asc, treat_stage: :asc }
+    default_ordering = { name: :asc }
     checklists_per_page = 20
 
     @checklists = Checklist.visibles.joins(:user)
@@ -27,10 +27,6 @@ class ChecklistsController < FrontendController
                 "users.company ILIKE ? OR " \
                 "users.position ILIKE ?",
                 "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
-      end
-
-      if params[:sf][:type].present?
-        @checklists = @checklists.where(checklist_type_id: params[:sf][:type])
       end
 
       if params[:sf][:eri].present?
@@ -70,7 +66,6 @@ class ChecklistsController < FrontendController
     @user = @checklist.user
 
     seo_descr = "Checklist \"#{@checklist.name}\" for #{@checklist.executor_role.name}"
-    seo_descr += ", stage #{@checklist.treat_stage}" if @checklist.treat_stage.present?
     seo_descr += " by #{@user.name}, #{@user.position} at #{@user.company}"
     seo_descr += " — #{setting_value(:app_humanized_name)}"
     @seo_carrier = OpenStruct.new({
@@ -94,7 +89,7 @@ class ChecklistsController < FrontendController
     @seo_carrier = OpenStruct.new title: "New checklist"
 
     # Add default groups
-    @checklist.groups.build name: 'Symptoms',       prior: 0
+    @checklist.groups.build name: 'Subtitle',       prior: 0
 
     respond_to do |format|
       format.html
@@ -142,9 +137,7 @@ class ChecklistsController < FrontendController
       params.require(:checklist).permit(
           :name,
           :executor_role_id,
-          :checklist_type_id,
           :speciality_id,
-          :treat_stage,
           :descr,
           :prior,
           :hided,

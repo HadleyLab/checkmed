@@ -102,24 +102,13 @@ specialities = Speciality.create!([
     { name: 'Paediatrics',  prior: 4 }
   ])
 
-
-# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-puts "#{time_point_string}: seed Checklist Types"
-# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-checklist_types = ChecklistType.create!([
-    { name: 'Checklist', prior: 1 },
-    { name: 'Protocol',  prior: 2 },
-  ])
-
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Checklists and it's Items"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 def_user.checklists.create!({
     name: "The first Checklist",
-    checklist_type: checklist_types[0],
     executor_role: executor_roles[3],
     speciality: specialities[0],
-    treat_stage: 1,
     descr: "This is the first created checklist of the first created user.",
     groups_attributes: [
       {
@@ -147,10 +136,8 @@ def_user.checklists.create!({
 
 sec_user.checklists.create!({
     name: "Outpatient CHF",
-    checklist_type: checklist_types[0],
     executor_role: executor_roles[1],
-    speciality: specialities[2],
-    treat_stage: 1
+    speciality: specialities[2]
   })
 
 puts "#{time_point_string}: Seeding is done!"

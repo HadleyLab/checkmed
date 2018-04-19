@@ -6,9 +6,6 @@
       = link_to checklist.name, checklist_path(checklist)
   .mdl-card__supporting-text
     .supporting-text-line
-      ' Type:
-      = checklist.checklist_type.name
-    .supporting-text-line
       ' For:
       = checklist.executor_role.name
     - if checklist.speciality.present?
@@ -16,11 +13,6 @@
         = t 'activerecord.attributes.checklist.speciality'
         ' :
         = checklist.speciality.name
-    - if checklist.treat_stage.present?
-      .supporting-text-line
-        = t 'activerecord.attributes.checklist.treat_stage'
-        ' :
-        = checklist.treat_stage
 
     - if full
       = render partial: 'profiles/user_info_card', \
