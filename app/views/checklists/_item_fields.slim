@@ -17,15 +17,15 @@
     i.ordering-handler.question-ordering-handler.material-icons swap_vert
     = f.hidden_field :prior, class: 'ordering-prior-input'
     .chlk-form-line.field-title
-      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:title].any?)
+      .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:title].any?)
         = f.text_field :title, class: 'mdl-textfield__input'
         = f.label :title, class: 'mdl-textfield__label'
     .chlk-form-line.field-descr
-      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
+      .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
         = f.text_area :descr, class: 'mdl-textfield__input'
         = f.label :descr, class: 'mdl-textfield__label'
     .chlk-form-line.field-picture
-      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder  class=class_string('is-invalid' => f.object.errors[:picture].any?)
+      .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder  class=class_string('is-invalid' => f.object.errors[:picture].any?)
         = f.file_field :picture, class: 'mdl-textfield__input'
         = f.hidden_field :picture_cache
         = f.label :picture, class: 'mdl-textfield__label'

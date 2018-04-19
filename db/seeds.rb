@@ -68,7 +68,6 @@ def_user = User.new email: 'user@example.com',
                     password_confirmation: 'password',
                     name: 'Default Doctor',
                     company: 'Main Hospital of USA',
-                    academ_inst: "NAM",
                     position: 'MD'
 def_user.skip_confirmation!
 def_user.save
@@ -78,7 +77,6 @@ sec_user = User.new email: 'user2@example.com',
                     password_confirmation: 'password',
                     name: 'Jason Born',
                     company: 'Angkor WAT UPFC',
-                    academ_inst: "COD",
                     position: 'Intern'
 sec_user.skip_confirmation!
 sec_user.save
@@ -104,22 +102,12 @@ specialities = Speciality.create!([
     { name: 'Paediatrics',  prior: 4 }
   ])
 
-
-# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-puts "#{time_point_string}: seed Checklist Types"
-# = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
-checklist_types = ChecklistType.create!([
-    { name: 'Checklist', prior: 1 },
-    { name: 'Protocol',  prior: 2 },
-  ])
-
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 puts "#{time_point_string}: seed Checklists and it's Items"
 # = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = - = --
 def_user.checklists.create!({
     name: "The first Checklist",
     published: true,
-    checklist_type: checklist_types[0],
     executor_role: executor_roles[3],
     speciality: specialities[0],
     descr: "This is the first created checklist of the first created user.",
@@ -150,7 +138,6 @@ def_user.checklists.create!({
 sec_user.checklists.create!({
     name: "Outpatient CHF",
     published: true,
-    checklist_type: checklist_types[0],
     executor_role: executor_roles[1],
     speciality: specialities[2]
   })

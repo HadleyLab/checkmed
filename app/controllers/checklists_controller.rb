@@ -25,13 +25,8 @@ class ChecklistsController < FrontendController
                 "checklists.descr ILIKE ? OR " \
                 "users.name ILIKE ? OR " \
                 "users.company ILIKE ? OR " \
-                "users.academ_inst ILIKE ? OR " \
                 "users.position ILIKE ?",
-                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
-      end
-
-      if params[:sf][:type].present?
-        @checklists = @checklists.where(checklist_type_id: params[:sf][:type])
+                "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
       end
 
       if params[:sf][:eri].present?
@@ -150,7 +145,6 @@ class ChecklistsController < FrontendController
       params.require(:checklist).permit(
           :name,
           :executor_role_id,
-          :checklist_type_id,
           :speciality_id,
           :descr,
           :prior,

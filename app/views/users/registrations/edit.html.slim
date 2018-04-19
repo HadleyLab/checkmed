@@ -43,17 +43,9 @@ h2 Edit profile
         span.mdl-textfield__error = resource.errors[:company].join(', ')
 
   .row
-    - have_academ_inst_errors = resource.errors[:academ_inst].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_academ_inst_errors)
-      = f.text_field :academ_inst, :class => 'mdl-textfield__input'
-      = f.label :academ_inst, :class => 'mdl-textfield__label'
-      - if have_academ_inst_errors
-        span.mdl-textfield__error = resource.errors[:academ_inst].join(', ')
-
-  .row
     - have_position_errors = resource.errors[:position].any?
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_position_errors)
-      = f.text_field :position, :class => 'mdl-textfield__input'
+      = f.text_field :position, :class => 'mdl-textfield__input', placeholder: 'Say something about you'
       = f.label :position, :class => 'mdl-textfield__label'
       - if have_position_errors
         span.mdl-textfield__error = resource.errors[:position].join(', ')

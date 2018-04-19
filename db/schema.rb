@@ -64,13 +64,6 @@ ActiveRecord::Schema.define(version: 20180416065627) do
   add_index "checklist_items", ["group_id"], name: "index_checklist_items_on_group_id", using: :btree
   add_index "checklist_items", ["prior"], name: "index_checklist_items_on_prior", using: :btree
 
-  create_table "checklist_types", force: :cascade do |t|
-    t.string  "name"
-    t.integer "prior", default: 9, null: false
-  end
-
-  add_index "checklist_types", ["prior"], name: "index_checklist_types_on_prior", using: :btree
-
   create_table "checklists", force: :cascade do |t|
     t.integer  "user_id",                           null: false
     t.string   "name",                              null: false
@@ -173,7 +166,6 @@ ActiveRecord::Schema.define(version: 20180416065627) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "academ_inst"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -192,7 +184,6 @@ ActiveRecord::Schema.define(version: 20180416065627) do
 
   add_foreign_key "checklist_groups", "checklists"
   add_foreign_key "checklist_item_answers", "checklist_items"
-  add_foreign_key "checklists", "checklist_types"
   add_foreign_key "checklists", "specialities"
   add_foreign_key "checklists", "users"
   add_foreign_key "users_checklists_visits", "checklists"
