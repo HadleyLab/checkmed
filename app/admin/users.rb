@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :name, :company, :academ_inst, :position,
+  permit_params :email, :name, :company, :position,
                 :avatar, :avatar_cache, :remove_avatar,
                 :password, :password_confirmation, :banned,
                 :make_user_confirmed
@@ -37,7 +37,6 @@ ActiveAdmin.register User do
   filter :name
   filter :email
   filter :company
-  filter :academ_inst
   filter :position
   filter :created_at
   filter :banned
@@ -47,7 +46,6 @@ ActiveAdmin.register User do
     column :name
     column :email
     column :company
-    column :academ_inst
     column :position
     column :banned
     column 'Checklists' do |user|
@@ -70,7 +68,6 @@ ActiveAdmin.register User do
       row :email
       row :name
       row :company
-      row :academ_inst
       row :position
       row :avatar do
         image_tag(user.avatar.thumb.url) unless user.avatar.blank?
@@ -116,7 +113,6 @@ ActiveAdmin.register User do
       f.input :email
       f.input :name
       f.input :company
-      f.input :academ_inst
       f.input :position
       f.input :avatar, hint: (f.object.avatar? ?
                                 image_tag(f.object.avatar.thumb.url) :

@@ -60,7 +60,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [
         :name,
         :company,
-        :academ_inst,
         :position,
         :avatar,
         :avatar_cache
@@ -72,7 +71,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [
         :name,
         :company,
-        :academ_inst,
         :position,
         :avatar,
         :avatar_cache,
