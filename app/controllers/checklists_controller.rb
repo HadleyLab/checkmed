@@ -30,10 +30,6 @@ class ChecklistsController < FrontendController
                 "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%", "%#{sq}%")
       end
 
-      if params[:sf][:type].present?
-        @checklists = @checklists.where(checklist_type_id: params[:sf][:type])
-      end
-
       if params[:sf][:eri].present?
         @checklists = @checklists.where(executor_role_id: params[:sf][:eri])
       end
@@ -143,7 +139,6 @@ class ChecklistsController < FrontendController
       params.require(:checklist).permit(
           :name,
           :executor_role_id,
-          :checklist_type_id,
           :speciality_id,
           :treat_stage,
           :descr,

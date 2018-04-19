@@ -37,7 +37,6 @@ ActiveAdmin.register Checklist do
   filter :name
   filter :descr
   filter :treat_stage
-  filter :checklist_type
   filter :executor_role
   filter :speciality
   filter :user_id, label: "Author id"
@@ -50,7 +49,6 @@ ActiveAdmin.register Checklist do
     id_column
     column :name
     column :treat_stage
-    column :checklist_type
     column :executor_role
     column :speciality
     column :user
@@ -68,7 +66,6 @@ ActiveAdmin.register Checklist do
       row :name
       row :descr
       row :treat_stage
-      row :checklist_type
       row :executor_role
       row :speciality
       row :user
