@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20180416025409) do
     t.integer  "user_id",                           null: false
     t.string   "name",                              null: false
     t.integer  "executor_role_id",                  null: false
-    t.integer  "treat_stage"
     t.text     "descr"
     t.integer  "prior",             default: 0,     null: false
     t.boolean  "hided",             default: false, null: false
@@ -83,7 +82,6 @@ ActiveRecord::Schema.define(version: 20180416025409) do
   add_index "checklists", ["hided"], name: "index_checklists_on_hided", using: :btree
   add_index "checklists", ["prior"], name: "index_checklists_on_prior", using: :btree
   add_index "checklists", ["speciality_id"], name: "index_checklists_on_speciality_id", using: :btree
-  add_index "checklists", ["treat_stage"], name: "index_checklists_on_treat_stage", using: :btree
   add_index "checklists", ["user_id"], name: "index_checklists_on_user_id", using: :btree
 
   create_table "executor_roles", force: :cascade do |t|
