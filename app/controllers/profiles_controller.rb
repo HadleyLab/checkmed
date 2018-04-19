@@ -12,7 +12,7 @@ class ProfilesController < FrontendController
       })
 
     published_status = params[:published].present? ? params[:published] : true
-    @checklists = @user.checklists.published(published_status).visibles.ordered
+    @checklists = @user.checklists.published(published_status).ordered
 
     @recent_checklists = Checklist.
         visibles.
