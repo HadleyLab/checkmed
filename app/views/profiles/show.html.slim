@@ -35,13 +35,13 @@
           .mdl-cell.mdl-cell--12-col
             - if params[:published] == 'true' || params[:published].blank?
               = link_to params.merge(published: false), class: 'chkl-chbox-link mdl-switch is-upgraded'
-                span.mdl-switch__label Show unpublished
+                span.mdl-switch__label Drafts
                 .mdl-switch__track
                 .mdl-switch__thumb
                   span.mdl-switch__focus-helper
             - else
               = link_to params.merge(published: true), class: 'chkl-chbox-link is-checked mdl-switch is-upgraded'
-                span.mdl-switch__label Show published
+                span.mdl-switch__label Published
                 .mdl-switch__track
                 .mdl-switch__thumb
                   span.mdl-switch__focus-helper
