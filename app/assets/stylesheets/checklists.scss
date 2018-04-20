@@ -260,3 +260,11 @@ ol.check-med-clst-list-full {
     color: $primary-inverse-color;
   }
 }
+
+.chkl-chbox-link {
+  text-decoration: none;
+}
+
+.chkl-chbox-link .mdl-switch__label {
+  color: #757575;
+}

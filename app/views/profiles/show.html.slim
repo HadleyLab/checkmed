@@ -34,11 +34,17 @@
         .mdl-tabs__panel.is-active#my-checklists
           .mdl-cell.mdl-cell--12-col
             - if params[:published] == 'true' || params[:published].blank?
-              = link_to 'Show unpublished', params.merge(published: false),
-                      class: 'mdl-button mdl-js-button mdl-button--raised'
+              = link_to params.merge(published: false), class: 'chkl-chbox-link mdl-switch is-upgraded'
+                span.mdl-switch__label Show unpublished
+                .mdl-switch__track
+                .mdl-switch__thumb
+                  span.mdl-switch__focus-helper
             - else
-              = link_to 'Show published', params.merge(published: true),
-                      class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored'
+              = link_to params.merge(published: true), class: 'chkl-chbox-link is-checked mdl-switch is-upgraded'
+                span.mdl-switch__label Show published
+                .mdl-switch__track
+                .mdl-switch__thumb
+                  span.mdl-switch__focus-helper
 
           ul.check-med-clst-list-short
 
