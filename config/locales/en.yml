@@ -64,26 +64,25 @@ en:
         holder:      "Owner"
         holder_type: "Owner type"
       user:
-        company: "Hospital"
-        academ_inst: "Academic institution"
+        avatar: "Profile picture"
+        company: "Hospital/Academic Institution"
       executor_role:
         prior: "Priority"
       checklist:
         user: "Author"
         user_id: "Author"
-        name: "Diagnosis name"
+        name: "Title"
         descr: "Short description"
         executor_role: "Category"
         executor_role_id: "Category"
         speciality: "Speciality"
         speciality_id: "Speciality"
-        treat_stage: "Hospital day"
         prior: "Priority"
         hided: "Hidden?"
         created_at: "Date created"
       checklist_item:
-        title: "Comment"
+        title: "Title"
         descr: "Description"
       checklist_item_answer:
-        val: "List answer"
-        tip: "Answer description"
+        val: "Title"
+        tip: "Description"

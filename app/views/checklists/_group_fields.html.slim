@@ -18,7 +18,7 @@
   header
     .mdl-grid
       .mdl-cell.mdl-cell--3-col.mdl-cell--6-col-tablet.mdl-cell--8-col-desktop
-        .mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => f.object.errors[:name].any?)
+        .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => f.object.errors[:name].any?)
           = f.text_field :name, class: 'mdl-textfield__input'
       .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet.mdl-cell--4-col-desktop.mdl-typography--text-right
         = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
@@ -32,4 +32,4 @@
                  locals: { f: a, is_collapsed: a.object.persisted? }
       = link_to_add_fields f, :items, class: "mdl-button mdl-js-button mdl-button--primary", "data-add-field-class" => "chkl-form-question"
         i.material-icons add
-        |  Add comment/picture
+        |  Next line

@@ -7,7 +7,7 @@ h2 Edit profile
   // For some reason of manager user can't edit account email. Just view it.
   // Why? I dont know.
   .row
-    .mdl-textfield.mdl-textfield--floating-label.has-placeholder.is-just-info
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-textfield--floating-label.has-placeholder.is-just-info
       .mdl-textfield__input
         = resource.email
         - if devise_mapping.confirmable? && !resource.confirmed?
@@ -28,7 +28,7 @@ h2 Edit profile
 
   .row
     - have_name_errors = resource.errors[:name].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_name_errors)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_name_errors)
       = f.text_field :name, autofocus: true, :class => 'mdl-textfield__input'
       = f.label :name, :class => 'mdl-textfield__label'
       - if have_name_errors
@@ -36,31 +36,23 @@ h2 Edit profile
 
   .row
     - have_company_errors = resource.errors[:company].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_company_errors)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_company_errors)
       = f.text_field :company, :class => 'mdl-textfield__input'
       = f.label :company, :class => 'mdl-textfield__label'
       - if have_company_errors
         span.mdl-textfield__error = resource.errors[:company].join(', ')
 
   .row
-    - have_academ_inst_errors = resource.errors[:academ_inst].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_academ_inst_errors)
-      = f.text_field :academ_inst, :class => 'mdl-textfield__input'
-      = f.label :academ_inst, :class => 'mdl-textfield__label'
-      - if have_academ_inst_errors
-        span.mdl-textfield__error = resource.errors[:academ_inst].join(', ')
-
-  .row
     - have_position_errors = resource.errors[:position].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_position_errors)
-      = f.text_field :position, :class => 'mdl-textfield__input'
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_position_errors)
+      = f.text_field :position, :class => 'mdl-textfield__input position-placeholder', placeholder: 'Say something about you'
       = f.label :position, :class => 'mdl-textfield__label'
       - if have_position_errors
         span.mdl-textfield__error = resource.errors[:position].join(', ')
 
   .row
     - have_avatar_errors = resource.errors[:avatar].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder class=class_string('is-invalid' => have_avatar_errors)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.has-placeholder class=class_string('is-invalid' => have_avatar_errors)
       = f.file_field :avatar, :class => 'mdl-textfield__input'
       = f.hidden_field :avatar_cache
       = f.label :avatar, :class => 'mdl-textfield__label'
@@ -89,7 +81,7 @@ h3 Change password
 
   .row
     - have_password_errors = resource.errors[:password].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_errors)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_errors)
       = f.password_field :password, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :password, :class => 'mdl-textfield__label'
       / i (leave blank if you don't want to change it)
@@ -99,7 +91,7 @@ h3 Change password
 
   .row
     - have_password_confirmation_errors = resource.errors[:password_confirmation].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_confirmation_errors)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_password_confirmation_errors)
       = f.password_field :password_confirmation, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :password_confirmation, :class => 'mdl-textfield__label'
       - if have_password_confirmation_errors
@@ -108,7 +100,7 @@ h3 Change password
 
   .row
     - have_current_password_errors = resource.errors[:current_password].any?
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_current_password_errors)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => have_current_password_errors)
       = f.password_field :current_password, autocomplete: "off", :class => 'mdl-textfield__input'
       = f.label :current_password,  :class => 'mdl-textfield__label'
       / i (we need your current password to confirm your changes)

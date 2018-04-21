@@ -15,7 +15,6 @@
         .user-profile-name = @user.name
         - user_position_strings = []
         - user_position_strings << @user.company if @user.company.present?
-        - user_position_strings << @user.academ_inst if @user.academ_inst.present?
         - user_position_strings << @user.position if @user.position.present?
         - if user_position_strings.any?
           .user-profile-position
@@ -33,6 +32,20 @@
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
 
         .mdl-tabs__panel.is-active#my-checklists
+          .mdl-cell.mdl-cell--12-col
+            - if params[:published] == 'true' || params[:published].blank?
+              = link_to params.merge(published: false), class: 'chkl-chbox-link mdl-switch is-upgraded'
+                span.mdl-switch__label Drafts
+                .mdl-switch__track
+                .mdl-switch__thumb
+                  span.mdl-switch__focus-helper
+            - else
+              = link_to params.merge(published: true), class: 'chkl-chbox-link is-checked mdl-switch is-upgraded'
+                span.mdl-switch__label Published
+                .mdl-switch__track
+                .mdl-switch__thumb
+                  span.mdl-switch__focus-helper
+
           ul.check-med-clst-list-short
 
             - @checklists.each do |checklist|

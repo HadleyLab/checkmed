@@ -13,31 +13,23 @@
       p There are errors in the form. Please fix it.
 
   .chlk-form-line
-    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:checklist_type_id].any?)
-      = f.collection_select :checklist_type_id, ChecklistType.ordered, :id, :name, {}, class: 'mdl-selectfield__select'
-
-  .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
       = f.text_field :name, autofocus: true, class: 'mdl-textfield__input'
       = f.label :name, class: 'mdl-textfield__label'
 
   .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
+    .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-tesxtfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
       = f.text_area :descr, class: 'mdl-textfield__input'
       = f.label :descr, class: 'mdl-textfield__label'
 
   .chlk-form-line
-    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:executor_role_id].any?)
+    .mdl-cell--12-col-desktop.mdl-selectfield class=class_string('is-invalid' => f.object.errors[:executor_role_id].any?)
       = f.collection_select :executor_role_id, ExecutorRole.ordered, :id, :name, {}, class: 'mdl-selectfield__select'
 
   .chlk-form-line
-    .mdl-selectfield class=class_string('is-invalid' => f.object.errors[:speciality_id].any?)
-      = f.collection_select :speciality_id, Speciality.ordered, :id, :name, { include_blank: 'Choose speciality ...' }, class: 'mdl-selectfield__select'
-
-  .chlk-form-line
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:treat_stage].any?)
-      = f.text_field :treat_stage, min: 1, class: 'mdl-textfield__input'
-      = f.label :treat_stage, class: 'mdl-textfield__label'
+    .mdl-cell--12-col-desktop.mdl-selectfield class=class_string('is-invalid' => f.object.errors[:speciality_id].any?)
+      = f.collection_select :speciality_id, Speciality.ordered, :id, :name, { include_blank: 'Choose speciality ...' },
+              class: 'mdl-selectfield__select'
 
   / :hided
 
@@ -47,15 +39,20 @@
         = render partial: 'group_fields', \
                  locals: { f: a, is_collapsed: a.object.persisted? }
 
-    = link_to_add_fields f, :groups, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-button--accent", "data-add-field-class" => "chkl-form-group"
+    = link_to_add_fields f, :groups,
+            class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-button--accent",
+                   "data-add-field-class" => "chkl-form-group"
       i.material-icons add
-      |  new group
+      |  new subtitle
 
   p.field
     br
     = f.submit :class => 'mdl-button mdl-js-button mdl-button--raised'
     '
-    = link_to 'Cancel', (f.object.new_record? ? account_path(current_user.id) : checklist_path(@checklist)), class: 'mdl-button mdl-js-button mdl-js-ripple-effect'
+    = f.submit 'Show preview', :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', params: {test_param: :test_pa}
+    '
+    = link_to 'Cancel', (f.object.new_record? ? account_path(current_user.id) : checklist_path(@checklist)),
+            class: 'mdl-button mdl-js-button mdl-js-ripple-effect'
 
 / TODO Each list item may have answer options, such as:
   /   single text answer ????
