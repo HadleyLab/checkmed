@@ -40,6 +40,7 @@ ActiveAdmin.register Checklist do
   filter :speciality
   filter :user_id, label: "Author id"
   filter :hided
+  filter :published
   filter :created_at
 
   ### Index as table
@@ -51,6 +52,7 @@ ActiveAdmin.register Checklist do
     column :speciality
     column :user
     column :hided
+    column :published
     column :created_at do |checklist|
       l checklist.created_at, format: :short
     end
@@ -67,6 +69,7 @@ ActiveAdmin.register Checklist do
       row :speciality
       row :user
       row :hided
+      row :published
       row :created_at
       row :updated_at
     end
