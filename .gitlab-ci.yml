@@ -27,8 +27,8 @@ release:
 deploy:
   stage: deploy
   script:
-    - docker-machine env checkmed
-    - eval $(docker-machine env checkmed)
+    - docker-machine env checkmed-generic
+    - eval $(docker-machine env checkmed-generic)
     - docker login -u $DOCKER_LOGIN_USERNAME -p $DOCKER_LOGIN_PASSWORD $CI_REGISTRY
     - env > .env
     - docker-compose -f docker-compose.production.yml pull
