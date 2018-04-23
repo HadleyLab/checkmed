@@ -1,5 +1,5 @@
 ActiveAdmin.register Checklist do
-  permit_params :hided
+  permit_params :hided, :published
 
   includes :user, :executor_role, :speciality
 
@@ -29,6 +29,22 @@ ActiveAdmin.register Checklist do
     redirect_to collection_path, alert: "The selected checklists became visible"
   end
 
+  batch_action :publish do |ids|
+    batch_action_collection.find(ids).each do |checklist|
+      checklist.published = true
+      checklist.save
+    end
+    redirect_to collection_path, alert: "The selected checklists became published"
+  end
+
+  batch_action :unpublish do |ids|
+    batch_action_collection.find(ids).each do |checklist|
+      checklist.published = false
+      checklist.save
+    end
+    redirect_to collection_path, alert: "The selected checklists became unpublished"
+  end
+
 # ### Index page scopes
   # scope :all, default: true
   # scope :visibles
@@ -40,6 +56,7 @@ ActiveAdmin.register Checklist do
   filter :speciality
   filter :user_id, label: "Author id"
   filter :hided
+  filter :published
   filter :created_at
 
   ### Index as table
@@ -51,6 +68,7 @@ ActiveAdmin.register Checklist do
     column :speciality
     column :user
     column :hided
+    column :published
     column :created_at do |checklist|
       l checklist.created_at, format: :short
     end
@@ -67,6 +85,7 @@ ActiveAdmin.register Checklist do
       row :speciality
       row :user
       row :hided
+      row :published
       row :created_at
       row :updated_at
     end
