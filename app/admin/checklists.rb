@@ -1,5 +1,5 @@
 ActiveAdmin.register Checklist do
-  permit_params :hided
+  permit_params :hided, :published
 
   includes :user, :executor_role, :speciality
 
@@ -27,6 +27,22 @@ ActiveAdmin.register Checklist do
       checklist.save
     end
     redirect_to collection_path, alert: "The selected checklists became visible"
+  end
+
+  batch_action :publish do |ids|
+    batch_action_collection.find(ids).each do |checklist|
+      checklist.published = true
+      checklist.save
+    end
+    redirect_to collection_path, alert: "The selected checklists became published"
+  end
+
+  batch_action :unpublish do |ids|
+    batch_action_collection.find(ids).each do |checklist|
+      checklist.published = false
+      checklist.save
+    end
+    redirect_to collection_path, alert: "The selected checklists became unpublished"
   end
 
 # ### Index page scopes
