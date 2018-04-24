@@ -3,40 +3,45 @@
 .mdl-grid
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
   .mdl-cell.mdl-cell--6-col
-    .check-med-user-profile
+    .check-med-user-profile.mdl-grid
       - unless @user.avatar.blank?
-        .user-profile-ava = image_tag @user.avatar.thumb.url
-      .user-profile-info
-        - if owner_in_da_house
-          = link_to edit_user_registration_path, \
-                    class: 'mdl-button mdl-js-button mdl-button--icon', \
-                    style: 'float:right'
-            i.material-icons create
-        .user-profile-name
-          = @user.name
-          '
-          - unless owner_in_da_house
-            - if current_user.following?(@user)
-              = link_to 'Unfollow', unfollow_path(followed_id: @user.id), method: :post
-            - else
-              = link_to 'Follow', follow_path(followed_id: @user.id), method: :post
+        .mdl-cell.mdl-cell--3-col-desktop.mdl-cell--12-col-tablet.mdl--flex-center
+          .user-profile-ava = image_tag @user.avatar.thumb.url
+      .mdl-cell.mdl-cell--9-col-desktop.mdl-cell--12-col-tablet.mdl--flex-center-tablet
+        .user-profile-info
+          .user-profile-name.mdl--flex-center-tablet
+            = @user.name
+            - if owner_in_da_house
+              = link_to edit_user_registration_path, \
+                                    class: 'mdl-button mdl-js-button mdl-button--icon', \
+                                    style: 'float:right; position: relative; bottom: 6px;'
+                i.material-icons create
 
-        .user-profile-position
-          span class="mdl-badge" data-badge="#{@user.checklists.count}" Checklists
-          '
-          span class="mdl-badge" data-badge="#{@user.followers_count}" Followers
-          '
-          span class="mdl-badge" data-badge="#{@user.followed_count}" Followed
+          - user_position_strings = []
+          - user_position_strings << @user.company if @user.company.present?
+          - user_position_strings << @user.position if @user.position.present?
+          - if user_position_strings.any?
+            .user-profile-position.mdl--flex-center-tablet
+              - user_position_strings.each_with_index do |pos_str, indx|
+                - unless indx == 0
+                  br
+                = pos_str
 
-        - user_position_strings = []
-        - user_position_strings << @user.company if @user.company.present?
-        - user_position_strings << @user.position if @user.position.present?
-        - if user_position_strings.any?
           .user-profile-position
-            - user_position_strings.each_with_index do |pos_str, indx|
-              - unless indx == 0
-                br
-              = pos_str
+            .mdl-grid.mdl--flex-center-tablet
+              .mdl-cell--4-col-desktop.mdl-cell--2-col-tablet.mdl-cell--1-col
+                span class="mdl-badge" data-badge="#{@user.checklists.count}" Checklists
+              .mdl-cell--4-col-desktop.mdl-cell--2-col-tablet.mdl-cell--1-col
+                span class="mdl-badge" data-badge="#{@user.followers_count}" Followers
+              .mdl-cell--4-col-desktop.mdl-cell--2-col-tablet.mdl-cell--1-col
+                span class="mdl-badge" data-badge="#{@user.followed_count}" Followed
+
+          .user-profile-follow.mdl--flex-center-tablet
+            - unless owner_in_da_house
+              - if current_user.following?(@user)
+                = link_to 'Unfollow', unfollow_path(followed_id: @user.id), method: :post, class: 'mdl-button mdl-js-button mdl-button--raised '
+              - else
+                = link_to 'Follow', follow_path(followed_id: @user.id), method: :post, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored'
 
 
     - if owner_in_da_house
