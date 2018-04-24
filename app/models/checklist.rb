@@ -25,5 +25,6 @@ class Checklist < ActiveRecord::Base
   scope :published, -> (status) { where(published: status) }
   scope :visibles, -> { where(hided: false).where(published: true) }
   scope :ordered, -> { order(prior: :asc, id: :asc) }
+  scope :for_news, -> { order(created_at: :desc, id: :desc) }
 
 end

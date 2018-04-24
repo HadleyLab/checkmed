@@ -12,7 +12,22 @@
                     class: 'mdl-button mdl-js-button mdl-button--icon', \
                     style: 'float:right'
             i.material-icons create
-        .user-profile-name = @user.name
+        .user-profile-name
+          = @user.name
+          '
+          - unless owner_in_da_house
+            - if current_user.following?(@user)
+              = link_to 'Unfollow', unfollow_path(followed_id: @user.id), method: :post
+            - else
+              = link_to 'Follow', follow_path(followed_id: @user.id), method: :post
+
+        .user-profile-position
+          span class="mdl-badge" data-badge="#{@user.checklists.count}" Checklists
+          '
+          span class="mdl-badge" data-badge="#{@user.followers_count}" Followers
+          '
+          span class="mdl-badge" data-badge="#{@user.followed_count}" Followed
+
         - user_position_strings = []
         - user_position_strings << @user.company if @user.company.present?
         - user_position_strings << @user.position if @user.position.present?
@@ -23,6 +38,7 @@
                 br
               = pos_str
 
+
     - if owner_in_da_house
       hr style="margin-bottom:0;"
 
@@ -30,6 +46,7 @@
         .mdl-tabs__tab-bar
             a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
+            a.mdl-tabs__tab href="#news" News
 
         .mdl-tabs__panel.is-active#my-checklists
           .mdl-cell.mdl-cell--12-col
@@ -70,6 +87,17 @@
           - else
             .mdl-typography--subhead style="margin-top:14px"
               | Have no recently browsed checklists
+
+        .mdl-tabs__panel#news
+          - if @news.any?
+            ul.check-med-clst-list-full
+              - @news.each do |checklist|
+                li = render partial: 'checklists/list_item', \
+                            locals: { checklist: checklist, full: true }
+          - else
+            .mdl-typography--subhead style="margin-top:14px"
+              | Have no news
+
 
     - else
       hr

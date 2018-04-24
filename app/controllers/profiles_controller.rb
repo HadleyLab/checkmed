@@ -22,6 +22,8 @@ class ProfilesController < FrontendController
         limit(20)
         # TODO correct ordering of the recent browsed checklists by last visited
 
+    @news = @user.return_news
+
     respond_to do |format|
       format.html
     end

@@ -10,6 +10,16 @@ class User < ActiveRecord::Base
                                inverse_of: :user,
                                dependent: :destroy
 
+  has_many :active_relationships, class_name:  'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent:   :destroy
+
+  has_many :passive_relationships, class_name:  'Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent:   :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
   mount_uploader :avatar, UserAvatarUploader
 
   attr_accessor :make_user_confirmed
@@ -19,6 +29,48 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   scope :ordered, -> { order(name: :asc, id: :asc) }
+
+  def follow(other_user)
+    following << other_user
+    increase_followers_count(other_user)
+    increase_followed_count(self)
+  end
+
+  def unfollow(other_user)
+    following.delete(other_user)
+    decrease_followers_count(other_user)
+    decrease_followed_count(self)
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  def increase_followers_count(user)
+    user.followers_count = user.followers_count + 1
+    user.save
+  end
+
+  def decrease_followers_count(user)
+    user.followers_count = user.followers_count - 1
+    user.save
+  end
+
+  def increase_followed_count(user)
+    user.followed_count = user.followed_count + 1
+    user.save
+  end
+
+  def decrease_followed_count(user)
+    user.followed_count = user.followed_count - 1
+    user.save
+  end
+
+  def return_news
+    checklists_arr = []
+    self.following.map { |u| u.checklists.visibles.map { |ch| checklists_arr.push(ch.id) } }
+    Checklist.where(id: checklists_arr).for_news
+  end
 
   private
 
