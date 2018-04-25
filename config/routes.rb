@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   post '/account/:id/follow', to: 'relationships#create', as: :follow
   post '/accounts/:id/unfollow', to: 'relationships#destroy', as: :unfollow
 
+  post '/profile/checklists/:id/like', to: 'likes#create', as: :like
+  post '/profile/checklists/:id/dislike', to: 'likes#destroy', as: :dislike
+  get 'top', to: 'pages#top', as: :checklist_top
+
   get 'search', to: 'checklists#index', as: :search
 
   get 'account/:id', to: 'profiles#show', as: :account

@@ -1,0 +1,12 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+  .mdl-cell.mdl-cell--6-col.check-med-simple-content
+    h1 Most liked checklists
+    - if @checklists.any?
+      ol.check-med-clst-list-full
+        - @checklists.each do |checklist|
+          li
+            = render partial: 'checklists/list_item', \
+                 locals: {checklist: checklist, full: true}
+    - else
+      .mdl-typography--subhead style="margin-top:14px" No checklists found
