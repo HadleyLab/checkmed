@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     checklist.decrease_likes_count
   end
 
+  def like?(checklist)
+    likables.include?(checklist)
+  end
+
   def follow(other_user)
     following << other_user
     increase_followers_count(other_user)
