@@ -51,6 +51,7 @@
         .mdl-tabs__tab-bar
             a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
             a.mdl-tabs__tab href="#recent-browsed" Recently browsed
+            a.mdl-tabs__tab href="#fav-checklists" Favourite checklists
             a.mdl-tabs__tab href="#news" News
 
         .mdl-tabs__panel.is-active#my-checklists
@@ -93,6 +94,15 @@
             .mdl-typography--subhead style="margin-top:14px"
               | Have no recently browsed checklists
 
+        .mdl-tabs__panel#fav-checklists
+          - if @favourites.any?
+            ul.check-med-clst-list-full
+              - @favourites.each do |checklist|
+                li = render partial: 'checklists/list_item', \
+                            locals: { checklist: checklist, full: true }
+          - else
+            .mdl-typography--subhead style="margin-top:14px"
+              | Have no favourite checklists
         .mdl-tabs__panel#news
           - if @news.any?
             ul.check-med-clst-list-full

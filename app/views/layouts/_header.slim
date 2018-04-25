@@ -20,6 +20,7 @@ header.check-med-header.mdl-layout__header.mdl-layout__header--transparent
         = link_to 'Edit profile', \
                   edit_user_registration_path, \
                   class: 'mdl-menu__item mdl-menu__item--full-bleed-divider'
+        = link_to 'Most liked checklists', checklist_top_path, :class => 'mdl-menu__item'
         = link_to 'My checklists', \
                   account_path(current_user.id), \
                   class: 'mdl-menu__item'

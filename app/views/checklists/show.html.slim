@@ -3,7 +3,16 @@
 .mdl-grid
   .mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
   .mdl-cell.mdl-cell--6-col
-    h4 = @checklist.name
+    h4
+      = @checklist.name
+      - if current_user.like?(@checklist)
+        = link_to dislike_path(likable_id: @checklist.id), method: :post, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored checklist-show-like-button' do
+          i.material-icons favorite
+      - else
+        = link_to like_path(likable_id: @checklist.id), method: :post, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab checklist-show-like-button' do
+          i.material-icons favorite_border
+      '
+      = @checklist.likes_count
 
     .mdl-accordion.check-med-checklist.check-med-checklist-general
         a.mdl-accordion__button
