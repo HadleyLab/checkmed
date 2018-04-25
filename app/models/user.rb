@@ -20,6 +20,12 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :likes, class_name:  'Like',
+                                 foreign_key: 'liker_id',
+                                 dependent:   :destroy
+
+  has_many :likables, through: :likes, source: :likable
+
   mount_uploader :avatar, UserAvatarUploader
 
   attr_accessor :make_user_confirmed
@@ -29,6 +35,16 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   scope :ordered, -> { order(name: :asc, id: :asc) }
+
+  def like(checklist)
+    likables << checklist
+    checklist.increase_likes_count
+  end
+
+  def dislike(checklist)
+    likables.delete(checklist)
+    checklist.decrease_likes_count
+  end
 
   def follow(other_user)
     following << other_user
