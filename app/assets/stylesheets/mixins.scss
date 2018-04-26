@@ -27,3 +27,26 @@ $accent-inverse-color: rgb(255,255,255);
 // @media screen and (min-width: 760px)
 // @media screen and (min-width: 1024px)
 // @media screen and (min-width: 1025px)
+
+.mdl--flex-center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.mdl--flex-center-tablet {
+  @media (max-width: 839px) and (min-width: 0px) {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.mdl--flex-center-desktop {
+  @media (min-width: 840px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}

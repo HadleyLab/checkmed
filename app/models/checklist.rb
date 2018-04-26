@@ -25,5 +25,17 @@ class Checklist < ActiveRecord::Base
   scope :published, -> (status) { where(published: status) }
   scope :visibles, -> { where(hided: false).where(published: true) }
   scope :ordered, -> { order(prior: :asc, id: :asc) }
+  scope :for_news, -> { order(created_at: :desc, id: :desc) }
+  scope :best, -> { where.not(likes_count: 0).order(likes_count: :desc, id: :asc) }
+
+  def increase_likes_count
+    self.likes_count = likes_count + 1
+    self.save
+  end
+
+  def decrease_likes_count
+    self.likes_count = likes_count - 1
+    self.save
+  end
 
 end

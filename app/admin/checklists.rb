@@ -67,6 +67,7 @@ ActiveAdmin.register Checklist do
     column :executor_role
     column :speciality
     column :user
+    column :likes_count
     column :hided
     column :published
     column :created_at do |checklist|
@@ -84,6 +85,7 @@ ActiveAdmin.register Checklist do
       row :executor_role
       row :speciality
       row :user
+      row :likes_count
       row :hided
       row :published
       row :created_at

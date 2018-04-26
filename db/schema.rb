@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416065627) do
+ActiveRecord::Schema.define(version: 20180425072919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20180416065627) do
     t.integer  "speciality_id"
     t.integer  "checklist_type_id"
     t.boolean  "published",         default: false
+    t.integer  "likes_count",       default: 0
   end
 
   add_index "checklists", ["checklist_type_id"], name: "index_checklists_on_checklist_type_id", using: :btree
@@ -94,6 +95,17 @@ ActiveRecord::Schema.define(version: 20180416065627) do
 
   add_index "executor_roles", ["prior"], name: "index_executor_roles_on_prior", using: :btree
 
+  create_table "likes", force: :cascade do |t|
+    t.integer  "liker_id"
+    t.integer  "likable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["likable_id"], name: "index_likes_on_likable_id", using: :btree
+  add_index "likes", ["liker_id", "likable_id"], name: "index_likes_on_liker_id_and_likable_id", unique: true, using: :btree
+  add_index "likes", ["liker_id"], name: "index_likes_on_liker_id", using: :btree
+
   create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "path",                       null: false
@@ -108,6 +120,17 @@ ActiveRecord::Schema.define(version: 20180416065627) do
   add_index "pages", ["hided"], name: "index_pages_on_hided", using: :btree
   add_index "pages", ["path"], name: "index_pages_on_path", unique: true, using: :btree
   add_index "pages", ["prior"], name: "index_pages_on_prior", using: :btree
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "ident",      null: false
@@ -166,6 +189,8 @@ ActiveRecord::Schema.define(version: 20180416065627) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "followers_count",        default: 0
+    t.integer  "followed_count",         default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

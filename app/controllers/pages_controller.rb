@@ -15,4 +15,13 @@ class PagesController < FrontendController
       format.html
     end
   end
+
+  def top
+    @checklists = Checklist.visibles.best.take(10)
+    @seo_carrier = OpenStruct.new({
+                                      title: 'Most liked checklists',
+                                      seo_descr: 'Most liked checklists'
+                                  })
+  end
+
 end

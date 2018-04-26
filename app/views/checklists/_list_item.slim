@@ -21,7 +21,8 @@
       = t 'activerecord.attributes.checklist.created_at'
       ' :
       = l checklist.created_at, format: "%B %e, %Y"
-
-  / This is for the future show liked lists
-  / .mdl-card__menu
-  /   i.material-icons favorite
+  .mdl-card__supporting-text
+    hr
+    .supporting-text-line
+      i.material-icons.like-icon favorite
+      .like-value = checklist.likes_count
