@@ -6,9 +6,6 @@
       = link_to checklist.name, checklist_path(checklist)
   .mdl-card__supporting-text
     .supporting-text-line
-      i.material-icons favorite
-      ' #{checklist.likes_count}
-    .supporting-text-line
       ' For:
       = checklist.executor_role.name
     - if checklist.speciality.present?
@@ -24,7 +21,8 @@
       = t 'activerecord.attributes.checklist.created_at'
       ' :
       = l checklist.created_at, format: "%B %e, %Y"
-
-  / This is for the future show liked lists
-  / .mdl-card__menu
-  /   i.material-icons favorite
+  .mdl-card__supporting-text
+    hr
+    .supporting-text-line
+      i.material-icons.like-icon favorite
+      ' #{checklist.likes_count}
