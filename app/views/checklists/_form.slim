@@ -33,7 +33,7 @@
 
   / :hided
 
-  .chkl-form-groups
+  .chkl-form-groups.list-group
     - if @checklist.groups.any?
       = f.fields_for :groups, @checklist.groups.sort_by {|cg| cg.prior} do |a|
         = render partial: 'group_fields', \

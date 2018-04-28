@@ -1,7 +1,7 @@
 - is_collapsed ||= false
 - is_collapsed = false if is_collapsed && !f.object.valid?
 
-.chkl-form-group.cm-deletable-block class=class_string('chkl-form-group-collapsed' => is_collapsed)
+.list-group-item.chkl-form-group.cm-deletable-block class=class_string('chkl-form-group-collapsed' => is_collapsed)
   = f.hidden_field :prior, class: 'ordering-prior-input'
 
   - if is_collapsed
