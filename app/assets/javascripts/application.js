@@ -133,7 +133,7 @@ $(document).ready(function() {
   //   $link.before($link.data('fields-template').replace(regexp, newId));
   //   return false;
   // });
-
+  //
   $(".chkl-form-groups").each(function(indx) {
     var groupsSortable = new Sortable(this, {
       handle: ".group-ordering-handler",
@@ -146,6 +146,7 @@ $(document).ready(function() {
         var item
       }
     });
+
   });
 
   $(".chkl-form-group-questions").each(function(indx) {
