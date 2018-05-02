@@ -20,6 +20,9 @@
 // do not require_tree .
 
 $(document).ready(function() {
+
+  var SortableInstances = [];
+
   $('textarea').autosize();
 
   // Flash messages thru mdl snackbar
@@ -133,47 +136,77 @@ $(document).ready(function() {
   //   $link.before($link.data('fields-template').replace(regexp, newId));
   //   return false;
   // });
+  //
 
-  $(".chkl-form-groups").each(function(indx) {
-    var groupsSortable = new Sortable(this, {
-      handle: ".group-ordering-handler",
-      onUpdate: function(evnt) {
-        $(evnt.item).closest(".chkl-form-groups").
-                     find(".chkl-form-group > input.ordering-prior-input").
-                     each(function(indx) {
-          $(this).val(indx);
-        });
-        var item
-      }
+  $(document).on('click', '.chlk-add-nested-fields-btn', function(){
+    $.each(SortableInstances, function(index, instance) { instance.destroy();});
+    SortableInstances =[];
+    $(".chkl-form-groups").each(function(indx) {
+      groups_sort(this)
+    });
+    $(".chkl-form-group-questions").each(function(indx) {
+      items_sort(this)
+    });
+    $(".chkl-form-question-answers").each(function(indx) {
+      answers_sort(this);
     });
   });
 
+  function groups_sort(el) {
+      var groupsSortable = new Sortable(el, {
+          handle: ".group-ordering-handler",
+          onUpdate: function(evnt) {
+              $(evnt.item).closest(".chkl-form-groups").
+              find(".chkl-form-group > input.ordering-prior-input").
+              each(function(indx) {
+                  $(this).val(indx);
+              });
+              var item
+          }
+      });
+      SortableInstances.push(groupsSortable)
+  };
+
+  function items_sort(el) {
+      var questionsSortable = new Sortable(el, {
+          handle: ".question-ordering-handler",
+          onUpdate: function(evnt) {
+              $(evnt.item).closest(".chkl-form-group-questions").
+              find(".chkl-form-question > input.ordering-prior-input").
+              each(function(indx) {
+                  $(this).val(indx);
+              });
+              var item
+          }
+      });
+      SortableInstances.push(questionsSortable)
+  };
+
+  function answers_sort(el) {
+      var answersSortable = new Sortable(el, {
+          handle: ".answer-ordering-handler",
+          onUpdate: function(evnt) {
+              $(evnt.item).closest(".chkl-form-question-answers").
+              find(".chkl-form-answer > input.ordering-prior-input").
+              each(function(indx) {
+                  $(this).val(indx);
+              });
+              var item
+          }
+      });
+  };
+
+  $(".chkl-form-groups").each(function(indx) {
+    groups_sort(this);
+  });
+
+
   $(".chkl-form-group-questions").each(function(indx) {
-    var questionsSortable = new Sortable(this, {
-      handle: ".question-ordering-handler",
-      onUpdate: function(evnt) {
-        $(evnt.item).closest(".chkl-form-group-questions").
-                     find(".chkl-form-question > input.ordering-prior-input").
-                     each(function(indx) {
-          $(this).val(indx);
-        });
-        var item
-      }
-    });
+    items_sort(this);
   });
 
   $(".chkl-form-question-answers").each(function(indx) {
-    var answersSortable = new Sortable(this, {
-      handle: ".answer-ordering-handler",
-      onUpdate: function(evnt) {
-        $(evnt.item).closest(".chkl-form-question-answers").
-                     find(".chkl-form-answer > input.ordering-prior-input").
-                     each(function(indx) {
-          $(this).val(indx);
-        });
-        var item
-      }
-    });
+    answers_sort(this);
   });
 
   $('.chkl-form-question').each(function(indx) {

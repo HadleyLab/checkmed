@@ -3,6 +3,7 @@
 
 .chkl-form-question.cm-deletable-block class=class_string('chkl-form-question-collapsed' => is_collapsed)
   - if is_collapsed
+    = f.hidden_field :prior, class: 'ordering-prior-input'
     .collapsed-question-body
       i.ordering-handler.question-ordering-handler.material-icons swap_vert
       = link_to "javascript:void('open')", \
@@ -15,7 +16,7 @@
 
   .chkl-form-question-body
     i.ordering-handler.question-ordering-handler.material-icons swap_vert
-    = f.hidden_field :prior, class: 'ordering-prior-input'
+    /= f.hidden_field :prior, class: 'ordering-prior-input'
     .chlk-form-line.field-title
       .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:title].any?)
         = f.text_field :title, class: 'mdl-textfield__input'
