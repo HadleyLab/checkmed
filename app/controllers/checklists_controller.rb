@@ -77,6 +77,7 @@ class ChecklistsController < FrontendController
     # log a visit
     unless current_user == @user
       current_user.checklists_visits.create checklist: @checklist
+      @checklist.increase_views_count
     end
 
     respond_to do |format|
