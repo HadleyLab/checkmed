@@ -36,6 +36,10 @@
               = t 'activerecord.attributes.checklist.created_at'
               ' :
               = l @checklist.created_at, format: "%B %e, %Y"
+              br
+              | Views
+              ' :
+              = @checklist.views_count
 
     - @checklist.groups.ordered.each do |group|
       - next if group.items.empty?
