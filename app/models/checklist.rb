@@ -38,4 +38,9 @@ class Checklist < ActiveRecord::Base
     self.save
   end
 
+  def increase_views_count
+    self.views_count = views_count + 1
+    self.save
+  end
+
 end
