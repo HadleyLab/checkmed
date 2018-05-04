@@ -112,8 +112,24 @@ ol.check-med-clst-list-full {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
   }
 }
+
+@media (max-width: 479px) and (min-width: 0px) {
+  .checklist-box-tab {
+    overflow: hidden;
+    overflow-x: scroll;
+    padding-left: 250px;
+  }
+  .checklist-tab {
+    text-align: center;
+    overflow: visible;
+    white-space: nowrap;
+  }
+}
+
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
