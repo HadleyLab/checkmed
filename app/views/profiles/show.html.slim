@@ -34,7 +34,7 @@
               .mdl-cell--4-col-desktop.mdl-cell--2-col-tablet.mdl-cell--1-col
                 span class="mdl-badge" data-badge="#{@user.followers_count}" Followers
               .mdl-cell--4-col-desktop.mdl-cell--2-col-tablet.mdl-cell--1-col
-                span class="mdl-badge" data-badge="#{@user.followed_count}" Followed
+                span class="mdl-badge" data-badge="#{@user.followed_count}" Following
 
           .user-profile-follow.mdl--flex-center-tablet
             - unless owner_in_da_house
@@ -49,9 +49,17 @@
 
       .mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect#user-profile-tabs
         .mdl-tabs__tab-bar
-            a.mdl-tabs__tab.is-active href="#my-checklists" My checklists
-            a.mdl-tabs__tab href="#recent-browsed" Recently browsed
-            a.mdl-tabs__tab href="#fav-checklists" Favourite checklists
+            a.mdl-tabs__tab.is-active href="#my-checklists"
+              - if mobile_device?
+                ' My
+              - else
+                ' My checklists
+            a.mdl-tabs__tab href="#recent-browsed"
+              - if mobile_device?
+                ' Recently
+              - else
+                ' Recently browsed
+            a.mdl-tabs__tab href="#fav-checklists" Favorites
             a.mdl-tabs__tab href="#news" News
 
         .mdl-tabs__panel.is-active#my-checklists

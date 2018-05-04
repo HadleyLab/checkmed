@@ -26,3 +26,9 @@
     .supporting-text-line
       i.material-icons.like-icon favorite
       .like-value = checklist.likes_count
+      .visibility-icon
+        - if checklist.views_count > 0
+          i.material-icons visibility
+          .like-value = checklist.views_count
+        - else
+          i.material-icons visibility_off

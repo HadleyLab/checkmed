@@ -46,6 +46,11 @@ ol.check-med-clst-list-full {
   color: red;
 }
 
+.visibility-icon {
+  float: right;
+  margin-right: 25px;
+}
+
 .like-value {
   position: absolute;
   margin-left: 25px;
@@ -107,6 +112,7 @@ ol.check-med-clst-list-full {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
   }
 }
 
