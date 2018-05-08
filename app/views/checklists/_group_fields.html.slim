@@ -1,5 +1,6 @@
 - is_collapsed ||= false
 - is_collapsed = false if is_collapsed && !f.object.valid?
+- object_name = f.object.name.present? ? f.object.name : 'Empty name'
 
 .list-group-item.chkl-form-group.cm-deletable-block class=class_string('chkl-form-group-collapsed' => is_collapsed)
   = f.hidden_field :prior, class: 'ordering-prior-input'
@@ -8,7 +9,7 @@
     .collapsed-header
       .mdl-grid
         .mdl-cell.mdl-cell--3-col.mdl-cell--6-col-tablet.mdl-cell--8-col-desktop
-          = link_to f.object.name, \
+          = link_to object_name, \
                     "javascript:void('open')", \
                     class: "uncollapser",
                     'data-uncollapse-class' => 'chkl-form-group-collapsed'
@@ -19,7 +20,7 @@
     .mdl-grid
       .mdl-cell.mdl-cell--3-col.mdl-cell--6-col-tablet.mdl-cell--8-col-desktop
         .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield class=class_string('is-invalid' => f.object.errors[:name].any?)
-          = f.text_field :name, class: 'mdl-textfield__input'
+          = f.text_area :name, class: 'mdl-textfield__input'
       .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet.mdl-cell--4-col-desktop.mdl-typography--text-right
         = f.label :_destroy, :class => 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect'
           = f.check_box :_destroy, :class => 'mdl-icon-toggle__input cm-delete-cb'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503083742) do
+ActiveRecord::Schema.define(version: 20180508082243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180503083742) do
 
   create_table "checklist_groups", force: :cascade do |t|
     t.integer  "checklist_id",             null: false
-    t.string   "name",                     null: false
+    t.string   "name"
     t.integer  "prior",        default: 0, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false

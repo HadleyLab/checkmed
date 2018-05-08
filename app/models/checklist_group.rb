@@ -9,9 +9,17 @@ class ChecklistGroup < ActiveRecord::Base
                                 allow_destroy: true,
                                 reject_if: :all_blank
 
-  validates :checklist, :name, presence: true
+  validates :checklist, presence: true
   validates :prior, numericality: { only_integer: true }
   validates_associated :items
 
+  after_save :delete_empty_groups
+
   scope :ordered, -> { order(prior: :asc, id: :asc) }
+
+  private
+
+  def delete_empty_groups
+    self.destroy if self.name.empty? && !self.items.any?
+  end
 end
