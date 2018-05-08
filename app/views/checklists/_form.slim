@@ -14,7 +14,7 @@
 
   .chlk-form-line
     .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:name].any?)
-      = f.text_field :name, autofocus: true, class: 'mdl-textfield__input'
+      = f.text_area :name, autofocus: true, class: 'mdl-textfield__input'
       = f.label :name, class: 'mdl-textfield__label'
 
   .chlk-form-line

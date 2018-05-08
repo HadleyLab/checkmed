@@ -19,7 +19,7 @@
     /= f.hidden_field :prior, class: 'ordering-prior-input'
     .chlk-form-line.field-title
       .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:title].any?)
-        = f.text_field :title, class: 'mdl-textfield__input'
+        = f.text_area :title, class: 'mdl-textfield__input'
         = f.label :title, class: 'mdl-textfield__label'
     .chlk-form-line.field-descr
       .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:descr].any?)
