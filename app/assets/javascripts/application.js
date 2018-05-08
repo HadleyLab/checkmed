@@ -141,6 +141,7 @@ $(document).ready(function() {
   $(document).on('click', '.chlk-add-nested-fields-btn', function(){
     $.each(SortableInstances, function(index, instance) { instance.destroy();});
     SortableInstances =[];
+    $('textarea').autosize();
     $(".chkl-form-groups").each(function(indx) {
       groups_sort(this)
     });

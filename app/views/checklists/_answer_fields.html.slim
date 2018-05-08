@@ -4,9 +4,11 @@
   .chlk-form-line
     .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:val].any?)
       = f.text_area :val, class: 'mdl-textfield__input'
+      = f.label :val, class: 'mdl-textfield__label'
   .chlk-form-line
     .mdl-cell--12-col-desktop.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label class=class_string('is-invalid' => f.object.errors[:tip].any?)
       = f.text_area :tip, class: 'mdl-textfield__input'
+      = f.label :tip, class: 'mdl-textfield__label'
   / .chlk-form-line
   /   = f.label :commentable, :class => 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'
   /     = f.check_box :commentable, :class => 'mdl-checkbox__input'
