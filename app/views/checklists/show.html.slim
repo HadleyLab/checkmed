@@ -73,7 +73,8 @@
                       - if answer.commentable?
                         |  &nbsp; ___________
             - else
-              p There are no questions in this group..
+              ol
+                li There are no questions in this group..
 
     - if Rails.env.production?
       = render 'shared/yandex_share'
